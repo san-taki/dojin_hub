@@ -1,4 +1,4 @@
-import 'package:dojin_hub/entity/dojin_event.dart';
+import 'package:dojin_hub/selection/dojin_event.dart';
 import 'package:dojin_hub/entity/outsourcer.dart';
 import 'package:dojin_hub/entity/person.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

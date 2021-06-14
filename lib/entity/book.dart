@@ -1,12 +1,14 @@
-import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/selection/book_status.dart';
+import 'package:dojin_hub/selection/currency.dart';
 
 class Book {
   final BookStatus bookStatus;
-  final Edition edition;
+  final int sellingPrice;
+  final Currency currency;
 
   Book({
     required this.bookStatus,
-    required this.edition,
+    required this.sellingPrice,
+    required this.currency,
   });
 }

@@ -1,14 +1,15 @@
 import 'package:dojin_hub/entity/book.dart';
+import 'package:dojin_hub/entity/product.dart';
 
 // 委託先
 class Outsourcer {
   final String id;
-  final String title;
-  final List<Book> books;
+  final String name;
+  final List<Product> product;
 
   Outsourcer({
     required this.id,
-    required this.title,
-    required this.books,
+    required this.name,
+    required this.product,
   });
 }

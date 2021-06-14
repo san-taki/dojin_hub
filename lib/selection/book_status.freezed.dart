@@ -628,6 +628,8 @@ abstract class _$SoldAtDojinEventCopyWith<$Res> {
           _SoldAtDojinEvent value, $Res Function(_SoldAtDojinEvent) then) =
       __$SoldAtDojinEventCopyWithImpl<$Res>;
   $Res call({DojinEvent dojinEvent});
+
+  $DojinEventCopyWith<$Res> get dojinEvent;
 }
 
 /// @nodoc
@@ -651,6 +653,13 @@ class __$SoldAtDojinEventCopyWithImpl<$Res>
           : dojinEvent // ignore: cast_nullable_to_non_nullable
               as DojinEvent,
     ));
+  }
+
+  @override
+  $DojinEventCopyWith<$Res> get dojinEvent {
+    return $DojinEventCopyWith<$Res>(_value.dojinEvent, (value) {
+      return _then(_value.copyWith(dojinEvent: value));
+    });
   }
 }
 
@@ -763,6 +772,8 @@ abstract class _$FreeDistributionCopyWith<$Res> {
           _FreeDistribution value, $Res Function(_FreeDistribution) then) =
       __$FreeDistributionCopyWithImpl<$Res>;
   $Res call({DojinEvent dojinEvent, Parson parson});
+
+  $DojinEventCopyWith<$Res> get dojinEvent;
 }
 
 /// @nodoc
@@ -791,6 +802,13 @@ class __$FreeDistributionCopyWithImpl<$Res>
           : parson // ignore: cast_nullable_to_non_nullable
               as Parson,
     ));
+  }
+
+  @override
+  $DojinEventCopyWith<$Res> get dojinEvent {
+    return $DojinEventCopyWith<$Res>(_value.dojinEvent, (value) {
+      return _then(_value.copyWith(dojinEvent: value));
+    });
   }
 }
 
