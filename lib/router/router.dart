@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:dojin_hub/ui/home_screen.dart';
-import 'package:dojin_hub/ui/pos_register_screen.dart';
-import 'package:dojin_hub/ui/screen_type.dart';
+import 'package:dojin_hub/ui/screen/home_screen.dart';
+import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
+import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
