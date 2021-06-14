@@ -15,8 +15,29 @@ class HomeScreen extends HookWidget implements ScreenType {
       appBar: CommonAppBar(
         title: runtimeType.toString(),
       ),
-      body: Center(
-        child: Text('home'),
+      body: SingleChildScrollView(
+        child: ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) =>
+                _buildListTile(context)),
+      ),
+    );
+  }
+
+  Widget _buildListTile(
+    BuildContext context,
+  ) {
+    return Container(
+      height: 80,
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      child: Card(
+        child: Row(
+          children: [
+
+          ],
+        ),
       ),
     );
   }

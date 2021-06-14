@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class CommonAppBar extends ComponentType implements PreferredSizeWidget {
   final String title;
+  final bool showHelp;
 
   CommonAppBar({
     required this.title,
+    this.showHelp = false,
   });
 
   @override
@@ -14,12 +16,15 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       centerTitle: true,
       actions: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.help,
-            color: Colors.blueGrey,
+        Visibility(
+          visible: showHelp,
+          child: IconButton(
+            icon: Icon(
+              Icons.help,
+              color: Colors.blueGrey,
+            ),
+            onPressed: () {},
           ),
-          onPressed: () {},
         ),
       ],
       title: Text(
