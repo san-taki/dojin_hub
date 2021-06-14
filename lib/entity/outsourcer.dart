@@ -1,4 +1,3 @@
-import 'package:dojin_hub/entity/book.dart';
 import 'package:dojin_hub/entity/product.dart';
 
 // 委託先

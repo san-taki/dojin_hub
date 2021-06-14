@@ -1,3 +1,4 @@
+import 'package:dojin_hub/router/router.dart' as router;
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,10 +8,13 @@ class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'DojinHub',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomeScreen());
+      title: 'DojinHub',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: router.RouteName.home,
+      onGenerateRoute: router.Router.onGenerateRoute,
+    );
   }
 }

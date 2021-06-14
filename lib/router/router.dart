@@ -1,29 +1,34 @@
 import 'dart:io';
 
+import 'package:dojin_hub/ui/screen/book_storage_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
+import 'package:dojin_hub/ui/screen/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RouteName {
+  static const book_storage = '/book_storage';
   static const home = '/home';
   static const pos_register = '/pos_register';
   static const settings = '/settings';
 }
 
 class Router {
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteName.book_storage:
+        return _generateRouteByModal(BookStorageScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:
-        return _generateRoute(PosRegisterScreen());
+        return _generateRouteByModal(PosRegisterScreen());
       case RouteName.settings:
-        return _generateRouteByModal(HomeScreen());
+        return _generateRouteByModal(SettingsScreen());
       default:
         // FIXME: AppErrorに統合する
-        throw AssertionError();
+        return null;
     }
   }
 
@@ -46,10 +51,11 @@ class StandardPageRoute<T> extends CupertinoPageRoute<T> {
     bool maintainState = true,
     bool fullscreenDialog = false,
   }) : super(
-            builder: builder,
-            settings: settings,
-            maintainState: maintainState,
-            fullscreenDialog: fullscreenDialog);
+          builder: builder,
+          settings: settings,
+          maintainState: maintainState,
+          fullscreenDialog: fullscreenDialog,
+        );
 
   @override
   @protected

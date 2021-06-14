@@ -1,44 +1,81 @@
-import 'package:dojin_hub/provider/screen_model_provider.dart';
+import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
-    var screenModel = useProvider(homeScreenModelProvider);
-
     return Scaffold(
       appBar: CommonAppBar(
         title: runtimeType.toString(),
       ),
       body: SingleChildScrollView(
-        child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) =>
-                _buildListTile(context)),
-      ),
-    );
-  }
-
-  Widget _buildListTile(
-    BuildContext context,
-  ) {
-    return Container(
-      height: 80,
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      child: Card(
-        child: Row(
+        child: Column(
           children: [
-
+            _buildBookStorageMenu(context),
+            _buildPosRegisterMenu(context),
+            _buildSettingsMenu(context),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildBookStorageMenu(BuildContext context) => _buildMenu(
+        context,
+        '本の管理',
+        'assets/images/book.png',
+        RouteName.book_storage,
+      );
+
+  Widget _buildPosRegisterMenu(BuildContext context) => _buildMenu(
+        context,
+        '即売会',
+        'assets/images/regi.png',
+        RouteName.pos_register,
+      );
+
+  Widget _buildSettingsMenu(BuildContext context) => _buildMenu(
+        context,
+        'アプリの設定',
+        'assets/images/setting.png',
+        RouteName.settings,
+      );
+
+  Widget _buildMenu(
+    BuildContext context,
+    String label,
+    String imagePath,
+    String routeName,
+  ) =>
+      GestureDetector(
+        onTap: () => Navigator.of(context).pushNamed(routeName),
+        child: Card(
+          child: Container(
+            height: 80,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(label),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 }
