@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BookStorageTearOff {
   const _$BookStorageTearOff();
 
-  _BookStorage call({List<Book> books = const []}) {
+  _BookStorage call({List<Product> products = const []}) {
     return _BookStorage(
-      books: books,
+      products: products,
     );
   }
 }
@@ -28,7 +28,7 @@ const $BookStorage = _$BookStorageTearOff();
 
 /// @nodoc
 mixin _$BookStorage {
-  List<Book> get books => throw _privateConstructorUsedError;
+  List<Product> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookStorageCopyWith<BookStorage> get copyWith =>
@@ -40,7 +40,7 @@ abstract class $BookStorageCopyWith<$Res> {
   factory $BookStorageCopyWith(
           BookStorage value, $Res Function(BookStorage) then) =
       _$BookStorageCopyWithImpl<$Res>;
-  $Res call({List<Book> books});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
@@ -53,13 +53,13 @@ class _$BookStorageCopyWithImpl<$Res> implements $BookStorageCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? books = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -71,7 +71,7 @@ abstract class _$BookStorageCopyWith<$Res>
           _BookStorage value, $Res Function(_BookStorage) then) =
       __$BookStorageCopyWithImpl<$Res>;
   @override
-  $Res call({List<Book> books});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
@@ -86,13 +86,13 @@ class __$BookStorageCopyWithImpl<$Res> extends _$BookStorageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? books = freezed,
+    Object? products = freezed,
   }) {
     return _then(_BookStorage(
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -100,28 +100,29 @@ class __$BookStorageCopyWithImpl<$Res> extends _$BookStorageCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BookStorage implements _BookStorage {
-  const _$_BookStorage({this.books = const []});
+  const _$_BookStorage({this.products = const []});
 
   @JsonKey(defaultValue: const [])
   @override
-  final List<Book> books;
+  final List<Product> products;
 
   @override
   String toString() {
-    return 'BookStorage(books: $books)';
+    return 'BookStorage(products: $products)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _BookStorage &&
-            (identical(other.books, books) ||
-                const DeepCollectionEquality().equals(other.books, books)));
+            (identical(other.products, products) ||
+                const DeepCollectionEquality()
+                    .equals(other.products, products)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(books);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(products);
 
   @JsonKey(ignore: true)
   @override
@@ -130,10 +131,10 @@ class _$_BookStorage implements _BookStorage {
 }
 
 abstract class _BookStorage implements BookStorage {
-  const factory _BookStorage({List<Book> books}) = _$_BookStorage;
+  const factory _BookStorage({List<Product> products}) = _$_BookStorage;
 
   @override
-  List<Book> get books => throw _privateConstructorUsedError;
+  List<Product> get products => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BookStorageCopyWith<_BookStorage> get copyWith =>

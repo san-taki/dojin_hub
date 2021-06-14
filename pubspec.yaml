@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.3
 
+  enum_to_string: ^2.0.1
+
   freezed: ^0.14.2
   freezed_annotation: ^0.14.2
 
