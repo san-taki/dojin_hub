@@ -1,20 +1,9 @@
-import 'dart:io';
 
-import 'package:dojin_hub/entity/book.dart';
-import 'package:dojin_hub/entity/edition.dart';
-import 'package:dojin_hub/entity/print_shop.dart';
-import 'package:dojin_hub/entity/product.dart';
-import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/router/router.dart';
-import 'package:dojin_hub/ui/component/dialog/alert_dialog.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:dojin_hub/selection/book_status.dart';
-import 'package:dojin_hub/selection/currency.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
-import 'package:dojin_hub/ui/component/text_field/text_field.dart';
-import 'package:dojin_hub/ui/listener/touch_listeners.dart';
+import 'package:dojin_hub/ui/screen/create_product_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_storage_screen_model.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +40,25 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                         screenModel.productStorage.products.indexOf(product);
                     Navigator.of(context).pushNamed(RouteName.product_detail);
                   },
-                  child: Text(product.title),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(product.title),
+                      ),
+                      Visibility(
+                        visible: product.soldOut,
+                        child: Container(
+                          padding: EdgeInsets.all(8),
+                          alignment: Alignment.bottomRight,
+                          child: Image.asset(
+                            'assets/images/kanbai.png',
+                            height: 50,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -79,115 +86,17 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
     BuildContext context,
     ProductStorageScreenModel screenModel,
   ) async {
-    var fullScreenListener = FullScreenListener();
-    var textListener = TextFormListener(1);
     showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-      backgroundColor: Colors.white,
-      builder: (BuildContext context) => GestureDetector(
-        onTap: () => fullScreenListener.requestFocus(context),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                height: 56,
-                width: double.infinity,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        icon: Icon(Icons.close),
-                        onPressed: () {
-                          AppDialog().show(
-                            context,
-                            ErrorDialogParam(
-                              context: context,
-                              onAction: (result) => Navigator.pop(context),
-                              message: '編集中のデータを破棄します。よろしいですか？',
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        iconSize: 24,
-                        icon: Icon(
-                          Icons.save_alt,
-                          color: Colors.blue,
-                        ),
-                        onPressed: () {
-                          screenModel.addProduct(createProductMock());
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '新しい作品を登録する',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildImageWindow(context),
-                    TextForm(
-                      label: '作品名',
-                      listener: textListener,
-                    ),
-                  ],
-                ),
-              )
-            ],
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildImageWindow(BuildContext context) {
-    return Container(
-      child: SizedBox(
-        height: 150,
-        width: 150,
-        child: InkWell(
-          onTap: () async {
-            FilePickerResult? result =
-                await FilePicker.platform.pickFiles(allowMultiple: false);
-            if (result != null) {
-              var path = result.files.single.path;
-              if (path != null) {
-                File file = File(path);
-                Image.file(file);
-                // TODO: このイメージを表示させる
-              }
-            } else {
-              DebugLog.d('User canceled the picker');
-            }
-          },
-          child: Container(
-            color: Colors.blue,
-          ),
-        ),
-      ),
-    );
+        backgroundColor: Colors.white,
+        builder: (BuildContext context) => CreateProductScreen());
   }
 
   // 日時登録
@@ -203,25 +112,4 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
       }
     });
   }
-
-  Product createProductMock() => Product(
-        title: 'hogehoge',
-        editions: [
-          Edition(
-            number: 1,
-            printShop: PrintShop(
-              id: 1,
-              name: '栄光',
-            ),
-            publicationDate: DateTime.now(),
-            books: [
-              Book(
-                bookStatus: BookStatus.homeStock(),
-                sellingPrice: 500,
-                currency: Currency.jpy(),
-              ),
-            ],
-          ),
-        ],
-      );
 }

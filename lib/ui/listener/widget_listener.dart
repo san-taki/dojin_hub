@@ -1,3 +1,4 @@
+import 'package:dojin_hub/log/debug_log.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class WidgetListener {
@@ -10,6 +11,7 @@ abstract class WidgetListener {
   }
 
   void unFocus(BuildContext context) {
+    DebugLog.d('call unFocus');
     FocusScope.of(context).unfocus();
   }
 

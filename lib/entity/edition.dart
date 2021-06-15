@@ -14,4 +14,7 @@ class Edition {
     required this.publicationDate,
     required this.books,
   });
+
+  // TODO: ロジックはかんがえる
+  bool get soldOut => true;
 }

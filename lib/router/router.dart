@@ -21,15 +21,15 @@ class Router {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteName.product_storage:
-        return _generateRouteByModal(ProductStorageScreen());
+        return _generateRoute(ProductStorageScreen());
       case RouteName.product_detail:
         return _generateRouteByModal(ProductDetailScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:
-        return _generateRouteByModal(PosRegisterScreen());
+        return _generateRoute(PosRegisterScreen());
       case RouteName.settings:
-        return _generateRouteByModal(SettingsScreen());
+        return _generateRoute(SettingsScreen());
       default:
         // FIXME: AppErrorに統合する
         return null;

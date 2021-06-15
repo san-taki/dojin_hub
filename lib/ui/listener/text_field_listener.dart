@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'widget_listener.dart';
 
-abstract class TextFieldListener extends WidgetListener {
+class TextFieldListener extends WidgetListener {
   final TextEditingController editingController = TextEditingController();
 
   String get text => editingController.text;
