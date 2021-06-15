@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dojin_hub/entity/book.dart';
 import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/entity/print_shop.dart';
@@ -6,6 +8,7 @@ import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/router/router.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:dojin_hub/selection/book_status.dart';
 import 'package:dojin_hub/selection/currency.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
@@ -154,8 +157,24 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
       child: SizedBox(
         height: 150,
         width: 150,
-        child: Container(
-          color: Colors.blue,
+        child: InkWell(
+          onTap: () async {
+            FilePickerResult? result =
+                await FilePicker.platform.pickFiles(allowMultiple: false);
+            if (result != null) {
+              var path = result.files.single.path;
+              if (path != null) {
+                File file = File(path);
+                Image.file(file);
+                // TODO: このイメージを表示させる
+              }
+            } else {
+              DebugLog.d('User canceled the picker');
+            }
+          },
+          child: Container(
+            color: Colors.blue,
+          ),
         ),
       ),
     );
