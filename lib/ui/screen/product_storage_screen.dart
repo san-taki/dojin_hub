@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
@@ -34,6 +35,10 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
         children: screenModel.productStorage.products
             .map(
               (product) => Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: InkWell(
                   onTap: () {
                     detailScreenPosition.state =
@@ -42,9 +47,28 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                   },
                   child: Stack(
                     children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(product.title),
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            alignment: FractionalOffset.center,
+                            image: Image.file(
+                              File(product.thumbnailPath),
+                              fit: BoxFit.cover,
+                            ).image,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          product.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
                       ),
                       Visibility(
                         visible: product.soldOut,
@@ -65,14 +89,24 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
             .toList()
               ..add(
                 Card(
+                  color: Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                   child: InkWell(
                     onTap: () =>
                         _showAddProductBottomSheet(context, screenModel),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add),
-                        Text('作品を追加する'),
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          '作品を追加する',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ],
                     ),
                   ),

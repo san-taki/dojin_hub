@@ -40,14 +40,14 @@ class TextForm extends ComponentType {
             inputFormatters: type.inputFormatters(),
             onFieldSubmitted: (_) => listener.unFocus(context),
             decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              counterText: "",
-              // カウンター表示するならこの行を消す
-              border: UnderlineInputBorder(),
-              labelText: label,
-              suffixIcon: type.suffixIcon(),
-            ),
+                filled: true,
+                fillColor: Colors.white,
+                counterText: "",
+                // カウンター表示するならこの行を消す
+                border: UnderlineInputBorder(),
+                labelText: label,
+                suffixIcon: type.suffixIcon(),
+                errorText: null),
           ),
         ),
       ),

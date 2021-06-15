@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 /// tips: https://qiita.com/hiesiea/items/807e3ca2b57ed37e4a9b
 class AppDialog {
   static AppDialog? _instance;
+  BuildContext context;
+  DialogParam param;
 
-  AppDialog._();
+  AppDialog._(this.context, this.param);
 
-  factory AppDialog() => _instance == null ? AppDialog._() : _instance!;
+  factory AppDialog(BuildContext context, DialogParam param) =>
+      _instance == null ? AppDialog._(context, param) : _instance!;
 
-  void show(
-    BuildContext context,
-    DialogParam param,
-  ) async {
+  void show() async {
     if (Platform.isIOS) {
       await showCupertinoDialog<void>(
         context: context,
