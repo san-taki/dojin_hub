@@ -13,8 +13,8 @@ class ProductStorage extends ModelType with _$ProductStorage {
   }) = _ProductStorage;
 }
 
-class BookStorageController extends ModelControllerType<ProductStorage> {
-  BookStorageController() : super(ProductStorage());
+class ProductStorageController extends ModelControllerType<ProductStorage> {
+  ProductStorageController() : super(ProductStorage());
 
   void fetch() {
     // TODO: 仮
@@ -23,7 +23,7 @@ class BookStorageController extends ModelControllerType<ProductStorage> {
 
   void addProduct(Product newProduct) {
     state = state.copyWith(
-      products: state.products..add(newProduct),
+      products: state.products.toList(growable: true)..add(newProduct),
     );
   }
 }

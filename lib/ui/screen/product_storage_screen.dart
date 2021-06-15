@@ -1,15 +1,21 @@
-import 'package:dojin_hub/domain/product_storage.dart';
+import 'package:dojin_hub/entity/book.dart';
+import 'package:dojin_hub/entity/edition.dart';
+import 'package:dojin_hub/entity/print_shop.dart';
+import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
+import 'package:dojin_hub/selection/book_status.dart';
+import 'package:dojin_hub/selection/currency.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/component/text_field/text_field.dart';
 import 'package:dojin_hub/ui/listener/touch_listeners.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
-import 'package:intl/intl.dart';
+import 'package:dojin_hub/ui/screen_model/product_storage_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class ProductStorageScreen extends HookWidget implements ScreenType {
   @override
@@ -20,13 +26,13 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
       appBar: CommonAppBar(
         title: runtimeType.toString(),
       ),
-      body: _buildProductList(context, screenModel.productStorage),
+      body: _buildProductList(context, screenModel),
     );
   }
 
   Widget _buildProductList(
     BuildContext context,
-    ProductStorage productStorage,
+    ProductStorageScreenModel screenModel,
   ) {
     return GridView.count(
       crossAxisCount: 2,
@@ -36,7 +42,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
       ),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      children: productStorage.products
+      children: screenModel.productStorage.products
           .map(
             (product) => Card(
               child: InkWell(
@@ -49,7 +55,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
             ..add(
               Card(
                 child: InkWell(
-                  onTap: () => _showAddProductBottomSheet(context),
+                  onTap: () => _showAddProductBottomSheet(context, screenModel),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -65,6 +71,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
 
   Future<void> _showAddProductBottomSheet(
     BuildContext context,
+    ProductStorageScreenModel screenModel,
   ) async {
     var fullScreenListener = FullScreenListener();
     var textListener = TextFormListener(1);
@@ -98,15 +105,19 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                       ),
                     ),
                     Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          iconSize: 24,
-                          icon: Icon(
-                            Icons.save_alt,
-                            color: Colors.blue,
-                          ),
-                          onPressed: () => Navigator.of(context).pop(),
-                        )),
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        iconSize: 24,
+                        icon: Icon(
+                          Icons.save_alt,
+                          color: Colors.blue,
+                        ),
+                        onPressed: () {
+                          screenModel.addProduct(createProductMock());
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
                     Container(
                       alignment: Alignment.center,
                       child: Text(
@@ -148,7 +159,6 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
     );
   }
 
-
   // 日時登録
   Future<void> _selectDate(BuildContext context) async {
     await showDatePicker(
@@ -162,4 +172,24 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
       }
     });
   }
+
+  Product createProductMock() => Product(
+        editions: [
+          Edition(
+            number: 1,
+            printShop: PrintShop(
+              id: 1,
+              name: '栄光',
+            ),
+            publicationDate: DateTime.now(),
+            books: [
+              Book(
+                bookStatus: BookStatus.homeStock(),
+                sellingPrice: 500,
+                currency: Currency.jpy(),
+              ),
+            ],
+          ),
+        ],
+      );
 }

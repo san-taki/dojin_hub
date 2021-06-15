@@ -11,5 +11,6 @@ final homeScreenModelProvider = ChangeNotifierProvider.autoDispose(
 final bookStorageScreenModelProvider = ChangeNotifierProvider.autoDispose(
   (ref) => ProductStorageScreenModel(
     productStorage: ref.watch(bookStorageProvider),
+    productStorageController:  ref.watch(bookStorageProvider.notifier),
   ),
 );
