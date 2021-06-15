@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dojin_hub/log/debug_log.dart';
-import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,58 +14,12 @@ class AppDialog {
 
   void show(
     BuildContext context,
-    DialogType dialogType,
+    DialogParam param,
   ) async {
-    final param;
-    final barrierDismissible;
-    switch (dialogType) {
-      case DialogType.createProduct:
-        param = _DialogParam(
-          title: '作品を登録する',
-          content: Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text('作品登録'),
-                Row(
-                  children: [
-                    Expanded(
-                      child: PrimaryButton(
-                        label: 'キャンセル',
-                        onPressed: () {},
-                      ),
-                    ),
-                    Expanded(
-                      child: PrimaryButton(
-                        label: '登録',
-                        color: Colors.blue,
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-        barrierDismissible = false;
-        break;
-      default:
-        param = _DialogParam(
-          title: 'hoge',
-          content: Center(
-            child: Text('ほげ'),
-          ),
-        );
-        barrierDismissible = true;
-        break;
-    }
-
     if (Platform.isIOS) {
       await showCupertinoDialog<void>(
         context: context,
-        barrierDismissible: barrierDismissible,
+        barrierDismissible: param.barrierDismissible(),
         builder: (BuildContext context) {
           return _createDialog(context, param);
         },
@@ -77,7 +30,7 @@ class AppDialog {
     } else {
       await showDialog<void>(
         context: context,
-        barrierDismissible: barrierDismissible,
+        barrierDismissible: param.barrierDismissible(),
         builder: (BuildContext context) {
           return _createDialog(context, param);
         },
@@ -92,35 +45,61 @@ class AppDialog {
     Navigator.of(context, rootNavigator: true).pop();
   }
 
-  Widget _createDialog(BuildContext context, _DialogParam param) {
+  Widget _createDialog(BuildContext context, DialogParam param) {
     if (Platform.isIOS) {
       return CupertinoAlertDialog(
-        title: Text(param.title),
-        content: param.content,
-        actions: param.actions ?? [],
+        title: param.title() == null ? null : Text(param.title()!),
+        content: param.content(),
+        actions: param.actions(),
       );
     } else {
       return AlertDialog(
-        title: Text(param.title),
-        content: param.content,
-        actions: param.actions,
+        title: param.title() == null ? null : Text(param.title()!),
+        content: param.content(),
+        actions: param.actions(),
       );
     }
   }
 }
 
-class _DialogParam {
-  final String title;
-  final Widget content;
-  List<Widget>? actions;
-
-  _DialogParam({
-    required this.title,
-    required this.content,
-    this.actions,
-  });
+abstract class DialogParam {
+  List<Widget> actions();
+  bool barrierDismissible();
+  Widget? content();
+  String? title();
 }
 
-enum DialogType {
-  createProduct,
+class ErrorDialogParam extends DialogParam {
+  final BuildContext context;
+  final Function(bool) onAction;
+  final String message;
+
+  ErrorDialogParam({
+    required this.context,
+    required this.onAction,
+    required this.message,
+  });
+
+  @override
+  List<Widget> actions() => [
+        TextButton(
+          child: Text('OK'),
+          onPressed: () => onAction(true),
+        ),
+        TextButton(
+          child: Text('キャンセル'),
+          onPressed: () => onAction(false),
+        )
+      ];
+
+  @override
+  bool barrierDismissible() => false;
+
+  @override
+  Widget? content() => Container(
+        child: Text(message),
+      );
+
+  @override
+  String? title() => null;
 }

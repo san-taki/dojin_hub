@@ -8,6 +8,7 @@ import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/router/router.dart';
+import 'package:dojin_hub/ui/component/dialog/alert_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:dojin_hub/selection/book_status.dart';
 import 'package:dojin_hub/selection/currency.dart';
@@ -106,7 +107,16 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                       alignment: Alignment.centerLeft,
                       child: IconButton(
                         icon: Icon(Icons.close),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          AppDialog().show(
+                            context,
+                            ErrorDialogParam(
+                              context: context,
+                              onAction: (result) => Navigator.pop(context),
+                              message: '編集中のデータを破棄します。よろしいですか？',
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Align(
