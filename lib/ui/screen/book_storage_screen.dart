@@ -70,6 +70,7 @@ class BookStorageScreen extends HookWidget implements ScreenType {
     var textListener = TextFormListener(1);
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -116,15 +117,17 @@ class BookStorageScreen extends HookWidget implements ScreenType {
                   ],
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildImageWindow(context),
-                  TextForm(
-                    label: '作品名',
-                    listener: textListener,
-                  ),
-                ],
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _buildImageWindow(context),
+                    TextForm(
+                      label: '作品名',
+                      listener: textListener,
+                    ),
+                  ],
+                ),
               )
             ],
           ),
@@ -135,7 +138,6 @@ class BookStorageScreen extends HookWidget implements ScreenType {
 
   Widget _buildImageWindow(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
       child: SizedBox(
         height: 150,
         width: 150,
