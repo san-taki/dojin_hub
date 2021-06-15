@@ -13,6 +13,16 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: Visibility(
+        visible: Navigator.of(context).canPop(),
+        child: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       backgroundColor: Colors.white,
       centerTitle: true,
       actions: <Widget>[

@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   // 縦固定
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

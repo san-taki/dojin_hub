@@ -32,10 +32,10 @@ class PrimaryButton extends ComponentType {
         height: height,
         width: width,
         padding: EdgeInsets.only(
-          left: 32,
-          top: 16,
-          right: 32,
-          bottom: 16,
+          left: 16,
+          top: 8,
+          right: 16,
+          bottom: 8,
         ),
         child: Center(
           child: Text(
