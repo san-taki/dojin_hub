@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dojin_hub/ui/screen/book_storage_screen.dart';
+import 'package:dojin_hub/ui/screen/product_storage_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
@@ -19,7 +19,7 @@ class Router {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteName.book_storage:
-        return _generateRouteByModal(BookStorageScreen());
+        return _generateRouteByModal(ProductStorageScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:

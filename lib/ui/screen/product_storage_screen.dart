@@ -1,4 +1,4 @@
-import 'package:dojin_hub/domain/book_storage.dart';
+import 'package:dojin_hub/domain/product_storage.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
@@ -11,7 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BookStorageScreen extends HookWidget implements ScreenType {
+class ProductStorageScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
     var screenModel = useProvider(bookStorageScreenModelProvider);
@@ -20,13 +20,13 @@ class BookStorageScreen extends HookWidget implements ScreenType {
       appBar: CommonAppBar(
         title: runtimeType.toString(),
       ),
-      body: _buildProductList(context, screenModel.bookStorage),
+      body: _buildProductList(context, screenModel.productStorage),
     );
   }
 
   Widget _buildProductList(
     BuildContext context,
-    BookStorage bookStorage,
+    ProductStorage productStorage,
   ) {
     return GridView.count(
       crossAxisCount: 2,
@@ -36,7 +36,7 @@ class BookStorageScreen extends HookWidget implements ScreenType {
       ),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      children: bookStorage.products
+      children: productStorage.products
           .map(
             (product) => Card(
               child: InkWell(

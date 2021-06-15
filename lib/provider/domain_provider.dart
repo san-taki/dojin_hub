@@ -1,7 +1,7 @@
-import 'package:dojin_hub/domain/book_storage.dart';
+import 'package:dojin_hub/domain/product_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final bookStorageProvider =
-    StateNotifierProvider<BookStorageController, BookStorage>(
+    StateNotifierProvider<BookStorageController, ProductStorage>(
   (ref) => BookStorageController(),
 );

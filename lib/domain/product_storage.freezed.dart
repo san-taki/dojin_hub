@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'book_storage.dart';
+part of 'product_storage.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,43 +13,44 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$BookStorageTearOff {
-  const _$BookStorageTearOff();
+class _$ProductStorageTearOff {
+  const _$ProductStorageTearOff();
 
-  _BookStorage call({List<Product> products = const []}) {
-    return _BookStorage(
+  _ProductStorage call({List<Product> products = const []}) {
+    return _ProductStorage(
       products: products,
     );
   }
 }
 
 /// @nodoc
-const $BookStorage = _$BookStorageTearOff();
+const $ProductStorage = _$ProductStorageTearOff();
 
 /// @nodoc
-mixin _$BookStorage {
+mixin _$ProductStorage {
   List<Product> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $BookStorageCopyWith<BookStorage> get copyWith =>
+  $ProductStorageCopyWith<ProductStorage> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BookStorageCopyWith<$Res> {
-  factory $BookStorageCopyWith(
-          BookStorage value, $Res Function(BookStorage) then) =
-      _$BookStorageCopyWithImpl<$Res>;
+abstract class $ProductStorageCopyWith<$Res> {
+  factory $ProductStorageCopyWith(
+          ProductStorage value, $Res Function(ProductStorage) then) =
+      _$ProductStorageCopyWithImpl<$Res>;
   $Res call({List<Product> products});
 }
 
 /// @nodoc
-class _$BookStorageCopyWithImpl<$Res> implements $BookStorageCopyWith<$Res> {
-  _$BookStorageCopyWithImpl(this._value, this._then);
+class _$ProductStorageCopyWithImpl<$Res>
+    implements $ProductStorageCopyWith<$Res> {
+  _$ProductStorageCopyWithImpl(this._value, this._then);
 
-  final BookStorage _value;
+  final ProductStorage _value;
   // ignore: unused_field
-  final $Res Function(BookStorage) _then;
+  final $Res Function(ProductStorage) _then;
 
   @override
   $Res call({
@@ -65,30 +66,31 @@ class _$BookStorageCopyWithImpl<$Res> implements $BookStorageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BookStorageCopyWith<$Res>
-    implements $BookStorageCopyWith<$Res> {
-  factory _$BookStorageCopyWith(
-          _BookStorage value, $Res Function(_BookStorage) then) =
-      __$BookStorageCopyWithImpl<$Res>;
+abstract class _$ProductStorageCopyWith<$Res>
+    implements $ProductStorageCopyWith<$Res> {
+  factory _$ProductStorageCopyWith(
+          _ProductStorage value, $Res Function(_ProductStorage) then) =
+      __$ProductStorageCopyWithImpl<$Res>;
   @override
   $Res call({List<Product> products});
 }
 
 /// @nodoc
-class __$BookStorageCopyWithImpl<$Res> extends _$BookStorageCopyWithImpl<$Res>
-    implements _$BookStorageCopyWith<$Res> {
-  __$BookStorageCopyWithImpl(
-      _BookStorage _value, $Res Function(_BookStorage) _then)
-      : super(_value, (v) => _then(v as _BookStorage));
+class __$ProductStorageCopyWithImpl<$Res>
+    extends _$ProductStorageCopyWithImpl<$Res>
+    implements _$ProductStorageCopyWith<$Res> {
+  __$ProductStorageCopyWithImpl(
+      _ProductStorage _value, $Res Function(_ProductStorage) _then)
+      : super(_value, (v) => _then(v as _ProductStorage));
 
   @override
-  _BookStorage get _value => super._value as _BookStorage;
+  _ProductStorage get _value => super._value as _ProductStorage;
 
   @override
   $Res call({
     Object? products = freezed,
   }) {
-    return _then(_BookStorage(
+    return _then(_ProductStorage(
       products: products == freezed
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -99,8 +101,8 @@ class __$BookStorageCopyWithImpl<$Res> extends _$BookStorageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_BookStorage implements _BookStorage {
-  const _$_BookStorage({this.products = const []});
+class _$_ProductStorage implements _ProductStorage {
+  const _$_ProductStorage({this.products = const []});
 
   @JsonKey(defaultValue: const [])
   @override
@@ -108,13 +110,13 @@ class _$_BookStorage implements _BookStorage {
 
   @override
   String toString() {
-    return 'BookStorage(products: $products)';
+    return 'ProductStorage(products: $products)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _BookStorage &&
+        (other is _ProductStorage &&
             (identical(other.products, products) ||
                 const DeepCollectionEquality()
                     .equals(other.products, products)));
@@ -126,17 +128,17 @@ class _$_BookStorage implements _BookStorage {
 
   @JsonKey(ignore: true)
   @override
-  _$BookStorageCopyWith<_BookStorage> get copyWith =>
-      __$BookStorageCopyWithImpl<_BookStorage>(this, _$identity);
+  _$ProductStorageCopyWith<_ProductStorage> get copyWith =>
+      __$ProductStorageCopyWithImpl<_ProductStorage>(this, _$identity);
 }
 
-abstract class _BookStorage implements BookStorage {
-  const factory _BookStorage({List<Product> products}) = _$_BookStorage;
+abstract class _ProductStorage implements ProductStorage {
+  const factory _ProductStorage({List<Product> products}) = _$_ProductStorage;
 
   @override
   List<Product> get products => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BookStorageCopyWith<_BookStorage> get copyWith =>
+  _$ProductStorageCopyWith<_ProductStorage> get copyWith =>
       throw _privateConstructorUsedError;
 }
