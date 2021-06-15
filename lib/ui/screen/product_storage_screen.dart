@@ -4,6 +4,8 @@ import 'package:dojin_hub/entity/print_shop.dart';
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
+import 'package:dojin_hub/provider/temporary_provider.dart';
+import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/selection/book_status.dart';
 import 'package:dojin_hub/selection/currency.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
@@ -20,52 +22,52 @@ import 'package:intl/intl.dart';
 class ProductStorageScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
-    var screenModel = useProvider(bookStorageScreenModelProvider);
+    var screenModel = useProvider(productStorageScreenModelProvider);
+    var detailScreenPosition =
+        useProvider(productDetailScreenCurrentPositionProvider);
 
     return Scaffold(
       appBar: CommonAppBar(
         title: runtimeType.toString(),
       ),
-      body: _buildProductList(context, screenModel),
-    );
-  }
-
-  Widget _buildProductList(
-    BuildContext context,
-    ProductStorageScreenModel screenModel,
-  ) {
-    return GridView.count(
-      crossAxisCount: 2,
-      padding: EdgeInsets.symmetric(
-        vertical: 4,
-        horizontal: 8,
-      ),
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      children: screenModel.productStorage.products
-          .map(
-            (product) => Card(
-              child: InkWell(
-                onTap: () => DebugLog.d('aaa'),
-                child: Text('hoge'),
-              ),
-            ),
-          )
-          .toList()
-            ..add(
-              Card(
+      body: GridView.count(
+        crossAxisCount: 2,
+        padding: EdgeInsets.symmetric(
+          vertical: 4,
+          horizontal: 8,
+        ),
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        children: screenModel.productStorage.products
+            .map(
+              (product) => Card(
                 child: InkWell(
-                  onTap: () => _showAddProductBottomSheet(context, screenModel),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add),
-                      Text('作品を追加する'),
-                    ],
+                  onTap: () {
+                    detailScreenPosition.state =
+                        screenModel.productStorage.products.indexOf(product);
+                    Navigator.of(context).pushNamed(RouteName.product_detail);
+                  },
+                  child: Text(product.title),
+                ),
+              ),
+            )
+            .toList()
+              ..add(
+                Card(
+                  child: InkWell(
+                    onTap: () =>
+                        _showAddProductBottomSheet(context, screenModel),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add),
+                        Text('作品を追加する'),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
+      ),
     );
   }
 
@@ -174,6 +176,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
   }
 
   Product createProductMock() => Product(
+        title: 'hogehoge',
         editions: [
           Edition(
             number: 1,

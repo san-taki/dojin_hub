@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dojin_hub/ui/screen/product_detail_screen.dart';
 import 'package:dojin_hub/ui/screen/product_storage_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RouteName {
-  static const book_storage = '/book_storage';
+  static const product_storage = '/product_storage';
+  static const product_detail = '/product_detail';
   static const home = '/home';
   static const pos_register = '/pos_register';
   static const settings = '/settings';
@@ -18,8 +20,10 @@ class RouteName {
 class Router {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RouteName.book_storage:
+      case RouteName.product_storage:
         return _generateRouteByModal(ProductStorageScreen());
+      case RouteName.product_detail:
+        return _generateRouteByModal(ProductDetailScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:

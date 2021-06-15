@@ -28,7 +28,7 @@ class HomeScreen extends HookWidget implements ScreenType {
         context,
         '本の管理',
         'assets/images/book.png',
-        RouteName.book_storage,
+        RouteName.product_storage,
       );
 
   Widget _buildPosRegisterMenu(BuildContext context) => _buildMenu(
