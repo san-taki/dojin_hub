@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:dojin_hub/ui/screen/product_detail_screen.dart';
-import 'package:dojin_hub/ui/screen/product_storage_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
+import 'package:dojin_hub/ui/screen/product_detail_pager_screen.dart';
+import 'package:dojin_hub/ui/screen/product_storage_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,7 +23,7 @@ class Router {
       case RouteName.product_storage:
         return _generateRoute(ProductStorageScreen());
       case RouteName.product_detail:
-        return _generateRouteByModal(ProductDetailScreen());
+        return _generateRouteByModal(ProductDetailPagerScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:

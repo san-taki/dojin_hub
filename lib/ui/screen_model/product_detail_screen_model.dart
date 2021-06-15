@@ -1,33 +1,27 @@
+import 'package:dojin_hub/domain/product_storage.dart';
 import 'package:dojin_hub/entity/product.dart';
-import 'package:dojin_hub/log/debug_log.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailScreenModel extends ChangeNotifier {
-  final List<Product> products;
-  int currentPosition;
+  final Product product;
+  final ProductStorageController productStorageController;
 
   ProductDetailScreenModel({
-    required this.products,
-    required this.currentPosition,
+    required this.product,
+    required this.productStorageController,
   });
 
-  void moveToNext() {
-    if (products.length - 1 == currentPosition) {
-      DebugLog.d("canceled moveToNext()");
-      return;
-    } else {
-      currentPosition = currentPosition + 1;
-      notifyListeners();
-    }
+  void _update(Product product) {}
+
+  void setThumbnailPath(String path) {
+    _update(
+      Product(
+        title: product.title,
+        thumbnailPath: path,
+        editions: product.editions,
+      ),
+    );
   }
 
-  void moveToPrevious() {
-    if (currentPosition == 0) {
-      DebugLog.d("canceled moveToPrevious()");
-      return;
-    } else {
-      currentPosition = currentPosition - 1;
-      notifyListeners();
-    }
-  }
+  void delete() {}
 }
