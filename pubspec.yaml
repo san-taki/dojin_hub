@@ -34,6 +34,8 @@ dependencies:
   isar_flutter_libs: ^0.4.0
   # isar_connect: ^0.2.0
 
+  uuid: ^3.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

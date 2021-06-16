@@ -4,6 +4,7 @@ import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
+import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
@@ -29,7 +30,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           children: [
             _buildImageWindow(context, screenModel),
             _buildTitle(screenModel.product),
-            ..._buildEditionsArea(screenModel.product.editions),
+            ..._buildEditionsArea(context, screenModel.product.editions),
           ],
         ),
       ),
@@ -53,7 +54,10 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     );
   }
 
-  List<Widget> _buildEditionsArea(List<Edition> editions) {
+  List<Widget> _buildEditionsArea(
+    BuildContext context,
+    List<Edition> editions,
+  ) {
     final buildListTile = (BuildContext context, Edition edition) {
       return Container(
         height: 200,
@@ -84,7 +88,11 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
 
     return editions.isEmpty
         ? [
-            PrimaryButton(label: 'edit Edition', onPressed: () {}),
+            PrimaryButton(
+                label: 'edit Edition',
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RouteName.edit_edition);
+                }),
           ]
         : [
             ListView.builder(

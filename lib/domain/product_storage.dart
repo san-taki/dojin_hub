@@ -1,3 +1,4 @@
+import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/flamework/model_controller_type.dart';
 import 'package:dojin_hub/flamework/model_type.dart';
@@ -18,12 +19,34 @@ class ProductStorageController extends ModelControllerType<ProductStorage> {
 
   void fetch() {
     // TODO: 仮
-
   }
 
   void addProduct(Product newProduct) {
     state = state.copyWith(
       products: state.products.toList(growable: true)..add(newProduct),
+    );
+  }
+
+  void updateEdition(String productId, Edition edition) {
+    state = state.copyWith(
+      products: state.products.map((p) {
+        if (p.id == productId) {
+          return Product(
+            id: p.id,
+            title: p.title,
+            thumbnailPath: p.thumbnailPath,
+            editions: p.editions.map((e) {
+              if (e.number == edition.number) {
+                return edition;
+              } else {
+                return e;
+              }
+            }).toList(),
+          );
+        } else {
+          return p;
+        }
+      }).toList(),
     );
   }
 }

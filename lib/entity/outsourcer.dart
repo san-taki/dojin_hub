@@ -1,4 +1,3 @@
-import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/model/outsourcer_type.dart';
 import 'package:dojin_hub/model/product_type.dart';
 

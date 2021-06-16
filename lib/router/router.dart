@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dojin_hub/ui/screen/edit_edition_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
 import 'package:dojin_hub/ui/screen/product_detail_pager_screen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RouteName {
+  static const edit_edition = '/edit_edition';
   static const product_storage = '/product_storage';
   static const product_detail = '/product_detail';
   static const home = '/home';
@@ -20,6 +22,8 @@ class RouteName {
 class Router {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteName.edit_edition:
+        return _generateRouteByModal(EditEditionScreen());
       case RouteName.product_storage:
         return _generateRoute(ProductStorageScreen());
       case RouteName.product_detail:

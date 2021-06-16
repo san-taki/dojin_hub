@@ -3,6 +3,7 @@ import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
 import 'package:dojin_hub/ui/listener/touch_listeners.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateProductScreenModel extends ChangeNotifier {
   String thumbnailPath = '';
@@ -30,6 +31,7 @@ class CreateProductScreenModel extends ChangeNotifier {
   void saveProduct() {
     productStorageController.addProduct(
       Product(
+        id: Uuid().v1(),
         title: textFieldListener.text,
         thumbnailPath: thumbnailPath,
       ),

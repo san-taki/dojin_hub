@@ -16,6 +16,7 @@ class ProductDetailScreenModel extends ChangeNotifier {
   void setThumbnailPath(String path) {
     _update(
       Product(
+        id: product.id,
         title: product.title,
         thumbnailPath: path,
         editions: product.editions,
