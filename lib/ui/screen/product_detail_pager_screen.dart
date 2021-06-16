@@ -7,7 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ProductDetailPagerScreen extends HookWidget implements ScreenType {
+class ProductDetailPagerScreen extends StatefulHookWidget
+    implements ScreenType {
+  @override
+  _State createState() {
+    return _State();
+  }
+}
+
+// AutomaticKeepAliveClientMixin :
+// Stateを保持するようにマークして、Stateが破棄されないようにする
+class _State extends State<ProductDetailPagerScreen>
+    with AutomaticKeepAliveClientMixin {
+
   @override
   Widget build(BuildContext context) {
     var screenModel = useProvider(productDetailPagerScreenModelProvider);
@@ -24,8 +36,12 @@ class ProductDetailPagerScreen extends HookWidget implements ScreenType {
         onPageChanged: (position) {
           productDetailScreenCurrentPosition.state = position;
         },
-        itemBuilder: (BuildContext context, int index) => ProductDetailScreen(),
+        itemBuilder: (BuildContext context, int index) =>
+            ProductDetailScreen(screenModel.products[index]),
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

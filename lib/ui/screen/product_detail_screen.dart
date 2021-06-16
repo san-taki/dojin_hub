@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
@@ -10,9 +11,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProductDetailScreen extends HookWidget implements ScreenType {
+  final Product _product;
+
+  ProductDetailScreen(this._product);
+
   @override
   Widget build(BuildContext context) {
-    var screenModel = useProvider(productDetailScreenModelProvider);
+    var screenModel = useProvider(productDetailScreenModelProvider(_product));
 
     return Scaffold(
       body: Container(

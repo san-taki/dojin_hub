@@ -1,3 +1,4 @@
+import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/provider/domain_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
@@ -19,11 +20,10 @@ final productStorageScreenModelProvider = ChangeNotifierProvider.autoDispose(
   ),
 );
 
-final productDetailScreenModelProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => ProductDetailScreenModel(
-    product: ref
-        .watch(productStorageProvider)
-        .products[ref.watch(productDetailScreenCurrentPositionProvider).state],
+final productDetailScreenModelProvider = ChangeNotifierProvider.autoDispose
+    .family<ProductDetailScreenModel, Product>(
+  (ref, product) => ProductDetailScreenModel(
+    product: product,
     productStorageController: ref.read(productStorageProvider.notifier),
   ),
 );
