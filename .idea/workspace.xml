@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ff482664-d061-4e2a-9cbd-f94587c28323" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/book.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/book.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/edition.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/edition.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/outsourcer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/outsourcer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/person.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/print_shop.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/print_shop.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/entity/product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/entity/product.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/my_app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/my_app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/selection/book_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/selection/book_status.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1u0fjZbc0yy92xR4QbzTFFWzoYp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff482664-d061-4e2a-9cbd-f94587c28323" name="Default Changelist" comment="" />
+      <created>1623807562954</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623807562954</updated>
+    </task>
+    <servers />
+  </component>
+</project>

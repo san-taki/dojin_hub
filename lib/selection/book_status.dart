@@ -30,4 +30,6 @@ class BookStatus with _$BookStatus {
     required DojinEvent dojinEvent,
     required Parson parson,
   }) = _FreeDistribution;
+
+  
 }

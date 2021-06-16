@@ -1,12 +1,17 @@
 // 版データ
-import 'package:dojin_hub/entity/book.dart';
-import 'package:dojin_hub/entity/print_shop.dart';
+import 'package:dojin_hub/model/book_type.dart';
+import 'package:dojin_hub/model/edition_type.dart';
+import 'package:dojin_hub/model/print_shop_type.dart';
 
-class Edition {
-  final int number;
-  final PrintShop printShop;
-  final DateTime publicationDate;
-  final List<Book> books;
+class Edition implements EditionType {
+  @override
+  late int number;
+  @override
+  late PrintShopType printShop;
+  @override
+  late DateTime publicationDate;
+  @override
+  late List<BookType> books;
 
   Edition({
     required this.number,

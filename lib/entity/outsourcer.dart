@@ -1,14 +1,15 @@
 import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/model/outsourcer_type.dart';
+import 'package:dojin_hub/model/product_type.dart';
 
 // 委託先
-class Outsourcer {
-  final String id;
-  final String name;
-  final List<Product> product;
+class Outsourcer implements OutsourcerType {
+  @override
+  late String shopId;
 
-  Outsourcer({
-    required this.id,
-    required this.name,
-    required this.product,
-  });
+  @override
+  late String name;
+
+  @override
+  late List<ProductType> product;
 }

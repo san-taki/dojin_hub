@@ -1,11 +1,13 @@
 
 // 印刷所
-class PrintShop {
-  final int id;
-  final String name;
+import 'package:dojin_hub/model/print_shop_type.dart';
+
+class PrintShop implements PrintShopType {
+  @override late int id;
+  @override late String name;
 
   PrintShop({
     required this.id,
     required this.name,
-  });
+  }) : super();
 }
