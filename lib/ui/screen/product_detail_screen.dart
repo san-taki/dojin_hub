@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
+import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -21,15 +23,77 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
 
     return Scaffold(
       body: Container(
+        width: double.infinity,
         color: Colors.white,
         child: Column(
           children: [
             _buildImageWindow(context, screenModel),
-            Center(child: Text(screenModel.product.title)),
+            _buildTitle(screenModel.product),
+            ..._buildEditionsArea(screenModel.product.editions),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildTitle(Product product) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
+      child: Text(
+        product.title,
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildEditionsArea(List<Edition> editions) {
+    final buildListTile = (BuildContext context, Edition edition) {
+      return Container(
+        height: 200,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                edition.numberString,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Text(
+                'hoge',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    };
+
+    return editions.isEmpty
+        ? [
+            PrimaryButton(label: 'edit Edition', onPressed: () {}),
+          ]
+        : [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: editions.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  buildListTile(context, editions[index]),
+            )
+          ];
   }
 
   Widget _buildImageWindow(

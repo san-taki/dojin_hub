@@ -22,4 +22,6 @@ class Edition implements EditionType {
 
   // TODO: ロジックはかんがえる
   bool get soldOut => true;
+
+  String get numberString => number == 1 ? '初版' : '第$number版';
 }
