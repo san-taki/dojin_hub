@@ -1,5 +1,7 @@
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/my_app.dart';
+import 'package:dojin_hub/provider/repository_provider.dart';
+import 'package:dojin_hub/repository_mock/products_repository_mock.dart';
 import 'package:dojin_hub/selection/flavor.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,9 @@ void main() {
 
   runApp(
     ProviderScope(
-      overrides: [],
+      overrides: [
+        productRepositoryProvider.overrideWithValue(ProductRepositoryMock()),
+      ],
       child: MyApp(),
     ),
   );

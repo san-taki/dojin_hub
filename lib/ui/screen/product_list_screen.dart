@@ -6,24 +6,21 @@ import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/screen/create_product_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
-import 'package:dojin_hub/ui/screen_model/product_storage_screen_model.dart';
+import 'package:dojin_hub/ui/screen_model/product_list_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
-class ProductStorageScreen extends HookWidget implements ScreenType {
+class ProductListScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
-    var screenModel = useProvider(productStorageScreenModelProvider);
+    var screenModel = useProvider(productListScreenModelProvider);
     var detailScreenPosition =
         useProvider(productDetailScreenCurrentPositionProvider);
 
     return Scaffold(
-      appBar: CommonAppBar(
-        title: runtimeType.toString(),
-      ),
+      appBar: CommonAppBar(),
       body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.symmetric(
@@ -32,7 +29,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
         ),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        children: screenModel.productStorage.products
+        children: screenModel.products
             .map(
               (product) => Card(
                 clipBehavior: Clip.antiAlias,
@@ -42,7 +39,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                 child: InkWell(
                   onTap: () {
                     detailScreenPosition.state =
-                        screenModel.productStorage.products.indexOf(product);
+                        screenModel.products.indexOf(product);
                     Navigator.of(context).pushNamed(RouteName.product_detail);
                   },
                   child: Stack(
@@ -50,12 +47,17 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
                       Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.cover,
                             alignment: FractionalOffset.center,
-                            image: Image.file(
-                              File(product.thumbnailPath),
-                              fit: BoxFit.cover,
-                            ).image,
+                            image: product.thumbnailPath.isNotEmpty
+                                ? Image.file(
+                                    File(product.thumbnailPath),
+                                    fit: BoxFit.cover,
+                                  ).image
+                                : Image.asset(
+                                    'assets/images/noimage.png',
+                                    fit: BoxFit.cover,
+                                  ).image,
                           ),
                         ),
                       ),
@@ -118,7 +120,7 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
 
   Future<void> _showAddProductBottomSheet(
     BuildContext context,
-    ProductStorageScreenModel screenModel,
+    ProductListScreenModel screenModel,
   ) async {
     showModalBottomSheet(
         context: context,
@@ -131,19 +133,5 @@ class ProductStorageScreen extends HookWidget implements ScreenType {
         ),
         backgroundColor: Colors.white,
         builder: (BuildContext context) => CreateProductScreen());
-  }
-
-  // 日時登録
-  Future<void> _selectDate(BuildContext context) async {
-    await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2015),
-      lastDate: DateTime(2020),
-    ).then((value) {
-      if (value != null) {
-        var date = DateFormat.yMMMd().format(value);
-      }
-    });
   }
 }

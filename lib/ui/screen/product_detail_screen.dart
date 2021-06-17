@@ -12,6 +12,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetailScreen extends HookWidget implements ScreenType {
   final Product _product;
@@ -159,5 +160,19 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         ),
       ),
     );
+  }
+
+  // 日時登録
+  Future<void> _selectDate(BuildContext context) async {
+    await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2015),
+      lastDate: DateTime(2020),
+    ).then((value) {
+      if (value != null) {
+        var date = DateFormat.yMMMd().format(value);
+      }
+    });
   }
 }

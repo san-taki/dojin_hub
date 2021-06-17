@@ -2,17 +2,16 @@ import 'package:dojin_hub/ui/component/button/component_type.dart';
 import 'package:flutter/material.dart';
 
 class CommonAppBar extends ComponentType implements PreferredSizeWidget {
-  final String title;
   final bool showHelp;
 
   CommonAppBar({
-    required this.title,
     this.showHelp = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       leading: Visibility(
         visible: Navigator.of(context).canPop(),
         child: IconButton(
@@ -22,6 +21,13 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
+      ),
+      bottom: PreferredSize(
+        child: Container(
+          color: Colors.grey,
+          height: 1,
+        ),
+        preferredSize: Size.fromHeight(1),
       ),
       backgroundColor: Colors.white,
       centerTitle: true,
@@ -37,12 +43,6 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
           ),
         ),
       ],
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
     );
   }
 

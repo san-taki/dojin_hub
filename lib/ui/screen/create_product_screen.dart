@@ -57,10 +57,10 @@ class CreateProductScreen extends HookWidget implements ScreenType {
                       onPressed: () {
                         if (screenModel.textFieldListener.text.isEmpty) {
                           _showErrorToast();
-                        } else {
-                          screenModel.saveProduct();
-                          Navigator.of(context).pop();
+                          return;
                         }
+                        screenModel.saveProduct();
+                        Navigator.of(context).pop();
                       },
                     ),
                   ),

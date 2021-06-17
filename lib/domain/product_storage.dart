@@ -2,6 +2,7 @@ import 'package:dojin_hub/entity/edition.dart';
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/flamework/model_controller_type.dart';
 import 'package:dojin_hub/flamework/model_type.dart';
+import 'package:dojin_hub/repository/products_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_storage.freezed.dart';
@@ -15,10 +16,14 @@ class ProductStorage extends ModelType with _$ProductStorage {
 }
 
 class ProductStorageController extends ModelControllerType<ProductStorage> {
-  ProductStorageController() : super(ProductStorage());
+  final ProductRepository _productRepository;
+
+  ProductStorageController(this._productRepository) : super(ProductStorage());
 
   void fetch() {
-    // TODO: 仮
+    state = state.copyWith(
+      products: _productRepository.fetch(),
+    );
   }
 
   void addProduct(Product newProduct) {

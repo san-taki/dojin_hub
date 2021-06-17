@@ -7,16 +7,24 @@ import 'package:dojin_hub/ui/screen_model/create_product_screen_model.dart';
 import 'package:dojin_hub/ui/screen_model/home_screen_model.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_pager_screen_model.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
-import 'package:dojin_hub/ui/screen_model/product_storage_screen_model.dart';
+import 'package:dojin_hub/ui/screen_model/product_list_screen_model.dart';
+import 'package:dojin_hub/ui/screen_model/splash_screen_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final splashScreenModelProvider = ChangeNotifierProvider.autoDispose(
+  (ref) => SplashScreenModel(
+    productStorageController: ref.watch(productStorageProvider.notifier),
+  ),
+);
 
 final homeScreenModelProvider = ChangeNotifierProvider.autoDispose(
   (ref) => HomeScreenModel(),
 );
 
-final productStorageScreenModelProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => ProductStorageScreenModel(
-    productStorage: ref.watch(productStorageProvider),
+final productListScreenModelProvider = ChangeNotifierProvider.autoDispose(
+  (ref) => ProductListScreenModel(
+    products: ref.watch(productStorageProvider).products,
   ),
 );
 
@@ -32,7 +40,9 @@ final productDetailPagerScreenModelProvider =
     ChangeNotifierProvider.autoDispose(
   (ref) => ProductDetailPagerScreenModel(
     products: ref.watch(productStorageProvider).products,
-    pageController: ref.read(pageControllerProvider),
+    pageController: PageController(
+        initialPage:
+            ref.read(productDetailScreenCurrentPositionProvider).state),
   ),
 );
 

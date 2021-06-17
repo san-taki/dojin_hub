@@ -15,7 +15,7 @@ class ProductDetailPagerScreen extends HookWidget implements ScreenType {
         useProvider(productDetailScreenCurrentPositionProvider);
 
     return Scaffold(
-      appBar: CommonAppBar(title: runtimeType.toString()),
+      appBar: CommonAppBar(),
       body: PageView.builder(
         scrollDirection: Axis.horizontal,
         controller: screenModel.pageController,

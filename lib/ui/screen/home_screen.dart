@@ -9,9 +9,7 @@ class HomeScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        title: runtimeType.toString(),
-      ),
+      appBar: CommonAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [

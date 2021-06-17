@@ -12,7 +12,7 @@ class MyApp extends HookWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: router.RouteName.home,
+      initialRoute: router.RouteName.splash,
       onGenerateRoute: router.Router.onGenerateRoute,
     );
   }

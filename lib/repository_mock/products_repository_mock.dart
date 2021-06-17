@@ -1,7 +1,8 @@
 import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/repository/products_repository.dart';
+import 'package:uuid/uuid.dart';
 
-class ProductsRepositoryMock extends ProductsRepository {
+class ProductRepositoryMock extends ProductRepository {
   @override
   void add() {
     // NO-OP
@@ -9,6 +10,9 @@ class ProductsRepositoryMock extends ProductsRepository {
 
   @override
   List<Product> fetch() {
-    throw UnimplementedError();
+    return [
+      Product(id: Uuid().v1(), title: 'ほげほげ'),
+      Product(id: Uuid().v1(), title: 'ふーばー'),
+    ];
   }
 }

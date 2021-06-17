@@ -4,9 +4,10 @@ import 'package:dojin_hub/ui/screen/edit_edition_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
 import 'package:dojin_hub/ui/screen/product_detail_pager_screen.dart';
-import 'package:dojin_hub/ui/screen/product_storage_screen.dart';
+import 'package:dojin_hub/ui/screen/product_list_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen/settings_screen.dart';
+import 'package:dojin_hub/ui/screen/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class RouteName {
   static const home = '/home';
   static const pos_register = '/pos_register';
   static const settings = '/settings';
+  static const splash = '/splash';
 }
 
 class Router {
@@ -25,7 +27,7 @@ class Router {
       case RouteName.edit_edition:
         return _generateRouteByModal(EditEditionScreen());
       case RouteName.product_storage:
-        return _generateRoute(ProductStorageScreen());
+        return _generateRoute(ProductListScreen());
       case RouteName.product_detail:
         return _generateRouteByModal(ProductDetailPagerScreen());
       case RouteName.home:
@@ -34,8 +36,9 @@ class Router {
         return _generateRoute(PosRegisterScreen());
       case RouteName.settings:
         return _generateRoute(SettingsScreen());
+      case RouteName.splash:
+        return _generateRoute(SplashScreen());
       default:
-        // FIXME: AppErrorに統合する
         return null;
     }
   }
