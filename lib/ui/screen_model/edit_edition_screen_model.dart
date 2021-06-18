@@ -1,6 +1,6 @@
-import 'package:dojin_hub/domain/product_storage.dart';
-import 'package:dojin_hub/entity/book.dart';
-import 'package:dojin_hub/entity/edition.dart';
+import 'package:dojin_hub/domain_model/product/book.dart';
+import 'package:dojin_hub/domain_model/product/edition.dart';
+import 'package:dojin_hub/domain_service/product_storage.dart';
 import 'package:flutter/widgets.dart';
 
 class EditEditionScreenModel extends ChangeNotifier {

@@ -1,6 +1,6 @@
-import 'package:dojin_hub/selection/dojin_event.dart';
-import 'package:dojin_hub/entity/outsourcer.dart';
-import 'package:dojin_hub/entity/person.dart';
+import 'package:dojin_hub/domain_model/doujin_event/dojin_event.dart';
+import 'package:dojin_hub/domain_model/person/person.dart';
+import 'package:dojin_hub/domain_model/product/outsourcer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'book_status.freezed.dart';
@@ -30,6 +30,4 @@ class BookStatus with _$BookStatus {
     required DojinEvent dojinEvent,
     required Parson parson,
   }) = _FreeDistribution;
-
-  
 }

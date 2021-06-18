@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/ui/component/dialog/alert_dialog.dart';
-import 'package:dojin_hub/ui/component/text_field/text_field.dart';
+import 'package:dojin_hub/ui/component/text_field/text_form.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/create_product_screen_model.dart';
 import 'package:file_picker/file_picker.dart';

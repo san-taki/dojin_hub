@@ -1,4 +1,4 @@
-import 'package:dojin_hub/selection/flavor.dart';
+import 'package:dojin_hub/flavor.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:developer' as developer;
 import 'package:stack_trace/stack_trace.dart' show Trace, Frame;

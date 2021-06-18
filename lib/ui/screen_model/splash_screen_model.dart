@@ -1,4 +1,4 @@
-import 'package:dojin_hub/domain/product_storage.dart';
+import 'package:dojin_hub/domain_service/product_storage.dart';
 import 'package:flutter/widgets.dart';
 
 class SplashScreenModel extends ChangeNotifier {

@@ -1,4 +1,4 @@
-import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/domain_model/product/product.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_archive.freezed.dart';

@@ -1,5 +1,5 @@
-import 'package:dojin_hub/domain/product_storage.dart';
-import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/domain_model/product/product.dart';
+import 'package:dojin_hub/domain_service/product_storage.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
 import 'package:dojin_hub/ui/listener/touch_listeners.dart';
 import 'package:flutter/material.dart';

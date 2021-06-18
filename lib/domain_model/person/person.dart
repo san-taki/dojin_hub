@@ -1,4 +1,4 @@
-import 'package:dojin_hub/selection/sns.dart';
+import 'package:dojin_hub/domain_model/person/sns.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'person.freezed.dart';

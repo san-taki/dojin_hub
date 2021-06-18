@@ -1,5 +1,5 @@
-import 'package:dojin_hub/entity/edition.dart';
-import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/domain_model/product/edition.dart';
+import 'package:dojin_hub/domain_model/product/product.dart';
 import 'package:dojin_hub/flamework/model_controller_type.dart';
 import 'package:dojin_hub/flamework/model_type.dart';
 import 'package:dojin_hub/repository/products_repository.dart';

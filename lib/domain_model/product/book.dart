@@ -1,5 +1,5 @@
-import 'package:dojin_hub/selection/book_status.dart';
-import 'package:dojin_hub/selection/currency.dart';
+import 'package:dojin_hub/domain_model/product/book_status.dart';
+import 'package:dojin_hub/domain_model/product/currency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'book.freezed.dart';

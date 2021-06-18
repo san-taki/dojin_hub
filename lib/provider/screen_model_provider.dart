@@ -1,4 +1,4 @@
-import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/domain_model/product/product.dart';
 import 'package:dojin_hub/provider/domain_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';

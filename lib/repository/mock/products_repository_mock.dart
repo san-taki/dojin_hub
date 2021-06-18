@@ -1,4 +1,4 @@
-import 'package:dojin_hub/entity/product.dart';
+import 'package:dojin_hub/domain_model/product/product.dart';
 import 'package:dojin_hub/repository/products_repository.dart';
 import 'package:uuid/uuid.dart';
 

@@ -4,7 +4,5 @@ targets:
       freezed:
         generate_for:
           include:
-            - lib/domain/*.dart
-            - lib/entity/*.dart
-            - lib/selection/*.dart
+            - lib/domain_model/*/*.dart
             - lib/ui/screen_model/*.dart

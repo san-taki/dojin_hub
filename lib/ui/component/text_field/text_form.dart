@@ -1,5 +1,5 @@
-import 'package:dojin_hub/selection/input_type.dart';
 import 'package:dojin_hub/ui/component/button/component_type.dart';
+import 'package:dojin_hub/ui/component/text_field/input_type.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,7 +12,7 @@ class TextForm extends ComponentType {
   final Function(String? value)? validator;
 
   TextForm({
-    this.type = const InputType.text(),
+    this.type = InputType.Text,
     required this.label,
     required this.listener,
     this.maxLength = 1000,
