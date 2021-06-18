@@ -226,6 +226,8 @@ abstract class _$OutsourcerStockCopyWith<$Res> {
           _OutsourcerStock value, $Res Function(_OutsourcerStock) then) =
       __$OutsourcerStockCopyWithImpl<$Res>;
   $Res call({Outsourcer outsourcer});
+
+  $OutsourcerCopyWith<$Res> get outsourcer;
 }
 
 /// @nodoc
@@ -249,6 +251,13 @@ class __$OutsourcerStockCopyWithImpl<$Res>
           : outsourcer // ignore: cast_nullable_to_non_nullable
               as Outsourcer,
     ));
+  }
+
+  @override
+  $OutsourcerCopyWith<$Res> get outsourcer {
+    return $OutsourcerCopyWith<$Res>(_value.outsourcer, (value) {
+      return _then(_value.copyWith(outsourcer: value));
+    });
   }
 }
 
@@ -493,6 +502,8 @@ abstract class _$SoldByOutsourcerCopyWith<$Res> {
           _SoldByOutsourcer value, $Res Function(_SoldByOutsourcer) then) =
       __$SoldByOutsourcerCopyWithImpl<$Res>;
   $Res call({Outsourcer outsourcer});
+
+  $OutsourcerCopyWith<$Res> get outsourcer;
 }
 
 /// @nodoc
@@ -516,6 +527,13 @@ class __$SoldByOutsourcerCopyWithImpl<$Res>
           : outsourcer // ignore: cast_nullable_to_non_nullable
               as Outsourcer,
     ));
+  }
+
+  @override
+  $OutsourcerCopyWith<$Res> get outsourcer {
+    return $OutsourcerCopyWith<$Res>(_value.outsourcer, (value) {
+      return _then(_value.copyWith(outsourcer: value));
+    });
   }
 }
 
@@ -774,6 +792,7 @@ abstract class _$FreeDistributionCopyWith<$Res> {
   $Res call({DojinEvent dojinEvent, Parson parson});
 
   $DojinEventCopyWith<$Res> get dojinEvent;
+  $ParsonCopyWith<$Res> get parson;
 }
 
 /// @nodoc
@@ -808,6 +827,13 @@ class __$FreeDistributionCopyWithImpl<$Res>
   $DojinEventCopyWith<$Res> get dojinEvent {
     return $DojinEventCopyWith<$Res>(_value.dojinEvent, (value) {
       return _then(_value.copyWith(dojinEvent: value));
+    });
+  }
+
+  @override
+  $ParsonCopyWith<$Res> get parson {
+    return $ParsonCopyWith<$Res>(_value.parson, (value) {
+      return _then(_value.copyWith(parson: value));
     });
   }
 }

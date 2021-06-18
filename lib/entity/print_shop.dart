@@ -1,13 +1,11 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// 印刷所
-import 'package:dojin_hub/model/print_shop_type.dart';
+part 'print_shop.freezed.dart';
 
-class PrintShop implements PrintShopType {
-  @override late int id;
-  @override late String name;
-
-  PrintShop({
-    required this.id,
-    required this.name,
-  }) : super();
+@freezed
+class PrintShop with _$PrintShop {
+  const factory PrintShop({
+    required int id,
+    required String name,
+  }) = _PrintShop;
 }

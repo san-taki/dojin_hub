@@ -115,14 +115,14 @@ class CreateProductScreen extends HookWidget implements ScreenType {
               DebugLog.d('User canceled the picker');
             }
           },
-          child: screenModel.thumbnailPath.isNotEmpty
+          child: screenModel.coverImagePath.isNotEmpty
               ? Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fitWidth,
                       alignment: FractionalOffset.center,
                       image: Image.file(
-                        File(screenModel.thumbnailPath),
+                        File(screenModel.coverImagePath),
                         fit: BoxFit.cover,
                       ).image,
                     ),

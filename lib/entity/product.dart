@@ -1,17 +1,19 @@
 import 'package:dojin_hub/entity/edition.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Product {
-  final String id;
-  final String title;
-  final String thumbnailPath;
-  final List<Edition> editions;
+part 'product.freezed.dart';
 
-  Product({
-    required this.id,
-    required this.title,
-    this.thumbnailPath = "",
-    this.editions = const <Edition>[],
-  });
+@freezed
+class Product with _$Product {
+  const factory Product({
+    required String id,
+    required String title,
+    @Default('') String coverImagePath,
+    @Default('') String backCoverImagePath,
+    @Default([]) List<Edition> editions,
+  }) = _Product;
+}
 
+extension ProductExt on Product {
   bool get soldOut => editions.map((e) => e.soldOut).toList().contains(false);
 }

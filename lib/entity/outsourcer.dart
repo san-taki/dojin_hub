@@ -1,14 +1,14 @@
-import 'package:dojin_hub/model/outsourcer_type.dart';
-import 'package:dojin_hub/model/product_type.dart';
+import 'package:dojin_hub/entity/product.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'outsourcer.freezed.dart';
 
 // 委託先
-class Outsourcer implements OutsourcerType {
-  @override
-  late String shopId;
-
-  @override
-  late String name;
-
-  @override
-  late List<ProductType> product;
+@freezed
+class Outsourcer with _$Outsourcer {
+  const factory Outsourcer({
+    required String shopId,
+    required String name,
+    required List<Product> product,
+  }) = _Outsourcer;
 }

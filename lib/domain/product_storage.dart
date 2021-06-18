@@ -39,7 +39,7 @@ class ProductStorageController extends ModelControllerType<ProductStorage> {
           return Product(
             id: p.id,
             title: p.title,
-            thumbnailPath: p.thumbnailPath,
+            coverImagePath: p.coverImagePath,
             editions: p.editions.map((e) {
               if (e.number == edition.number) {
                 return edition;

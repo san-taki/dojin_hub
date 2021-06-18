@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dojin_hub/entity/product.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/router/router.dart';
@@ -49,9 +50,9 @@ class ProductListScreen extends HookWidget implements ScreenType {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             alignment: FractionalOffset.center,
-                            image: product.thumbnailPath.isNotEmpty
+                            image: product.coverImagePath.isNotEmpty
                                 ? Image.file(
-                                    File(product.thumbnailPath),
+                                    File(product.coverImagePath),
                                     fit: BoxFit.cover,
                                   ).image
                                 : Image.asset(

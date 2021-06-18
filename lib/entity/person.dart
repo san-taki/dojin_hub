@@ -1,11 +1,12 @@
 import 'package:dojin_hub/selection/sns.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Parson {
-  final String name;
-  final Sns? sns;
+part 'person.freezed.dart';
 
-  Parson({
-    required this.name,
-    this.sns,
-  });
+@freezed
+class Parson with _$Parson {
+  const factory Parson({
+    required String name,
+    required Sns? sns,
+  }) = _Parson;
 }

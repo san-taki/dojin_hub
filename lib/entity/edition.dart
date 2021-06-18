@@ -1,27 +1,22 @@
 // 版データ
-import 'package:dojin_hub/model/book_type.dart';
-import 'package:dojin_hub/model/edition_type.dart';
-import 'package:dojin_hub/model/print_shop_type.dart';
+import 'package:dojin_hub/entity/book.dart';
+import 'package:dojin_hub/entity/print_shop.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Edition implements EditionType {
-  @override
-  late int number;
-  @override
-  late PrintShopType printShop;
-  @override
-  late DateTime publicationDate;
-  @override
-  late List<BookType> books;
+part 'edition.freezed.dart';
 
-  Edition({
-    required this.number,
-    required this.printShop,
-    required this.publicationDate,
-    required this.books,
-  });
+@freezed
+class Edition with _$Edition {
+  const factory Edition({
+    required int number,
+    required PrintShop printShop,
+    required DateTime publicationDate,
+    required List<Book> books,
+  }) = _Edition;
+}
 
-  // TODO: ロジックはかんがえる
-  bool get soldOut => true;
-
+extension EditionExt on Edition {
   String get numberString => number == 1 ? '初版' : '第$number版';
+  // FIXME
+  bool get soldOut => false;
 }

@@ -1,25 +1,37 @@
 import 'package:dojin_hub/domain/product_storage.dart';
 import 'package:dojin_hub/entity/product.dart';
-import 'package:flutter/material.dart';
+import 'package:dojin_hub/flamework/model_controller_type.dart';
+import 'package:dojin_hub/flamework/model_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ProductDetailScreenModel extends ChangeNotifier {
-  final Product product;
-  final ProductStorageController productStorageController;
+part 'product_detail_screen_model.freezed.dart';
 
-  ProductDetailScreenModel({
-    required this.product,
-    required this.productStorageController,
-  });
+@freezed
+class ProductDetailScreenModel extends ModelType
+    with _$ProductDetailScreenModel {
+  const factory ProductDetailScreenModel({
+    required Product product,
+    required ProductStorageController productStorageController,
+  }) = _ProductDetailScreenModel;
+}
 
-  void _update(Product product) {}
+class ProductDetailScreenModelController
+    extends ModelControllerType<ProductDetailScreenModel> {
+  ProductDetailScreenModelController(ProductDetailScreenModel model)
+      : super(model);
 
-  void setThumbnailPath(String path) {
-    _update(
-      Product(
-        id: product.id,
-        title: product.title,
-        thumbnailPath: path,
-        editions: product.editions,
+  void updateCoverImagePath(String path) {
+    state = state.copyWith(
+      product: state.product.copyWith(
+        coverImagePath: path,
+      ),
+    );
+  }
+
+  void updateBackCoverImagePath(String path) {
+    state = state.copyWith(
+      product: state.product.copyWith(
+        backCoverImagePath: path,
       ),
     );
   }

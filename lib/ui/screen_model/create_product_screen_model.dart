@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateProductScreenModel extends ChangeNotifier {
-  String thumbnailPath = '';
+  String coverImagePath = '';
   FullScreenListener fullScreenListener;
   TextFieldListener textFieldListener;
   ProductStorageController productStorageController;
@@ -24,7 +24,7 @@ class CreateProductScreenModel extends ChangeNotifier {
   }
 
   void setThumbnailPath(String path) {
-    thumbnailPath = path;
+    coverImagePath = path;
     notifyListeners();
   }
 
@@ -33,7 +33,7 @@ class CreateProductScreenModel extends ChangeNotifier {
       Product(
         id: Uuid().v1(),
         title: textFieldListener.text,
-        thumbnailPath: thumbnailPath,
+        coverImagePath: coverImagePath,
       ),
     );
   }

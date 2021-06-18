@@ -28,11 +28,13 @@ final productListScreenModelProvider = ChangeNotifierProvider.autoDispose(
   ),
 );
 
-final productDetailScreenModelProvider = ChangeNotifierProvider.autoDispose
-    .family<ProductDetailScreenModel, Product>(
-  (ref, product) => ProductDetailScreenModel(
-    product: product,
-    productStorageController: ref.read(productStorageProvider.notifier),
+final productDetailScreenModelProvider = StateNotifierProvider.family<
+    ProductDetailScreenModelController, ProductDetailScreenModel, Product>(
+  (ref, product) => ProductDetailScreenModelController(
+    ProductDetailScreenModel(
+      product: product,
+      productStorageController: ref.read(productStorageProvider.notifier),
+    ),
   ),
 );
 

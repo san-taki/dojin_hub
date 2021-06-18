@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'dojin_event.freezed.dart';
 
 @freezed
-abstract class DojinEvent with _$DojinEvent {
+class DojinEvent with _$DojinEvent {
   // 即売会
   @Assert('preparedProducts.length < unSoldProducts.length', 'preparedProducts < unSoldProducts')
   const factory DojinEvent.spotSale({

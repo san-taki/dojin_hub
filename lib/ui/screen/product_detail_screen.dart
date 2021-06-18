@@ -22,6 +22,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
     var screenModel = useProvider(productDetailScreenModelProvider(_product));
+    var screenModelController = useProvider(productDetailScreenModelProvider(_product).notifier);
 
     return Scaffold(
       body: Container(
@@ -29,7 +30,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         color: Colors.white,
         child: Column(
           children: [
-            _buildImageWindow(context, screenModel),
+            _buildCoverImageArea(context, screenModel, screenModelController),
             _buildTitle(screenModel.product),
             ..._buildEditionsArea(context, screenModel.product.editions),
           ],
@@ -105,60 +106,75 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ];
   }
 
-  Widget _buildImageWindow(
+  Widget _buildCoverImageArea(
     BuildContext context,
     ProductDetailScreenModel screenModel,
+    ProductDetailScreenModelController screenModelController
   ) {
-    return Container(
-      child: SizedBox(
-        height: 150,
-        width: 150,
-        child: InkWell(
-          onTap: () async {
-            FilePickerResult? result =
-                await FilePicker.platform.pickFiles(allowMultiple: false);
-            if (result != null) {
-              var path = result.files.single.path;
-              if (path != null) {
-                screenModel.setThumbnailPath(path);
-              } else {
-                DebugLog.d('path is null');
-              }
-            } else {
-              DebugLog.d('User canceled the picker');
-            }
-          },
-          child: screenModel.product.thumbnailPath.isNotEmpty
-              ? Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.fitWidth,
-                      alignment: FractionalOffset.center,
-                      image: Image.file(
-                        File(screenModel.product.thumbnailPath),
-                        fit: BoxFit.cover,
-                      ).image,
+    // FIXME: isCoverは設計がよくない
+    final buildCoverImage = (String imagePath, bool isCover) => Container(
+          child: SizedBox(
+            height: 200,
+            child: InkWell(
+              onTap: () async {
+                FilePickerResult? result =
+                    await FilePicker.platform.pickFiles(allowMultiple: false);
+                if (result != null) {
+                  var path = result.files.single.path;
+                  if (path != null) {
+                    if (isCover) {
+                      screenModelController.updateCoverImagePath(path);
+                    } else {
+                      screenModelController.updateBackCoverImagePath(path);
+                    }
+                  } else {
+                    DebugLog.d('path is null');
+                  }
+                } else {
+                  DebugLog.d('User canceled the picker');
+                }
+              },
+              child: imagePath.isNotEmpty
+                  ? Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.fitWidth,
+                          alignment: FractionalOffset.center,
+                          image: Image.file(
+                            File(imagePath),
+                            fit: BoxFit.cover,
+                          ).image,
+                        ),
+                      ),
+                    )
+                  : Container(
+                      color: Colors.grey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'サムネイルを追加',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              : Container(
-                  color: Colors.grey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      Text(
-                        'サムネイルを追加',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-        ),
-      ),
+            ),
+          ),
+        );
+
+    return Row(
+      children: [
+        Expanded(
+            child: buildCoverImage(screenModel.product.coverImagePath, true)),
+        Expanded(
+            child:
+                buildCoverImage(screenModel.product.backCoverImagePath, false)),
+      ],
     );
   }
 

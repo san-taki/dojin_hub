@@ -1,18 +1,14 @@
-import 'package:dojin_hub/model/book_type.dart';
 import 'package:dojin_hub/selection/book_status.dart';
 import 'package:dojin_hub/selection/currency.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Book implements BookType {
-  @override
-  BookStatus bookStatus;
-  @override
-  Currency currency;
-  @override
-  int sellingPrice;
+part 'book.freezed.dart';
 
-  Book({
-    required this.bookStatus,
-    required this.currency,
-    required this.sellingPrice,
-  });
+@freezed
+class Book with _$Book {
+  const factory Book({
+    required BookStatus bookStatus,
+    required Currency currency,
+    required int sellingPrice,
+  }) = _Book;
 }
