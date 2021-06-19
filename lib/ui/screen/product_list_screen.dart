@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:dojin_hub/di/screen_model_provider.dart';
+import 'package:dojin_hub/di/temporary_provider.dart';
 import 'package:dojin_hub/domain/entity/product.dart';
-import 'package:dojin_hub/provider/screen_model_provider.dart';
-import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/screen/create_product_screen.dart';

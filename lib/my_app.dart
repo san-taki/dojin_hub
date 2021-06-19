@@ -1,4 +1,4 @@
-import 'package:dojin_hub/provider/domain_provider.dart';
+import 'package:dojin_hub/di/domain_provider.dart';
 import 'package:dojin_hub/router/router.dart' as router;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

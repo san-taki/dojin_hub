@@ -1,8 +1,8 @@
+import 'package:dojin_hub/di/repository_provider.dart';
 import 'package:dojin_hub/flavor.dart';
 import 'package:dojin_hub/infrastructure/repository/product_repository_mock.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/my_app.dart';
-import 'package:dojin_hub/provider/repository_provider.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

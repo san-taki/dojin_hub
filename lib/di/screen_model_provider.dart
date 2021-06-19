@@ -1,6 +1,6 @@
+import 'package:dojin_hub/di/domain_provider.dart';
+import 'package:dojin_hub/di/temporary_provider.dart';
 import 'package:dojin_hub/domain/entity/product.dart';
-import 'package:dojin_hub/provider/domain_provider.dart';
-import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
 import 'package:dojin_hub/ui/listener/touch_listeners.dart';
 import 'package:dojin_hub/ui/screen_model/create_product_screen_model.dart';

@@ -1,8 +1,8 @@
 import 'dart:io';
+import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
 import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
-import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
