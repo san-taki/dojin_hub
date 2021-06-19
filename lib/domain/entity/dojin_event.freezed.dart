@@ -16,26 +16,16 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DojinEventTearOff {
   const _$DojinEventTearOff();
 
-  _SpotSale spotSale(
+  _DojinEvent call(
       {required String title,
-      required DateTime startDateTime,
-      required DateTime endDateTime,
-      required List<Product> preparedProducts,
-      required List<Product> unSoldProducts}) {
-    return _SpotSale(
+      DateTime? startDateTime,
+      DateTime? endDateTime,
+      DojinEventResult? result}) {
+    return _DojinEvent(
       title: title,
       startDateTime: startDateTime,
       endDateTime: endDateTime,
-      preparedProducts: preparedProducts,
-      unSoldProducts: unSoldProducts,
-    );
-  }
-
-  _Extra extra(
-      {required String title, required List<Product> preparedProducts}) {
-    return _Extra(
-      title: title,
-      preparedProducts: preparedProducts,
+      result: result,
     );
   }
 }
@@ -45,44 +35,10 @@ const $DojinEvent = _$DojinEventTearOff();
 
 /// @nodoc
 mixin _$DojinEvent {
-  String get title => throw _privateConstructorUsedError; // 用意した本
-  List<Product> get preparedProducts => throw _privateConstructorUsedError;
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String title,
-            DateTime startDateTime,
-            DateTime endDateTime,
-            List<Product> preparedProducts,
-            List<Product> unSoldProducts)
-        spotSale,
-    required TResult Function(String title, List<Product> preparedProducts)
-        extra,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, DateTime startDateTime, DateTime endDateTime,
-            List<Product> preparedProducts, List<Product> unSoldProducts)?
-        spotSale,
-    TResult Function(String title, List<Product> preparedProducts)? extra,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SpotSale value) spotSale,
-    required TResult Function(_Extra value) extra,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SpotSale value)? spotSale,
-    TResult Function(_Extra value)? extra,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  DateTime? get startDateTime => throw _privateConstructorUsedError;
+  DateTime? get endDateTime => throw _privateConstructorUsedError;
+  DojinEventResult? get result => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DojinEventCopyWith<DojinEvent> get copyWith =>
@@ -94,7 +50,13 @@ abstract class $DojinEventCopyWith<$Res> {
   factory $DojinEventCopyWith(
           DojinEvent value, $Res Function(DojinEvent) then) =
       _$DojinEventCopyWithImpl<$Res>;
-  $Res call({String title, List<Product> preparedProducts});
+  $Res call(
+      {String title,
+      DateTime? startDateTime,
+      DateTime? endDateTime,
+      DojinEventResult? result});
+
+  $DojinEventResultCopyWith<$Res>? get result;
 }
 
 /// @nodoc
@@ -108,52 +70,11 @@ class _$DojinEventCopyWithImpl<$Res> implements $DojinEventCopyWith<$Res> {
   @override
   $Res call({
     Object? title = freezed,
-    Object? preparedProducts = freezed,
-  }) {
-    return _then(_value.copyWith(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      preparedProducts: preparedProducts == freezed
-          ? _value.preparedProducts
-          : preparedProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$SpotSaleCopyWith<$Res> implements $DojinEventCopyWith<$Res> {
-  factory _$SpotSaleCopyWith(_SpotSale value, $Res Function(_SpotSale) then) =
-      __$SpotSaleCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {String title,
-      DateTime startDateTime,
-      DateTime endDateTime,
-      List<Product> preparedProducts,
-      List<Product> unSoldProducts});
-}
-
-/// @nodoc
-class __$SpotSaleCopyWithImpl<$Res> extends _$DojinEventCopyWithImpl<$Res>
-    implements _$SpotSaleCopyWith<$Res> {
-  __$SpotSaleCopyWithImpl(_SpotSale _value, $Res Function(_SpotSale) _then)
-      : super(_value, (v) => _then(v as _SpotSale));
-
-  @override
-  _SpotSale get _value => super._value as _SpotSale;
-
-  @override
-  $Res call({
-    Object? title = freezed,
     Object? startDateTime = freezed,
     Object? endDateTime = freezed,
-    Object? preparedProducts = freezed,
-    Object? unSoldProducts = freezed,
+    Object? result = freezed,
   }) {
-    return _then(_SpotSale(
+    return _then(_value.copyWith(
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -161,55 +82,108 @@ class __$SpotSaleCopyWithImpl<$Res> extends _$DojinEventCopyWithImpl<$Res>
       startDateTime: startDateTime == freezed
           ? _value.startDateTime
           : startDateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       endDateTime: endDateTime == freezed
           ? _value.endDateTime
           : endDateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      preparedProducts: preparedProducts == freezed
-          ? _value.preparedProducts
-          : preparedProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-      unSoldProducts: unSoldProducts == freezed
-          ? _value.unSoldProducts
-          : unSoldProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as DateTime?,
+      result: result == freezed
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as DojinEventResult?,
+    ));
+  }
+
+  @override
+  $DojinEventResultCopyWith<$Res>? get result {
+    if (_value.result == null) {
+      return null;
+    }
+
+    return $DojinEventResultCopyWith<$Res>(_value.result!, (value) {
+      return _then(_value.copyWith(result: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$DojinEventCopyWith<$Res> implements $DojinEventCopyWith<$Res> {
+  factory _$DojinEventCopyWith(
+          _DojinEvent value, $Res Function(_DojinEvent) then) =
+      __$DojinEventCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String title,
+      DateTime? startDateTime,
+      DateTime? endDateTime,
+      DojinEventResult? result});
+
+  @override
+  $DojinEventResultCopyWith<$Res>? get result;
+}
+
+/// @nodoc
+class __$DojinEventCopyWithImpl<$Res> extends _$DojinEventCopyWithImpl<$Res>
+    implements _$DojinEventCopyWith<$Res> {
+  __$DojinEventCopyWithImpl(
+      _DojinEvent _value, $Res Function(_DojinEvent) _then)
+      : super(_value, (v) => _then(v as _DojinEvent));
+
+  @override
+  _DojinEvent get _value => super._value as _DojinEvent;
+
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? startDateTime = freezed,
+    Object? endDateTime = freezed,
+    Object? result = freezed,
+  }) {
+    return _then(_DojinEvent(
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDateTime: startDateTime == freezed
+          ? _value.startDateTime
+          : startDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDateTime: endDateTime == freezed
+          ? _value.endDateTime
+          : endDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      result: result == freezed
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as DojinEventResult?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SpotSale implements _SpotSale {
-  const _$_SpotSale(
-      {required this.title,
-      required this.startDateTime,
-      required this.endDateTime,
-      required this.preparedProducts,
-      required this.unSoldProducts})
-      : assert(preparedProducts.length < unSoldProducts.length,
-            'preparedProducts < unSoldProducts');
+class _$_DojinEvent implements _DojinEvent {
+  const _$_DojinEvent(
+      {required this.title, this.startDateTime, this.endDateTime, this.result});
 
   @override
   final String title;
   @override
-  final DateTime startDateTime;
+  final DateTime? startDateTime;
   @override
-  final DateTime endDateTime;
-  @override // 用意した本
-  final List<Product> preparedProducts;
-  @override // 売れ残り本
-  final List<Product> unSoldProducts;
+  final DateTime? endDateTime;
+  @override
+  final DojinEventResult? result;
 
   @override
   String toString() {
-    return 'DojinEvent.spotSale(title: $title, startDateTime: $startDateTime, endDateTime: $endDateTime, preparedProducts: $preparedProducts, unSoldProducts: $unSoldProducts)';
+    return 'DojinEvent(title: $title, startDateTime: $startDateTime, endDateTime: $endDateTime, result: $result)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SpotSale &&
+        (other is _DojinEvent &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.startDateTime, startDateTime) ||
@@ -218,12 +192,8 @@ class _$_SpotSale implements _SpotSale {
             (identical(other.endDateTime, endDateTime) ||
                 const DeepCollectionEquality()
                     .equals(other.endDateTime, endDateTime)) &&
-            (identical(other.preparedProducts, preparedProducts) ||
-                const DeepCollectionEquality()
-                    .equals(other.preparedProducts, preparedProducts)) &&
-            (identical(other.unSoldProducts, unSoldProducts) ||
-                const DeepCollectionEquality()
-                    .equals(other.unSoldProducts, unSoldProducts)));
+            (identical(other.result, result) ||
+                const DeepCollectionEquality().equals(other.result, result)));
   }
 
   @override
@@ -232,228 +202,31 @@ class _$_SpotSale implements _SpotSale {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(startDateTime) ^
       const DeepCollectionEquality().hash(endDateTime) ^
-      const DeepCollectionEquality().hash(preparedProducts) ^
-      const DeepCollectionEquality().hash(unSoldProducts);
+      const DeepCollectionEquality().hash(result);
 
   @JsonKey(ignore: true)
   @override
-  _$SpotSaleCopyWith<_SpotSale> get copyWith =>
-      __$SpotSaleCopyWithImpl<_SpotSale>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String title,
-            DateTime startDateTime,
-            DateTime endDateTime,
-            List<Product> preparedProducts,
-            List<Product> unSoldProducts)
-        spotSale,
-    required TResult Function(String title, List<Product> preparedProducts)
-        extra,
-  }) {
-    return spotSale(
-        title, startDateTime, endDateTime, preparedProducts, unSoldProducts);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, DateTime startDateTime, DateTime endDateTime,
-            List<Product> preparedProducts, List<Product> unSoldProducts)?
-        spotSale,
-    TResult Function(String title, List<Product> preparedProducts)? extra,
-    required TResult orElse(),
-  }) {
-    if (spotSale != null) {
-      return spotSale(
-          title, startDateTime, endDateTime, preparedProducts, unSoldProducts);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SpotSale value) spotSale,
-    required TResult Function(_Extra value) extra,
-  }) {
-    return spotSale(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SpotSale value)? spotSale,
-    TResult Function(_Extra value)? extra,
-    required TResult orElse(),
-  }) {
-    if (spotSale != null) {
-      return spotSale(this);
-    }
-    return orElse();
-  }
+  _$DojinEventCopyWith<_DojinEvent> get copyWith =>
+      __$DojinEventCopyWithImpl<_DojinEvent>(this, _$identity);
 }
 
-abstract class _SpotSale implements DojinEvent {
-  const factory _SpotSale(
+abstract class _DojinEvent implements DojinEvent {
+  const factory _DojinEvent(
       {required String title,
-      required DateTime startDateTime,
-      required DateTime endDateTime,
-      required List<Product> preparedProducts,
-      required List<Product> unSoldProducts}) = _$_SpotSale;
+      DateTime? startDateTime,
+      DateTime? endDateTime,
+      DojinEventResult? result}) = _$_DojinEvent;
 
   @override
   String get title => throw _privateConstructorUsedError;
-  DateTime get startDateTime => throw _privateConstructorUsedError;
-  DateTime get endDateTime => throw _privateConstructorUsedError;
-  @override // 用意した本
-  List<Product> get preparedProducts =>
-      throw _privateConstructorUsedError; // 売れ残り本
-  List<Product> get unSoldProducts => throw _privateConstructorUsedError;
+  @override
+  DateTime? get startDateTime => throw _privateConstructorUsedError;
+  @override
+  DateTime? get endDateTime => throw _privateConstructorUsedError;
+  @override
+  DojinEventResult? get result => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SpotSaleCopyWith<_SpotSale> get copyWith =>
+  _$DojinEventCopyWith<_DojinEvent> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$ExtraCopyWith<$Res> implements $DojinEventCopyWith<$Res> {
-  factory _$ExtraCopyWith(_Extra value, $Res Function(_Extra) then) =
-      __$ExtraCopyWithImpl<$Res>;
-  @override
-  $Res call({String title, List<Product> preparedProducts});
-}
-
-/// @nodoc
-class __$ExtraCopyWithImpl<$Res> extends _$DojinEventCopyWithImpl<$Res>
-    implements _$ExtraCopyWith<$Res> {
-  __$ExtraCopyWithImpl(_Extra _value, $Res Function(_Extra) _then)
-      : super(_value, (v) => _then(v as _Extra));
-
-  @override
-  _Extra get _value => super._value as _Extra;
-
-  @override
-  $Res call({
-    Object? title = freezed,
-    Object? preparedProducts = freezed,
-  }) {
-    return _then(_Extra(
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      preparedProducts: preparedProducts == freezed
-          ? _value.preparedProducts
-          : preparedProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Extra implements _Extra {
-  const _$_Extra({required this.title, required this.preparedProducts});
-
-  @override
-  final String title;
-  @override
-  final List<Product> preparedProducts;
-
-  @override
-  String toString() {
-    return 'DojinEvent.extra(title: $title, preparedProducts: $preparedProducts)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _Extra &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
-            (identical(other.preparedProducts, preparedProducts) ||
-                const DeepCollectionEquality()
-                    .equals(other.preparedProducts, preparedProducts)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(preparedProducts);
-
-  @JsonKey(ignore: true)
-  @override
-  _$ExtraCopyWith<_Extra> get copyWith =>
-      __$ExtraCopyWithImpl<_Extra>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String title,
-            DateTime startDateTime,
-            DateTime endDateTime,
-            List<Product> preparedProducts,
-            List<Product> unSoldProducts)
-        spotSale,
-    required TResult Function(String title, List<Product> preparedProducts)
-        extra,
-  }) {
-    return extra(title, preparedProducts);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, DateTime startDateTime, DateTime endDateTime,
-            List<Product> preparedProducts, List<Product> unSoldProducts)?
-        spotSale,
-    TResult Function(String title, List<Product> preparedProducts)? extra,
-    required TResult orElse(),
-  }) {
-    if (extra != null) {
-      return extra(title, preparedProducts);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SpotSale value) spotSale,
-    required TResult Function(_Extra value) extra,
-  }) {
-    return extra(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SpotSale value)? spotSale,
-    TResult Function(_Extra value)? extra,
-    required TResult orElse(),
-  }) {
-    if (extra != null) {
-      return extra(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Extra implements DojinEvent {
-  const factory _Extra(
-      {required String title,
-      required List<Product> preparedProducts}) = _$_Extra;
-
-  @override
-  String get title => throw _privateConstructorUsedError;
-  @override
-  List<Product> get preparedProducts => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$ExtraCopyWith<_Extra> get copyWith => throw _privateConstructorUsedError;
 }

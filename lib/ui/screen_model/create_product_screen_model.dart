@@ -1,3 +1,4 @@
+import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/domain/store/product_store.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
@@ -34,6 +35,10 @@ class CreateProductScreenModel extends ChangeNotifier {
         id: Uuid().v1(),
         title: textFieldListener.text,
         coverImagePath: coverImagePath,
+        atendedEvents: [
+          DojinEvent(title: 'コミティア100'),
+          DojinEvent(title: 'C99'),
+        ]
       ),
     );
   }

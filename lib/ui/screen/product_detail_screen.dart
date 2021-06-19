@@ -1,5 +1,8 @@
 import 'dart:io';
+
+import 'package:dojin_hub/app/style_constants.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
+import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
 import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
@@ -11,7 +14,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 class ProductDetailScreen extends HookWidget implements ScreenType {
   final Product _product;
@@ -21,7 +23,8 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
     var screenModel = useProvider(productDetailScreenModelProvider(_product));
-    var screenModelController = useProvider(productDetailScreenModelProvider(_product).notifier);
+    var screenModelController =
+        useProvider(productDetailScreenModelProvider(_product).notifier);
 
     return Scaffold(
       body: Container(
@@ -32,6 +35,8 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
             _buildCoverImageArea(context, screenModel, screenModelController),
             _buildTitle(screenModel.product),
             ..._buildEditionsArea(context, screenModel.product.editions),
+            _buildAttendedDojinEventArea(screenModel),
+            _buildGraphArea(screenModel),
           ],
         ),
       ),
@@ -106,10 +111,9 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   }
 
   Widget _buildCoverImageArea(
-    BuildContext context,
-    ProductDetailScreenModel screenModel,
-    ProductDetailScreenModelController screenModelController
-  ) {
+      BuildContext context,
+      ProductDetailScreenModel screenModel,
+      ProductDetailScreenModelController screenModelController) {
     // FIXME: isCoverは設計がよくない
     final buildCoverImage = (String imagePath, bool isCover) => Container(
           child: SizedBox(
@@ -177,17 +181,51 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     );
   }
 
-  // 日時登録
-  Future<void> _selectDate(BuildContext context) async {
-    await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2015),
-      lastDate: DateTime(2020),
-    ).then((value) {
-      if (value != null) {
-        var date = DateFormat.yMMMd().format(value);
-      }
-    });
+  Widget _buildAttendedDojinEventArea(ProductDetailScreenModel screenModel) {
+    final chip = (String label) => Chip(
+          label: Text(label),
+        );
+
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+            child: Text(
+              '参加したイベント',
+              style: TextStyle(
+                fontSize: AppFontSize.title,
+                fontWeight: AppFontWeight.title,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(12),
+            alignment: Alignment.topLeft,
+            child: Wrap(
+              spacing: 8,
+              children: screenModel.product.atendedEvents
+                  .map(
+                    (DojinEvent e) => chip(e.title),
+                  )
+                  .toList()
+                    ..add(
+                      Chip(
+                        label: Icon(
+                          Icons.add,
+                          size: 15,
+                        ),
+                      ),
+                    ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphArea(ProductDetailScreenModel screenModel) {
+    return Center();
   }
 }
