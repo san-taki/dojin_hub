@@ -60,8 +60,8 @@ class __$ExampleCopyWithImpl<$Res> extends _$ExampleCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Example implements _Example {
-  const _$_Example();
+class _$_Example extends _Example {
+  const _$_Example() : super._();
 
   @override
   String toString() {
@@ -77,6 +77,7 @@ class _$_Example implements _Example {
   int get hashCode => runtimeType.hashCode;
 }
 
-abstract class _Example implements Example {
+abstract class _Example extends Example {
   const factory _Example() = _$_Example;
+  const _Example._() : super._();
 }

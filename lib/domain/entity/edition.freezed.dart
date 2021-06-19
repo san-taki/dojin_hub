@@ -154,12 +154,13 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Edition implements _Edition {
+class _$_Edition extends _Edition {
   const _$_Edition(
       {required this.number,
       required this.printShop,
       required this.publicationDate,
-      required this.books});
+      required this.books})
+      : super._();
 
   @override
   final int number;
@@ -205,12 +206,13 @@ class _$_Edition implements _Edition {
       __$EditionCopyWithImpl<_Edition>(this, _$identity);
 }
 
-abstract class _Edition implements Edition {
+abstract class _Edition extends Edition {
   const factory _Edition(
       {required int number,
       required PrintShop printShop,
       required DateTime publicationDate,
       required List<Book> books}) = _$_Edition;
+  const _Edition._() : super._();
 
   @override
   int get number => throw _privateConstructorUsedError;

@@ -3,58 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="ff482664-d061-4e2a-9cbd-f94587c28323" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/build.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/doujin_event/dojin_event.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/doujin_event/dojin_event.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/person/person.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/person/person.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/person/sns.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/person/sns.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/book.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/book.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/book_status.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/book_status.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/currency.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/currency.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/edition.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/edition.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/outsourcer.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/outsourcer.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/print_shop.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/print_shop.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/product.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_model/product/product.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_service/my_theme.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_service/product_archive.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_service/product_archive.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_service/product_storage.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/domain_service/product_storage.freezed.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/provider/domain_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/provider/domain_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/provider/repository_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/provider/repository_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/entity/product.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/entity/product.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/entity/product.freezed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/entity/product.freezed.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/domain/store/product_store.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/domain/store/product_store.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/my_app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/my_app.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/provider/screen_model_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/provider/screen_model_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repository/mock/products_repository_mock.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repository/products_repository.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/isar/isar_client.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/book_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/book_status_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/book_type.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/edition_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/example.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/outsourcer_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/product_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/resource/database/schema/product_storage_schema.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/screen/product_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen/product_detail_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/screen/product_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen/product_list_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/create_product_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/create_product_screen_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/screen/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen/splash_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/edit_edition_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/edit_edition_screen_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/home_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/home_screen_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_pager_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_pager_screen_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_screen_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_screen_model.freezed.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/product_detail_screen_model.freezed.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/product_list_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/product_list_screen_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ui/screen_model/splash_screen_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/screen_model/splash_screen_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,5 +62,11 @@
       <updated>1623807562954</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="717" y="327" width="615" height="490" key="find.popup" timestamp="1624070933881">
+      <screen x="0" y="25" width="1719" height="1095" />
+    </state>
+    <state x="717" y="327" width="615" height="490" key="find.popup/0.25.1719.1095@0.25.1719.1095" timestamp="1624070933881" />
   </component>
 </project>

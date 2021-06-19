@@ -1,16 +1,15 @@
-import 'package:dojin_hub/domain/store/product_store.dart';
-import 'package:flutter/widgets.dart';
+import 'package:dojin_hub/flamework/model_controller_type.dart';
+import 'package:dojin_hub/flamework/model_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class SplashScreenModel extends ChangeNotifier {
-  final ProductStoreController productStoreController;
+part 'splash_screen_model.freezed.dart';
 
-  SplashScreenModel({
-    required this.productStoreController,
-  }) {
-    initialize();
-  }
+@freezed
+class SplashScreenModel extends ModelType with _$SplashScreenModel {
+  const factory SplashScreenModel() = _SplashScreenModel;
+}
 
-  void initialize() {
-    productStoreController.fetch();
-  }
+class SplashScreenModelController
+    extends ModelControllerType<SplashScreenModel> {
+  SplashScreenModelController(SplashScreenModel model) : super(model);
 }

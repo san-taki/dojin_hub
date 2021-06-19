@@ -31,8 +31,7 @@ class ProductListScreen extends HookWidget implements ScreenType {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         children: screenModel.products
-            .map(
-              (product) => Card(
+            .map((Product product) => Card(
                 clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -74,7 +73,7 @@ class ProductListScreen extends HookWidget implements ScreenType {
                         ),
                       ),
                       Visibility(
-                        visible: product.soldOut,
+                        visible: product.soldOut(),
                         child: Container(
                           padding: EdgeInsets.all(8),
                           alignment: Alignment.bottomRight,
@@ -88,8 +87,7 @@ class ProductListScreen extends HookWidget implements ScreenType {
                   ),
                 ),
               ),
-            )
-            .toList()
+            ).toList()
               ..add(
                 Card(
                   color: Colors.grey,

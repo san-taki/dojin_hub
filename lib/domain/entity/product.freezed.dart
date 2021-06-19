@@ -157,13 +157,14 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Product implements _Product {
+class _$_Product extends _Product {
   const _$_Product(
       {required this.id,
       required this.title,
       this.coverImagePath = '',
       this.backCoverImagePath = '',
-      this.editions = const []});
+      this.editions = const []})
+      : super._();
 
   @override
   final String id;
@@ -218,13 +219,14 @@ class _$_Product implements _Product {
       __$ProductCopyWithImpl<_Product>(this, _$identity);
 }
 
-abstract class _Product implements Product {
+abstract class _Product extends Product {
   const factory _Product(
       {required String id,
       required String title,
       String coverImagePath,
       String backCoverImagePath,
       List<Edition> editions}) = _$_Product;
+  const _Product._() : super._();
 
   @override
   String get id => throw _privateConstructorUsedError;

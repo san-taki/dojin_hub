@@ -7,15 +7,14 @@ part 'edition.freezed.dart';
 
 @freezed
 class Edition with _$Edition {
+  const Edition._();
   const factory Edition({
     required int number,
     required PrintShop printShop,
     required DateTime publicationDate,
     required List<Book> books,
   }) = _Edition;
-}
 
-extension EditionExt on Edition {
   String get numberString => number == 1 ? '初版' : '第$number版';
   // FIXME
   bool get soldOut => false;

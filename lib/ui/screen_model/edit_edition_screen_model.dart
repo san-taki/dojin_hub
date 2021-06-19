@@ -1,30 +1,26 @@
 import 'package:dojin_hub/domain/entity/book.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
 import 'package:dojin_hub/domain/store/product_store.dart';
-import 'package:flutter/widgets.dart';
+import 'package:dojin_hub/flamework/model_controller_type.dart';
+import 'package:dojin_hub/flamework/model_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class EditEditionScreenModel extends ChangeNotifier {
-  String productId;
-  Edition edition;
-  ProductStoreController productStoreController;
+part 'edit_edition_screen_model.freezed.dart';
 
-  EditEditionScreenModel({
-    required this.productId,
-    required this.edition,
-    required this.productStoreController,
-  });
+@freezed
+class EditEditionScreenModel extends ModelType with _$EditEditionScreenModel {
+  const factory EditEditionScreenModel({
+    required String productId,
+    required Edition edition,
+    required ProductStoreController productStoreController,
+  }) = _EditEditionScreenModel;
+}
 
-  void setBooks(List<Book> books) {
-    edition = Edition(
-      number: edition.number,
-      printShop: edition.printShop,
-      publicationDate: edition.publicationDate,
-      books: books,
-    );
-    notifyListeners();
-  }
+class EditEditionScreenModelController
+    extends ModelControllerType<EditEditionScreenModel> {
+  EditEditionScreenModelController(EditEditionScreenModel model) : super(model);
 
-  void save() {
-    productStoreController.updateEdition(productId, edition);
-  }
+  void setBooks(List<Book> books) {}
+
+  void save() {}
 }

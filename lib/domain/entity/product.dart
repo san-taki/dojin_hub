@@ -5,6 +5,7 @@ part 'product.freezed.dart';
 
 @freezed
 class Product with _$Product {
+  const Product._();
   const factory Product({
     required String id,
     required String title,
@@ -12,8 +13,6 @@ class Product with _$Product {
     @Default('') String backCoverImagePath,
     @Default([]) List<Edition> editions,
   }) = _Product;
-}
 
-extension ProductExt on Product {
-  bool get soldOut => editions.map((e) => e.soldOut).toList().contains(false);
+  bool soldOut() => editions.map((e) => e.soldOut).toList().contains(false);
 }

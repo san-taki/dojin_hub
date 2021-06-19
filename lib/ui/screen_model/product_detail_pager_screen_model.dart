@@ -1,12 +1,22 @@
 import 'package:dojin_hub/domain/entity/product.dart';
+import 'package:dojin_hub/flamework/model_controller_type.dart';
+import 'package:dojin_hub/flamework/model_type.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ProductDetailPagerScreenModel extends ChangeNotifier {
-  final List<Product> products;
-  final PageController pageController;
+part 'product_detail_pager_screen_model.freezed.dart';
 
-  ProductDetailPagerScreenModel({
-    required this.products,
-    required this.pageController,
-  });
+@freezed
+class ProductDetailPagerScreenModel extends ModelType
+    with _$ProductDetailPagerScreenModel {
+  const factory ProductDetailPagerScreenModel({
+    required List<Product> products,
+    required PageController pageController,
+  }) = _ProductDetailPagerScreenModel;
+}
+
+class ProductDetailPagerScreenModelController
+    extends ModelControllerType<ProductDetailPagerScreenModel> {
+  ProductDetailPagerScreenModelController(ProductDetailPagerScreenModel model)
+      : super(model);
 }

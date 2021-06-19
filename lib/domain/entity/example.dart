@@ -5,12 +5,11 @@ part 'example.freezed.dart';
 // 状態とふるまいを持つオブジェクト＝ドメインモデル
 // freezed data classに状態を書く
 @freezed
-class Example with _$Example{
+class Example with _$Example {
+  // PrivteConstructorを定義するとメンバーmethodの定義ができる
+  const Example._();
   const factory Example() = _Example;
-}
 
-// そのextentionに振る舞いを書く
-// 引数を取らない関数はgetterで書く
-extension ExampleExt on Example {
+  // Dartの原則として引数を取らない関数はgetterで書く
   bool get hoge => true;
 }

@@ -22,7 +22,7 @@ class ProductStoreController
   ProductStoreController(this._productRepository)
       : super(ProductStore());
 
-  void fetch() {
+  void initialize() {
     state = state.copyWith(
       products: _productRepository.fetch(),
     );

@@ -12,23 +12,28 @@ import 'package:dojin_hub/ui/screen_model/splash_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final splashScreenModelProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => SplashScreenModel(
-    productStoreController: ref.watch(productStoreProvider.notifier),
+final splashScreenModelProvider = StateNotifierProvider.autoDispose<SplashScreenModelController, SplashScreenModel>(
+  (ref) => SplashScreenModelController(
+    SplashScreenModel(),
   ),
 );
 
-final homeScreenModelProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => HomeScreenModel(),
-);
-
-final productListScreenModelProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => ProductListScreenModel(
-    products: ref.watch(productStoreProvider).products,
+final homeScreenModelProvider = StateNotifierProvider.autoDispose<HomeScreenModelController, HomeScreenModel>(
+  (ref) => HomeScreenModelController(
+    HomeScreenModel(),
   ),
 );
 
-final productDetailScreenModelProvider = StateNotifierProvider.family<
+final productListScreenModelProvider = StateNotifierProvider.autoDispose<
+    ProductListScreenModelController, ProductListScreenModel>(
+  (ref) => ProductListScreenModelController(
+    ProductListScreenModel(
+      products: ref.watch(productStoreProvider).products,
+    ),
+  ),
+);
+
+final productDetailScreenModelProvider = StateNotifierProvider.autoDispose.family<
     ProductDetailScreenModelController, ProductDetailScreenModel, Product>(
   (ref, product) => ProductDetailScreenModelController(
     ProductDetailScreenModel(
@@ -38,13 +43,14 @@ final productDetailScreenModelProvider = StateNotifierProvider.family<
   ),
 );
 
-final productDetailPagerScreenModelProvider =
-    ChangeNotifierProvider.autoDispose(
-  (ref) => ProductDetailPagerScreenModel(
-    products: ref.watch(productStoreProvider).products,
-    pageController: PageController(
-        initialPage:
-            ref.read(productDetailScreenCurrentPositionProvider).state),
+final productDetailPagerScreenModelProvider = StateNotifierProvider.autoDispose<ProductDetailPagerScreenModelController, ProductDetailPagerScreenModel>(
+  (ref) => ProductDetailPagerScreenModelController(
+    ProductDetailPagerScreenModel(
+      products: ref.watch(productStoreProvider).products,
+      pageController: PageController(
+          initialPage:
+              ref.read(productDetailScreenCurrentPositionProvider).state),
+    ),
   ),
 );
 
