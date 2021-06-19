@@ -1,5 +1,5 @@
-import 'package:dojin_hub/domain_model/product/product.dart';
-import 'package:dojin_hub/repository/products_repository.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
+import 'package:dojin_hub/domain/repository/product_repository.dart';
 import 'package:uuid/uuid.dart';
 
 class ProductRepositoryMock extends ProductRepository {

@@ -1,4 +1,4 @@
-import 'package:dojin_hub/domain_model/product/product.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/provider/domain_provider.dart';
 import 'package:dojin_hub/provider/temporary_provider.dart';
 import 'package:dojin_hub/ui/listener/text_field_listener.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final splashScreenModelProvider = ChangeNotifierProvider.autoDispose(
   (ref) => SplashScreenModel(
-    productStorageController: ref.watch(productStorageProvider.notifier),
+    productStoreController: ref.watch(productStoreProvider.notifier),
   ),
 );
 
@@ -24,7 +24,7 @@ final homeScreenModelProvider = ChangeNotifierProvider.autoDispose(
 
 final productListScreenModelProvider = ChangeNotifierProvider.autoDispose(
   (ref) => ProductListScreenModel(
-    products: ref.watch(productStorageProvider).products,
+    products: ref.watch(productStoreProvider).products,
   ),
 );
 
@@ -33,7 +33,7 @@ final productDetailScreenModelProvider = StateNotifierProvider.family<
   (ref, product) => ProductDetailScreenModelController(
     ProductDetailScreenModel(
       product: product,
-      productStorageController: ref.read(productStorageProvider.notifier),
+      productStoreController: ref.read(productStoreProvider.notifier),
     ),
   ),
 );
@@ -41,7 +41,7 @@ final productDetailScreenModelProvider = StateNotifierProvider.family<
 final productDetailPagerScreenModelProvider =
     ChangeNotifierProvider.autoDispose(
   (ref) => ProductDetailPagerScreenModel(
-    products: ref.watch(productStorageProvider).products,
+    products: ref.watch(productStoreProvider).products,
     pageController: PageController(
         initialPage:
             ref.read(productDetailScreenCurrentPositionProvider).state),
@@ -52,6 +52,6 @@ final createProductScreenModelProvider = ChangeNotifierProvider.autoDispose(
   (ref) => CreateProductScreenModel(
     fullScreenListener: FullScreenListener(),
     textFieldListener: TextFieldListener(),
-    productStorageController: ref.read(productStorageProvider.notifier),
+    productStorageController: ref.read(productStoreProvider.notifier),
   ),
 );

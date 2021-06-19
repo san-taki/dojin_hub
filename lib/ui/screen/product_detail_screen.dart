@@ -1,7 +1,6 @@
 import 'dart:io';
-
-import 'package:dojin_hub/domain_model/product/edition.dart';
-import 'package:dojin_hub/domain_model/product/product.dart';
+import 'package:dojin_hub/domain/entity/edition.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/provider/screen_model_provider.dart';
 import 'package:dojin_hub/router/router.dart';

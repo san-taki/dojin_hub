@@ -1,17 +1,17 @@
-import 'package:dojin_hub/domain_model/product/book.dart';
-import 'package:dojin_hub/domain_model/product/edition.dart';
-import 'package:dojin_hub/domain_service/product_storage.dart';
+import 'package:dojin_hub/domain/entity/book.dart';
+import 'package:dojin_hub/domain/entity/edition.dart';
+import 'package:dojin_hub/domain/store/product_store.dart';
 import 'package:flutter/widgets.dart';
 
 class EditEditionScreenModel extends ChangeNotifier {
   String productId;
   Edition edition;
-  ProductStorageController productStorageController;
+  ProductStoreController productStoreController;
 
   EditEditionScreenModel({
     required this.productId,
     required this.edition,
-    required this.productStorageController,
+    required this.productStoreController,
   });
 
   void setBooks(List<Book> books) {
@@ -25,6 +25,6 @@ class EditEditionScreenModel extends ChangeNotifier {
   }
 
   void save() {
-    productStorageController.updateEdition(productId, edition);
+    productStoreController.updateEdition(productId, edition);
   }
 }

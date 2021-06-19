@@ -1,24 +1,26 @@
-import 'package:dojin_hub/domain_model/product/edition.dart';
-import 'package:dojin_hub/domain_model/product/product.dart';
+import 'package:dojin_hub/domain/entity/edition.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
+import 'package:dojin_hub/domain/repository/product_repository.dart';
 import 'package:dojin_hub/flamework/model_controller_type.dart';
 import 'package:dojin_hub/flamework/model_type.dart';
-import 'package:dojin_hub/repository/products_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'product_storage.freezed.dart';
+part 'product_store.freezed.dart';
 
 // 在庫
 @freezed
-class ProductStorage extends ModelType with _$ProductStorage {
-  const factory ProductStorage({
+class ProductStore extends ModelType with _$ProductStore {
+  const factory ProductStore({
     @Default([]) List<Product> products,
-  }) = _ProductStorage;
+  }) = _ProductStore;
 }
 
-class ProductStorageController extends ModelControllerType<ProductStorage> {
+class ProductStoreController
+    extends ModelControllerType<ProductStore> {
   final ProductRepository _productRepository;
 
-  ProductStorageController(this._productRepository) : super(ProductStorage());
+  ProductStoreController(this._productRepository)
+      : super(ProductStore());
 
   void fetch() {
     state = state.copyWith(

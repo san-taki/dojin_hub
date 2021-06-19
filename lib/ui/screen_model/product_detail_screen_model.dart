@@ -1,5 +1,5 @@
-import 'package:dojin_hub/domain_model/product/product.dart';
-import 'package:dojin_hub/domain_service/product_storage.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
+import 'package:dojin_hub/domain/store/product_store.dart';
 import 'package:dojin_hub/flamework/model_controller_type.dart';
 import 'package:dojin_hub/flamework/model_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -11,7 +11,7 @@ class ProductDetailScreenModel extends ModelType
     with _$ProductDetailScreenModel {
   const factory ProductDetailScreenModel({
     required Product product,
-    required ProductStorageController productStorageController,
+    required ProductStoreController productStoreController,
   }) = _ProductDetailScreenModel;
 }
 

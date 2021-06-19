@@ -1,6 +1,6 @@
-import 'package:dojin_hub/domain_model/doujin_event/dojin_event.dart';
-import 'package:dojin_hub/domain_model/person/person.dart';
-import 'package:dojin_hub/domain_model/product/outsourcer.dart';
+import 'package:dojin_hub/domain/entity/dojin_event.dart';
+import 'package:dojin_hub/domain/entity/outsourcer.dart';
+import 'package:dojin_hub/domain/entity/person.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'book_status.freezed.dart';

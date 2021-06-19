@@ -18,10 +18,10 @@ class _$ProductDetailScreenModelTearOff {
 
   _ProductDetailScreenModel call(
       {required Product product,
-      required ProductStorageController productStorageController}) {
+      required ProductStoreController productStoreController}) {
     return _ProductDetailScreenModel(
       product: product,
-      productStorageController: productStorageController,
+      productStoreController: productStoreController,
     );
   }
 }
@@ -32,7 +32,7 @@ const $ProductDetailScreenModel = _$ProductDetailScreenModelTearOff();
 /// @nodoc
 mixin _$ProductDetailScreenModel {
   Product get product => throw _privateConstructorUsedError;
-  ProductStorageController get productStorageController =>
+  ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -45,8 +45,7 @@ abstract class $ProductDetailScreenModelCopyWith<$Res> {
   factory $ProductDetailScreenModelCopyWith(ProductDetailScreenModel value,
           $Res Function(ProductDetailScreenModel) then) =
       _$ProductDetailScreenModelCopyWithImpl<$Res>;
-  $Res call(
-      {Product product, ProductStorageController productStorageController});
+  $Res call({Product product, ProductStoreController productStoreController});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -63,17 +62,17 @@ class _$ProductDetailScreenModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = freezed,
-    Object? productStorageController = freezed,
+    Object? productStoreController = freezed,
   }) {
     return _then(_value.copyWith(
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product,
-      productStorageController: productStorageController == freezed
-          ? _value.productStorageController
-          : productStorageController // ignore: cast_nullable_to_non_nullable
-              as ProductStorageController,
+      productStoreController: productStoreController == freezed
+          ? _value.productStoreController
+          : productStoreController // ignore: cast_nullable_to_non_nullable
+              as ProductStoreController,
     ));
   }
 
@@ -92,8 +91,7 @@ abstract class _$ProductDetailScreenModelCopyWith<$Res>
           $Res Function(_ProductDetailScreenModel) then) =
       __$ProductDetailScreenModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Product product, ProductStorageController productStorageController});
+  $Res call({Product product, ProductStoreController productStoreController});
 
   @override
   $ProductCopyWith<$Res> get product;
@@ -114,17 +112,17 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = freezed,
-    Object? productStorageController = freezed,
+    Object? productStoreController = freezed,
   }) {
     return _then(_ProductDetailScreenModel(
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product,
-      productStorageController: productStorageController == freezed
-          ? _value.productStorageController
-          : productStorageController // ignore: cast_nullable_to_non_nullable
-              as ProductStorageController,
+      productStoreController: productStoreController == freezed
+          ? _value.productStoreController
+          : productStoreController // ignore: cast_nullable_to_non_nullable
+              as ProductStoreController,
     ));
   }
 }
@@ -133,16 +131,16 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
 
 class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
   const _$_ProductDetailScreenModel(
-      {required this.product, required this.productStorageController});
+      {required this.product, required this.productStoreController});
 
   @override
   final Product product;
   @override
-  final ProductStorageController productStorageController;
+  final ProductStoreController productStoreController;
 
   @override
   String toString() {
-    return 'ProductDetailScreenModel(product: $product, productStorageController: $productStorageController)';
+    return 'ProductDetailScreenModel(product: $product, productStoreController: $productStoreController)';
   }
 
   @override
@@ -152,17 +150,16 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
             (identical(other.product, product) ||
                 const DeepCollectionEquality()
                     .equals(other.product, product)) &&
-            (identical(
-                    other.productStorageController, productStorageController) ||
+            (identical(other.productStoreController, productStoreController) ||
                 const DeepCollectionEquality().equals(
-                    other.productStorageController, productStorageController)));
+                    other.productStoreController, productStoreController)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(product) ^
-      const DeepCollectionEquality().hash(productStorageController);
+      const DeepCollectionEquality().hash(productStoreController);
 
   @JsonKey(ignore: true)
   @override
@@ -174,13 +171,13 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
 abstract class _ProductDetailScreenModel implements ProductDetailScreenModel {
   const factory _ProductDetailScreenModel(
           {required Product product,
-          required ProductStorageController productStorageController}) =
+          required ProductStoreController productStoreController}) =
       _$_ProductDetailScreenModel;
 
   @override
   Product get product => throw _privateConstructorUsedError;
   @override
-  ProductStorageController get productStorageController =>
+  ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

@@ -1,3 +1,0 @@
-// アプリのテーマ
-// ここはWip
-class MyTheme {}

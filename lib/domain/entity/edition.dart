@@ -1,6 +1,6 @@
 // 版データ
-import 'package:dojin_hub/domain_model/product/book.dart';
-import 'package:dojin_hub/domain_model/product/print_shop.dart';
+import 'package:dojin_hub/domain/entity/book.dart';
+import 'package:dojin_hub/domain/entity/print_shop.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'edition.freezed.dart';
