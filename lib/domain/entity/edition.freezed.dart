@@ -18,12 +18,16 @@ class _$EditionTearOff {
 
   _Edition call(
       {required int number,
-      required PrintShop printShop,
-      required DateTime publicationDate,
-      required List<Book> books}) {
+      int? page,
+      PrintShop? printShop,
+      int? printingCosts,
+      DateTime? publicationDate,
+      List<Book>? books}) {
     return _Edition(
       number: number,
+      page: page,
       printShop: printShop,
+      printingCosts: printingCosts,
       publicationDate: publicationDate,
       books: books,
     );
@@ -36,9 +40,11 @@ const $Edition = _$EditionTearOff();
 /// @nodoc
 mixin _$Edition {
   int get number => throw _privateConstructorUsedError;
-  PrintShop get printShop => throw _privateConstructorUsedError;
-  DateTime get publicationDate => throw _privateConstructorUsedError;
-  List<Book> get books => throw _privateConstructorUsedError;
+  int? get page => throw _privateConstructorUsedError;
+  PrintShop? get printShop => throw _privateConstructorUsedError;
+  int? get printingCosts => throw _privateConstructorUsedError;
+  DateTime? get publicationDate => throw _privateConstructorUsedError;
+  List<Book>? get books => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditionCopyWith<Edition> get copyWith => throw _privateConstructorUsedError;
@@ -50,11 +56,13 @@ abstract class $EditionCopyWith<$Res> {
       _$EditionCopyWithImpl<$Res>;
   $Res call(
       {int number,
-      PrintShop printShop,
-      DateTime publicationDate,
-      List<Book> books});
+      int? page,
+      PrintShop? printShop,
+      int? printingCosts,
+      DateTime? publicationDate,
+      List<Book>? books});
 
-  $PrintShopCopyWith<$Res> get printShop;
+  $PrintShopCopyWith<$Res>? get printShop;
 }
 
 /// @nodoc
@@ -68,7 +76,9 @@ class _$EditionCopyWithImpl<$Res> implements $EditionCopyWith<$Res> {
   @override
   $Res call({
     Object? number = freezed,
+    Object? page = freezed,
     Object? printShop = freezed,
+    Object? printingCosts = freezed,
     Object? publicationDate = freezed,
     Object? books = freezed,
   }) {
@@ -77,24 +87,36 @@ class _$EditionCopyWithImpl<$Res> implements $EditionCopyWith<$Res> {
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
               as int,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
       printShop: printShop == freezed
           ? _value.printShop
           : printShop // ignore: cast_nullable_to_non_nullable
-              as PrintShop,
+              as PrintShop?,
+      printingCosts: printingCosts == freezed
+          ? _value.printingCosts
+          : printingCosts // ignore: cast_nullable_to_non_nullable
+              as int?,
       publicationDate: publicationDate == freezed
           ? _value.publicationDate
           : publicationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+              as List<Book>?,
     ));
   }
 
   @override
-  $PrintShopCopyWith<$Res> get printShop {
-    return $PrintShopCopyWith<$Res>(_value.printShop, (value) {
+  $PrintShopCopyWith<$Res>? get printShop {
+    if (_value.printShop == null) {
+      return null;
+    }
+
+    return $PrintShopCopyWith<$Res>(_value.printShop!, (value) {
       return _then(_value.copyWith(printShop: value));
     });
   }
@@ -107,12 +129,14 @@ abstract class _$EditionCopyWith<$Res> implements $EditionCopyWith<$Res> {
   @override
   $Res call(
       {int number,
-      PrintShop printShop,
-      DateTime publicationDate,
-      List<Book> books});
+      int? page,
+      PrintShop? printShop,
+      int? printingCosts,
+      DateTime? publicationDate,
+      List<Book>? books});
 
   @override
-  $PrintShopCopyWith<$Res> get printShop;
+  $PrintShopCopyWith<$Res>? get printShop;
 }
 
 /// @nodoc
@@ -127,7 +151,9 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? number = freezed,
+    Object? page = freezed,
     Object? printShop = freezed,
+    Object? printingCosts = freezed,
     Object? publicationDate = freezed,
     Object? books = freezed,
   }) {
@@ -136,18 +162,26 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
               as int,
+      page: page == freezed
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
       printShop: printShop == freezed
           ? _value.printShop
           : printShop // ignore: cast_nullable_to_non_nullable
-              as PrintShop,
+              as PrintShop?,
+      printingCosts: printingCosts == freezed
+          ? _value.printingCosts
+          : printingCosts // ignore: cast_nullable_to_non_nullable
+              as int?,
       publicationDate: publicationDate == freezed
           ? _value.publicationDate
           : publicationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>,
+              as List<Book>?,
     ));
   }
 }
@@ -157,23 +191,29 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
 class _$_Edition extends _Edition {
   const _$_Edition(
       {required this.number,
-      required this.printShop,
-      required this.publicationDate,
-      required this.books})
+      this.page,
+      this.printShop,
+      this.printingCosts,
+      this.publicationDate,
+      this.books})
       : super._();
 
   @override
   final int number;
   @override
-  final PrintShop printShop;
+  final int? page;
   @override
-  final DateTime publicationDate;
+  final PrintShop? printShop;
   @override
-  final List<Book> books;
+  final int? printingCosts;
+  @override
+  final DateTime? publicationDate;
+  @override
+  final List<Book>? books;
 
   @override
   String toString() {
-    return 'Edition(number: $number, printShop: $printShop, publicationDate: $publicationDate, books: $books)';
+    return 'Edition(number: $number, page: $page, printShop: $printShop, printingCosts: $printingCosts, publicationDate: $publicationDate, books: $books)';
   }
 
   @override
@@ -182,9 +222,14 @@ class _$_Edition extends _Edition {
         (other is _Edition &&
             (identical(other.number, number) ||
                 const DeepCollectionEquality().equals(other.number, number)) &&
+            (identical(other.page, page) ||
+                const DeepCollectionEquality().equals(other.page, page)) &&
             (identical(other.printShop, printShop) ||
                 const DeepCollectionEquality()
                     .equals(other.printShop, printShop)) &&
+            (identical(other.printingCosts, printingCosts) ||
+                const DeepCollectionEquality()
+                    .equals(other.printingCosts, printingCosts)) &&
             (identical(other.publicationDate, publicationDate) ||
                 const DeepCollectionEquality()
                     .equals(other.publicationDate, publicationDate)) &&
@@ -196,7 +241,9 @@ class _$_Edition extends _Edition {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(number) ^
+      const DeepCollectionEquality().hash(page) ^
       const DeepCollectionEquality().hash(printShop) ^
+      const DeepCollectionEquality().hash(printingCosts) ^
       const DeepCollectionEquality().hash(publicationDate) ^
       const DeepCollectionEquality().hash(books);
 
@@ -209,19 +256,25 @@ class _$_Edition extends _Edition {
 abstract class _Edition extends Edition {
   const factory _Edition(
       {required int number,
-      required PrintShop printShop,
-      required DateTime publicationDate,
-      required List<Book> books}) = _$_Edition;
+      int? page,
+      PrintShop? printShop,
+      int? printingCosts,
+      DateTime? publicationDate,
+      List<Book>? books}) = _$_Edition;
   const _Edition._() : super._();
 
   @override
   int get number => throw _privateConstructorUsedError;
   @override
-  PrintShop get printShop => throw _privateConstructorUsedError;
+  int? get page => throw _privateConstructorUsedError;
   @override
-  DateTime get publicationDate => throw _privateConstructorUsedError;
+  PrintShop? get printShop => throw _privateConstructorUsedError;
   @override
-  List<Book> get books => throw _privateConstructorUsedError;
+  int? get printingCosts => throw _privateConstructorUsedError;
+  @override
+  DateTime? get publicationDate => throw _privateConstructorUsedError;
+  @override
+  List<Book>? get books => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EditionCopyWith<_Edition> get copyWith =>

@@ -20,9 +20,11 @@ class _$BookStatusTearOff {
     return const _HomeStock();
   }
 
-  _OutsourcerStock outsourcerStock({required Outsourcer outsourcer}) {
+  _OutsourcerStock outsourcerStock(
+      {required Outsourcer outsourcer, required OutsourcingPrice price}) {
     return _OutsourcerStock(
       outsourcer: outsourcer,
+      price: price,
     );
   }
 
@@ -32,23 +34,25 @@ class _$BookStatusTearOff {
     );
   }
 
-  _SoldByOutsourcer soldByOutsourcer({required Outsourcer outsourcer}) {
+  _SoldByOutsourcer soldByOutsourcer(
+      {required Outsourcer outsourcer, required OutsourcingPrice price}) {
     return _SoldByOutsourcer(
       outsourcer: outsourcer,
+      price: price,
     );
   }
 
-  _SoldAtDojinEvent soldAtDojinEvent({required DojinEvent dojinEvent}) {
+  _SoldAtDojinEvent soldAtDojinEvent(
+      {required DojinEvent dojinEvent, required Price price}) {
     return _SoldAtDojinEvent(
       dojinEvent: dojinEvent,
+      price: price,
     );
   }
 
-  _FreeDistribution freeDistribution(
-      {required DojinEvent dojinEvent, required Parson parson}) {
+  _FreeDistribution freeDistribution({required DojinEvent dojinEvent}) {
     return _FreeDistribution(
       dojinEvent: dojinEvent,
-      parson: parson,
     );
   }
 }
@@ -61,22 +65,26 @@ mixin _$BookStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -138,8 +146,8 @@ class __$HomeStockCopyWithImpl<$Res> extends _$BookStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeStock implements _HomeStock {
-  const _$_HomeStock();
+class _$_HomeStock extends _HomeStock {
+  const _$_HomeStock() : super._();
 
   @override
   String toString() {
@@ -158,12 +166,14 @@ class _$_HomeStock implements _HomeStock {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
     return homeStock();
   }
@@ -172,11 +182,13 @@ class _$_HomeStock implements _HomeStock {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (homeStock != null) {
@@ -216,8 +228,9 @@ class _$_HomeStock implements _HomeStock {
   }
 }
 
-abstract class _HomeStock implements BookStatus {
+abstract class _HomeStock extends BookStatus {
   const factory _HomeStock() = _$_HomeStock;
+  const _HomeStock._() : super._();
 }
 
 /// @nodoc
@@ -225,7 +238,7 @@ abstract class _$OutsourcerStockCopyWith<$Res> {
   factory _$OutsourcerStockCopyWith(
           _OutsourcerStock value, $Res Function(_OutsourcerStock) then) =
       __$OutsourcerStockCopyWithImpl<$Res>;
-  $Res call({Outsourcer outsourcer});
+  $Res call({Outsourcer outsourcer, OutsourcingPrice price});
 
   $OutsourcerCopyWith<$Res> get outsourcer;
 }
@@ -244,12 +257,17 @@ class __$OutsourcerStockCopyWithImpl<$Res>
   @override
   $Res call({
     Object? outsourcer = freezed,
+    Object? price = freezed,
   }) {
     return _then(_OutsourcerStock(
       outsourcer: outsourcer == freezed
           ? _value.outsourcer
           : outsourcer // ignore: cast_nullable_to_non_nullable
               as Outsourcer,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as OutsourcingPrice,
     ));
   }
 
@@ -263,15 +281,18 @@ class __$OutsourcerStockCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OutsourcerStock implements _OutsourcerStock {
-  const _$_OutsourcerStock({required this.outsourcer});
+class _$_OutsourcerStock extends _OutsourcerStock {
+  const _$_OutsourcerStock({required this.outsourcer, required this.price})
+      : super._();
 
   @override
   final Outsourcer outsourcer;
+  @override
+  final OutsourcingPrice price;
 
   @override
   String toString() {
-    return 'BookStatus.outsourcerStock(outsourcer: $outsourcer)';
+    return 'BookStatus.outsourcerStock(outsourcer: $outsourcer, price: $price)';
   }
 
   @override
@@ -280,12 +301,16 @@ class _$_OutsourcerStock implements _OutsourcerStock {
         (other is _OutsourcerStock &&
             (identical(other.outsourcer, outsourcer) ||
                 const DeepCollectionEquality()
-                    .equals(other.outsourcer, outsourcer)));
+                    .equals(other.outsourcer, outsourcer)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(outsourcer);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(outsourcer) ^
+      const DeepCollectionEquality().hash(price);
 
   @JsonKey(ignore: true)
   @override
@@ -296,29 +321,33 @@ class _$_OutsourcerStock implements _OutsourcerStock {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
-    return outsourcerStock(outsourcer);
+    return outsourcerStock(outsourcer, price);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (outsourcerStock != null) {
-      return outsourcerStock(outsourcer);
+      return outsourcerStock(outsourcer, price);
     }
     return orElse();
   }
@@ -354,11 +383,14 @@ class _$_OutsourcerStock implements _OutsourcerStock {
   }
 }
 
-abstract class _OutsourcerStock implements BookStatus {
-  const factory _OutsourcerStock({required Outsourcer outsourcer}) =
-      _$_OutsourcerStock;
+abstract class _OutsourcerStock extends BookStatus {
+  const factory _OutsourcerStock(
+      {required Outsourcer outsourcer,
+      required OutsourcingPrice price}) = _$_OutsourcerStock;
+  const _OutsourcerStock._() : super._();
 
   Outsourcer get outsourcer => throw _privateConstructorUsedError;
+  OutsourcingPrice get price => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$OutsourcerStockCopyWith<_OutsourcerStock> get copyWith =>
       throw _privateConstructorUsedError;
@@ -397,8 +429,8 @@ class __$ExtraStockCopyWithImpl<$Res> extends _$BookStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ExtraStock implements _ExtraStock {
-  const _$_ExtraStock({required this.label});
+class _$_ExtraStock extends _ExtraStock {
+  const _$_ExtraStock({required this.label}) : super._();
 
   @override
   final String label;
@@ -429,12 +461,14 @@ class _$_ExtraStock implements _ExtraStock {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
     return extraStock(label);
   }
@@ -443,11 +477,13 @@ class _$_ExtraStock implements _ExtraStock {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (extraStock != null) {
@@ -487,8 +523,9 @@ class _$_ExtraStock implements _ExtraStock {
   }
 }
 
-abstract class _ExtraStock implements BookStatus {
+abstract class _ExtraStock extends BookStatus {
   const factory _ExtraStock({required String label}) = _$_ExtraStock;
+  const _ExtraStock._() : super._();
 
   String get label => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -501,7 +538,7 @@ abstract class _$SoldByOutsourcerCopyWith<$Res> {
   factory _$SoldByOutsourcerCopyWith(
           _SoldByOutsourcer value, $Res Function(_SoldByOutsourcer) then) =
       __$SoldByOutsourcerCopyWithImpl<$Res>;
-  $Res call({Outsourcer outsourcer});
+  $Res call({Outsourcer outsourcer, OutsourcingPrice price});
 
   $OutsourcerCopyWith<$Res> get outsourcer;
 }
@@ -520,12 +557,17 @@ class __$SoldByOutsourcerCopyWithImpl<$Res>
   @override
   $Res call({
     Object? outsourcer = freezed,
+    Object? price = freezed,
   }) {
     return _then(_SoldByOutsourcer(
       outsourcer: outsourcer == freezed
           ? _value.outsourcer
           : outsourcer // ignore: cast_nullable_to_non_nullable
               as Outsourcer,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as OutsourcingPrice,
     ));
   }
 
@@ -539,15 +581,18 @@ class __$SoldByOutsourcerCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SoldByOutsourcer implements _SoldByOutsourcer {
-  const _$_SoldByOutsourcer({required this.outsourcer});
+class _$_SoldByOutsourcer extends _SoldByOutsourcer {
+  const _$_SoldByOutsourcer({required this.outsourcer, required this.price})
+      : super._();
 
   @override
   final Outsourcer outsourcer;
+  @override
+  final OutsourcingPrice price;
 
   @override
   String toString() {
-    return 'BookStatus.soldByOutsourcer(outsourcer: $outsourcer)';
+    return 'BookStatus.soldByOutsourcer(outsourcer: $outsourcer, price: $price)';
   }
 
   @override
@@ -556,12 +601,16 @@ class _$_SoldByOutsourcer implements _SoldByOutsourcer {
         (other is _SoldByOutsourcer &&
             (identical(other.outsourcer, outsourcer) ||
                 const DeepCollectionEquality()
-                    .equals(other.outsourcer, outsourcer)));
+                    .equals(other.outsourcer, outsourcer)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(outsourcer);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(outsourcer) ^
+      const DeepCollectionEquality().hash(price);
 
   @JsonKey(ignore: true)
   @override
@@ -572,29 +621,33 @@ class _$_SoldByOutsourcer implements _SoldByOutsourcer {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
-    return soldByOutsourcer(outsourcer);
+    return soldByOutsourcer(outsourcer, price);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (soldByOutsourcer != null) {
-      return soldByOutsourcer(outsourcer);
+      return soldByOutsourcer(outsourcer, price);
     }
     return orElse();
   }
@@ -630,11 +683,14 @@ class _$_SoldByOutsourcer implements _SoldByOutsourcer {
   }
 }
 
-abstract class _SoldByOutsourcer implements BookStatus {
-  const factory _SoldByOutsourcer({required Outsourcer outsourcer}) =
-      _$_SoldByOutsourcer;
+abstract class _SoldByOutsourcer extends BookStatus {
+  const factory _SoldByOutsourcer(
+      {required Outsourcer outsourcer,
+      required OutsourcingPrice price}) = _$_SoldByOutsourcer;
+  const _SoldByOutsourcer._() : super._();
 
   Outsourcer get outsourcer => throw _privateConstructorUsedError;
+  OutsourcingPrice get price => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SoldByOutsourcerCopyWith<_SoldByOutsourcer> get copyWith =>
       throw _privateConstructorUsedError;
@@ -645,7 +701,7 @@ abstract class _$SoldAtDojinEventCopyWith<$Res> {
   factory _$SoldAtDojinEventCopyWith(
           _SoldAtDojinEvent value, $Res Function(_SoldAtDojinEvent) then) =
       __$SoldAtDojinEventCopyWithImpl<$Res>;
-  $Res call({DojinEvent dojinEvent});
+  $Res call({DojinEvent dojinEvent, Price price});
 
   $DojinEventCopyWith<$Res> get dojinEvent;
 }
@@ -664,12 +720,17 @@ class __$SoldAtDojinEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? dojinEvent = freezed,
+    Object? price = freezed,
   }) {
     return _then(_SoldAtDojinEvent(
       dojinEvent: dojinEvent == freezed
           ? _value.dojinEvent
           : dojinEvent // ignore: cast_nullable_to_non_nullable
               as DojinEvent,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as Price,
     ));
   }
 
@@ -683,15 +744,18 @@ class __$SoldAtDojinEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SoldAtDojinEvent implements _SoldAtDojinEvent {
-  const _$_SoldAtDojinEvent({required this.dojinEvent});
+class _$_SoldAtDojinEvent extends _SoldAtDojinEvent {
+  const _$_SoldAtDojinEvent({required this.dojinEvent, required this.price})
+      : super._();
 
   @override
   final DojinEvent dojinEvent;
+  @override
+  final Price price;
 
   @override
   String toString() {
-    return 'BookStatus.soldAtDojinEvent(dojinEvent: $dojinEvent)';
+    return 'BookStatus.soldAtDojinEvent(dojinEvent: $dojinEvent, price: $price)';
   }
 
   @override
@@ -700,12 +764,16 @@ class _$_SoldAtDojinEvent implements _SoldAtDojinEvent {
         (other is _SoldAtDojinEvent &&
             (identical(other.dojinEvent, dojinEvent) ||
                 const DeepCollectionEquality()
-                    .equals(other.dojinEvent, dojinEvent)));
+                    .equals(other.dojinEvent, dojinEvent)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(dojinEvent);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(dojinEvent) ^
+      const DeepCollectionEquality().hash(price);
 
   @JsonKey(ignore: true)
   @override
@@ -716,29 +784,33 @@ class _$_SoldAtDojinEvent implements _SoldAtDojinEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
-    return soldAtDojinEvent(dojinEvent);
+    return soldAtDojinEvent(dojinEvent, price);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (soldAtDojinEvent != null) {
-      return soldAtDojinEvent(dojinEvent);
+      return soldAtDojinEvent(dojinEvent, price);
     }
     return orElse();
   }
@@ -774,11 +846,14 @@ class _$_SoldAtDojinEvent implements _SoldAtDojinEvent {
   }
 }
 
-abstract class _SoldAtDojinEvent implements BookStatus {
-  const factory _SoldAtDojinEvent({required DojinEvent dojinEvent}) =
-      _$_SoldAtDojinEvent;
+abstract class _SoldAtDojinEvent extends BookStatus {
+  const factory _SoldAtDojinEvent(
+      {required DojinEvent dojinEvent,
+      required Price price}) = _$_SoldAtDojinEvent;
+  const _SoldAtDojinEvent._() : super._();
 
   DojinEvent get dojinEvent => throw _privateConstructorUsedError;
+  Price get price => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SoldAtDojinEventCopyWith<_SoldAtDojinEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -789,10 +864,9 @@ abstract class _$FreeDistributionCopyWith<$Res> {
   factory _$FreeDistributionCopyWith(
           _FreeDistribution value, $Res Function(_FreeDistribution) then) =
       __$FreeDistributionCopyWithImpl<$Res>;
-  $Res call({DojinEvent dojinEvent, Parson parson});
+  $Res call({DojinEvent dojinEvent});
 
   $DojinEventCopyWith<$Res> get dojinEvent;
-  $ParsonCopyWith<$Res> get parson;
 }
 
 /// @nodoc
@@ -809,17 +883,12 @@ class __$FreeDistributionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? dojinEvent = freezed,
-    Object? parson = freezed,
   }) {
     return _then(_FreeDistribution(
       dojinEvent: dojinEvent == freezed
           ? _value.dojinEvent
           : dojinEvent // ignore: cast_nullable_to_non_nullable
               as DojinEvent,
-      parson: parson == freezed
-          ? _value.parson
-          : parson // ignore: cast_nullable_to_non_nullable
-              as Parson,
     ));
   }
 
@@ -829,28 +898,19 @@ class __$FreeDistributionCopyWithImpl<$Res>
       return _then(_value.copyWith(dojinEvent: value));
     });
   }
-
-  @override
-  $ParsonCopyWith<$Res> get parson {
-    return $ParsonCopyWith<$Res>(_value.parson, (value) {
-      return _then(_value.copyWith(parson: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$_FreeDistribution implements _FreeDistribution {
-  const _$_FreeDistribution({required this.dojinEvent, required this.parson});
+class _$_FreeDistribution extends _FreeDistribution {
+  const _$_FreeDistribution({required this.dojinEvent}) : super._();
 
   @override
   final DojinEvent dojinEvent;
-  @override
-  final Parson parson;
 
   @override
   String toString() {
-    return 'BookStatus.freeDistribution(dojinEvent: $dojinEvent, parson: $parson)';
+    return 'BookStatus.freeDistribution(dojinEvent: $dojinEvent)';
   }
 
   @override
@@ -859,16 +919,12 @@ class _$_FreeDistribution implements _FreeDistribution {
         (other is _FreeDistribution &&
             (identical(other.dojinEvent, dojinEvent) ||
                 const DeepCollectionEquality()
-                    .equals(other.dojinEvent, dojinEvent)) &&
-            (identical(other.parson, parson) ||
-                const DeepCollectionEquality().equals(other.parson, parson)));
+                    .equals(other.dojinEvent, dojinEvent)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(dojinEvent) ^
-      const DeepCollectionEquality().hash(parson);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(dojinEvent);
 
   @JsonKey(ignore: true)
   @override
@@ -879,29 +935,33 @@ class _$_FreeDistribution implements _FreeDistribution {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() homeStock,
-    required TResult Function(Outsourcer outsourcer) outsourcerStock,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        outsourcerStock,
     required TResult Function(String label) extraStock,
-    required TResult Function(Outsourcer outsourcer) soldByOutsourcer,
-    required TResult Function(DojinEvent dojinEvent) soldAtDojinEvent,
-    required TResult Function(DojinEvent dojinEvent, Parson parson)
-        freeDistribution,
+    required TResult Function(Outsourcer outsourcer, OutsourcingPrice price)
+        soldByOutsourcer,
+    required TResult Function(DojinEvent dojinEvent, Price price)
+        soldAtDojinEvent,
+    required TResult Function(DojinEvent dojinEvent) freeDistribution,
   }) {
-    return freeDistribution(dojinEvent, parson);
+    return freeDistribution(dojinEvent);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? homeStock,
-    TResult Function(Outsourcer outsourcer)? outsourcerStock,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        outsourcerStock,
     TResult Function(String label)? extraStock,
-    TResult Function(Outsourcer outsourcer)? soldByOutsourcer,
-    TResult Function(DojinEvent dojinEvent)? soldAtDojinEvent,
-    TResult Function(DojinEvent dojinEvent, Parson parson)? freeDistribution,
+    TResult Function(Outsourcer outsourcer, OutsourcingPrice price)?
+        soldByOutsourcer,
+    TResult Function(DojinEvent dojinEvent, Price price)? soldAtDojinEvent,
+    TResult Function(DojinEvent dojinEvent)? freeDistribution,
     required TResult orElse(),
   }) {
     if (freeDistribution != null) {
-      return freeDistribution(dojinEvent, parson);
+      return freeDistribution(dojinEvent);
     }
     return orElse();
   }
@@ -937,13 +997,12 @@ class _$_FreeDistribution implements _FreeDistribution {
   }
 }
 
-abstract class _FreeDistribution implements BookStatus {
-  const factory _FreeDistribution(
-      {required DojinEvent dojinEvent,
-      required Parson parson}) = _$_FreeDistribution;
+abstract class _FreeDistribution extends BookStatus {
+  const factory _FreeDistribution({required DojinEvent dojinEvent}) =
+      _$_FreeDistribution;
+  const _FreeDistribution._() : super._();
 
   DojinEvent get dojinEvent => throw _privateConstructorUsedError;
-  Parson get parson => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FreeDistributionCopyWith<_FreeDistribution> get copyWith =>
       throw _privateConstructorUsedError;

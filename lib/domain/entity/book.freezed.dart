@@ -16,14 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BookTearOff {
   const _$BookTearOff();
 
-  _Book call(
-      {required BookStatus bookStatus,
-      required Currency currency,
-      required int sellingPrice}) {
+  _Book call({required BookStatus bookStatus}) {
     return _Book(
       bookStatus: bookStatus,
-      currency: currency,
-      sellingPrice: sellingPrice,
     );
   }
 }
@@ -34,8 +29,6 @@ const $Book = _$BookTearOff();
 /// @nodoc
 mixin _$Book {
   BookStatus get bookStatus => throw _privateConstructorUsedError;
-  Currency get currency => throw _privateConstructorUsedError;
-  int get sellingPrice => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
@@ -45,10 +38,9 @@ mixin _$Book {
 abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
       _$BookCopyWithImpl<$Res>;
-  $Res call({BookStatus bookStatus, Currency currency, int sellingPrice});
+  $Res call({BookStatus bookStatus});
 
   $BookStatusCopyWith<$Res> get bookStatus;
-  $CurrencyCopyWith<$Res> get currency;
 }
 
 /// @nodoc
@@ -62,22 +54,12 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
   @override
   $Res call({
     Object? bookStatus = freezed,
-    Object? currency = freezed,
-    Object? sellingPrice = freezed,
   }) {
     return _then(_value.copyWith(
       bookStatus: bookStatus == freezed
           ? _value.bookStatus
           : bookStatus // ignore: cast_nullable_to_non_nullable
               as BookStatus,
-      currency: currency == freezed
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as Currency,
-      sellingPrice: sellingPrice == freezed
-          ? _value.sellingPrice
-          : sellingPrice // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 
@@ -87,13 +69,6 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
       return _then(_value.copyWith(bookStatus: value));
     });
   }
-
-  @override
-  $CurrencyCopyWith<$Res> get currency {
-    return $CurrencyCopyWith<$Res>(_value.currency, (value) {
-      return _then(_value.copyWith(currency: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -101,12 +76,10 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
   factory _$BookCopyWith(_Book value, $Res Function(_Book) then) =
       __$BookCopyWithImpl<$Res>;
   @override
-  $Res call({BookStatus bookStatus, Currency currency, int sellingPrice});
+  $Res call({BookStatus bookStatus});
 
   @override
   $BookStatusCopyWith<$Res> get bookStatus;
-  @override
-  $CurrencyCopyWith<$Res> get currency;
 }
 
 /// @nodoc
@@ -121,22 +94,12 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
   @override
   $Res call({
     Object? bookStatus = freezed,
-    Object? currency = freezed,
-    Object? sellingPrice = freezed,
   }) {
     return _then(_Book(
       bookStatus: bookStatus == freezed
           ? _value.bookStatus
           : bookStatus // ignore: cast_nullable_to_non_nullable
               as BookStatus,
-      currency: currency == freezed
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as Currency,
-      sellingPrice: sellingPrice == freezed
-          ? _value.sellingPrice
-          : sellingPrice // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -144,21 +107,14 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Book implements _Book {
-  const _$_Book(
-      {required this.bookStatus,
-      required this.currency,
-      required this.sellingPrice});
+  const _$_Book({required this.bookStatus});
 
   @override
   final BookStatus bookStatus;
-  @override
-  final Currency currency;
-  @override
-  final int sellingPrice;
 
   @override
   String toString() {
-    return 'Book(bookStatus: $bookStatus, currency: $currency, sellingPrice: $sellingPrice)';
+    return 'Book(bookStatus: $bookStatus)';
   }
 
   @override
@@ -167,21 +123,12 @@ class _$_Book implements _Book {
         (other is _Book &&
             (identical(other.bookStatus, bookStatus) ||
                 const DeepCollectionEquality()
-                    .equals(other.bookStatus, bookStatus)) &&
-            (identical(other.currency, currency) ||
-                const DeepCollectionEquality()
-                    .equals(other.currency, currency)) &&
-            (identical(other.sellingPrice, sellingPrice) ||
-                const DeepCollectionEquality()
-                    .equals(other.sellingPrice, sellingPrice)));
+                    .equals(other.bookStatus, bookStatus)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(bookStatus) ^
-      const DeepCollectionEquality().hash(currency) ^
-      const DeepCollectionEquality().hash(sellingPrice);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(bookStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -190,17 +137,10 @@ class _$_Book implements _Book {
 }
 
 abstract class _Book implements Book {
-  const factory _Book(
-      {required BookStatus bookStatus,
-      required Currency currency,
-      required int sellingPrice}) = _$_Book;
+  const factory _Book({required BookStatus bookStatus}) = _$_Book;
 
   @override
   BookStatus get bookStatus => throw _privateConstructorUsedError;
-  @override
-  Currency get currency => throw _privateConstructorUsedError;
-  @override
-  int get sellingPrice => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BookCopyWith<_Book> get copyWith => throw _privateConstructorUsedError;

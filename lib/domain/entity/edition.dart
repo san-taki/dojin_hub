@@ -10,9 +10,11 @@ class Edition with _$Edition {
   const Edition._();
   const factory Edition({
     required int number,
-    required PrintShop printShop,
-    required DateTime publicationDate,
-    required List<Book> books,
+    int? page,
+    PrintShop? printShop,
+    int? printingCosts,
+    DateTime? publicationDate,
+    List<Book>? books,
   }) = _Edition;
 
   String get numberString => number == 1 ? '初版' : '第$number版';
