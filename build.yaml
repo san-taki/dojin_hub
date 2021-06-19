@@ -6,4 +6,5 @@ targets:
           include:
             - lib/domain/entity/*.dart
             - lib/domain/store/*.dart
+            - lib/ui/component_model/*.dart
             - lib/ui/screen_model/*.dart

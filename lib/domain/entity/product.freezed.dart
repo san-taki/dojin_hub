@@ -20,14 +20,12 @@ class _$ProductTearOff {
       {required String id,
       required String title,
       String coverImagePath = '',
-      String backCoverImagePath = '',
       List<Edition> editions = const [],
       List<DojinEvent> atendedEvents = const []}) {
     return _Product(
       id: id,
       title: title,
       coverImagePath: coverImagePath,
-      backCoverImagePath: backCoverImagePath,
       editions: editions,
       atendedEvents: atendedEvents,
     );
@@ -42,7 +40,6 @@ mixin _$Product {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get coverImagePath => throw _privateConstructorUsedError;
-  String get backCoverImagePath => throw _privateConstructorUsedError;
   List<Edition> get editions => throw _privateConstructorUsedError;
   List<DojinEvent> get atendedEvents => throw _privateConstructorUsedError;
 
@@ -58,7 +55,6 @@ abstract class $ProductCopyWith<$Res> {
       {String id,
       String title,
       String coverImagePath,
-      String backCoverImagePath,
       List<Edition> editions,
       List<DojinEvent> atendedEvents});
 }
@@ -76,7 +72,6 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? id = freezed,
     Object? title = freezed,
     Object? coverImagePath = freezed,
-    Object? backCoverImagePath = freezed,
     Object? editions = freezed,
     Object? atendedEvents = freezed,
   }) {
@@ -92,10 +87,6 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       coverImagePath: coverImagePath == freezed
           ? _value.coverImagePath
           : coverImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      backCoverImagePath: backCoverImagePath == freezed
-          ? _value.backCoverImagePath
-          : backCoverImagePath // ignore: cast_nullable_to_non_nullable
               as String,
       editions: editions == freezed
           ? _value.editions
@@ -118,7 +109,6 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {String id,
       String title,
       String coverImagePath,
-      String backCoverImagePath,
       List<Edition> editions,
       List<DojinEvent> atendedEvents});
 }
@@ -137,7 +127,6 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? coverImagePath = freezed,
-    Object? backCoverImagePath = freezed,
     Object? editions = freezed,
     Object? atendedEvents = freezed,
   }) {
@@ -153,10 +142,6 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       coverImagePath: coverImagePath == freezed
           ? _value.coverImagePath
           : coverImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      backCoverImagePath: backCoverImagePath == freezed
-          ? _value.backCoverImagePath
-          : backCoverImagePath // ignore: cast_nullable_to_non_nullable
               as String,
       editions: editions == freezed
           ? _value.editions
@@ -177,7 +162,6 @@ class _$_Product extends _Product {
       {required this.id,
       required this.title,
       this.coverImagePath = '',
-      this.backCoverImagePath = '',
       this.editions = const [],
       this.atendedEvents = const []})
       : super._();
@@ -189,9 +173,6 @@ class _$_Product extends _Product {
   @JsonKey(defaultValue: '')
   @override
   final String coverImagePath;
-  @JsonKey(defaultValue: '')
-  @override
-  final String backCoverImagePath;
   @JsonKey(defaultValue: const [])
   @override
   final List<Edition> editions;
@@ -201,7 +182,7 @@ class _$_Product extends _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, coverImagePath: $coverImagePath, backCoverImagePath: $backCoverImagePath, editions: $editions, atendedEvents: $atendedEvents)';
+    return 'Product(id: $id, title: $title, coverImagePath: $coverImagePath, editions: $editions, atendedEvents: $atendedEvents)';
   }
 
   @override
@@ -215,9 +196,6 @@ class _$_Product extends _Product {
             (identical(other.coverImagePath, coverImagePath) ||
                 const DeepCollectionEquality()
                     .equals(other.coverImagePath, coverImagePath)) &&
-            (identical(other.backCoverImagePath, backCoverImagePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.backCoverImagePath, backCoverImagePath)) &&
             (identical(other.editions, editions) ||
                 const DeepCollectionEquality()
                     .equals(other.editions, editions)) &&
@@ -232,7 +210,6 @@ class _$_Product extends _Product {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(coverImagePath) ^
-      const DeepCollectionEquality().hash(backCoverImagePath) ^
       const DeepCollectionEquality().hash(editions) ^
       const DeepCollectionEquality().hash(atendedEvents);
 
@@ -247,7 +224,6 @@ abstract class _Product extends Product {
       {required String id,
       required String title,
       String coverImagePath,
-      String backCoverImagePath,
       List<Edition> editions,
       List<DojinEvent> atendedEvents}) = _$_Product;
   const _Product._() : super._();
@@ -258,8 +234,6 @@ abstract class _Product extends Product {
   String get title => throw _privateConstructorUsedError;
   @override
   String get coverImagePath => throw _privateConstructorUsedError;
-  @override
-  String get backCoverImagePath => throw _privateConstructorUsedError;
   @override
   List<Edition> get editions => throw _privateConstructorUsedError;
   @override

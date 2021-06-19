@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppFontWeight {
-  static final headline = FontWeight.normal;
+  static final headline = FontWeight.bold;
   static final title = FontWeight.bold;
   static final subHead = FontWeight.normal;
   static final body = FontWeight.normal;

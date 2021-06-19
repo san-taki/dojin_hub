@@ -28,13 +28,5 @@ class ProductDetailScreenModelController
     );
   }
 
-  void updateBackCoverImagePath(String path) {
-    state = state.copyWith(
-      product: state.product.copyWith(
-        backCoverImagePath: path,
-      ),
-    );
-  }
-
   void delete() {}
 }

@@ -8,6 +8,7 @@ import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
+import 'package:dojin_hub/ui/component/pie_chart/pie_chart.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -26,15 +27,14 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     var screenModelController =
         useProvider(productDetailScreenModelProvider(_product).notifier);
 
-    return Scaffold(
-      body: Container(
+    return SingleChildScrollView(
+      child: Container(
         width: double.infinity,
-        color: Colors.white,
+        color: Colors.blue,
         child: Column(
           children: [
             _buildCoverImageArea(context, screenModel, screenModelController),
-            _buildTitle(screenModel.product),
-            ..._buildEditionsArea(context, screenModel.product.editions),
+            _buidDiver(),
             _buildAttendedDojinEventArea(screenModel),
             _buildGraphArea(screenModel),
           ],
@@ -43,20 +43,11 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     );
   }
 
-  Widget _buildTitle(Product product) {
+  Widget _buidDiver() {
     return Container(
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
-      child: Text(
-        product.title,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      height: 1,
+      color: Colors.grey,
     );
   }
 
@@ -114,10 +105,9 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
       BuildContext context,
       ProductDetailScreenModel screenModel,
       ProductDetailScreenModelController screenModelController) {
-    // FIXME: isCoverは設計がよくない
-    final buildCoverImage = (String imagePath, bool isCover) => Container(
+    final buildCoverImage = (String imagePath) => Container(
           child: SizedBox(
-            height: 200,
+            height: _getBookCoverImageHeight(context),
             child: InkWell(
               onTap: () async {
                 FilePickerResult? result =
@@ -125,11 +115,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                 if (result != null) {
                   var path = result.files.single.path;
                   if (path != null) {
-                    if (isCover) {
-                      screenModelController.updateCoverImagePath(path);
-                    } else {
-                      screenModelController.updateBackCoverImagePath(path);
-                    }
+                    screenModelController.updateCoverImagePath(path);
                   } else {
                     DebugLog.d('path is null');
                   }
@@ -141,7 +127,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                   ? Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.fitHeight,
                           alignment: FractionalOffset.center,
                           image: Image.file(
                             File(imagePath),
@@ -170,14 +156,29 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ),
         );
 
-    return Row(
-      children: [
-        Expanded(
-            child: buildCoverImage(screenModel.product.coverImagePath, true)),
-        Expanded(
-            child:
-                buildCoverImage(screenModel.product.backCoverImagePath, false)),
-      ],
+    return Card(
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Row(
+        children: [
+          Expanded(child: buildCoverImage(screenModel.product.coverImagePath)),
+          Expanded(
+            child: Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 16,
+              ),
+              child: Text(
+                screenModel.product.title,
+                style: TextStyle(
+                  fontSize: AppFontSize.headline,
+                  fontWeight: AppFontWeight.headline,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -226,6 +227,11 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   }
 
   Widget _buildGraphArea(ProductDetailScreenModel screenModel) {
-    return Center();
+    return PieChartSample3();
+  }
+
+  double _getBookCoverImageHeight(BuildContext context) {
+    // 本のA版B版ともおよそ1.4のアス比
+    return (MediaQuery.of(context).size.width / 2) * 1.4;
   }
 }

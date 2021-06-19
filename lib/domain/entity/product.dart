@@ -11,7 +11,6 @@ class Product with _$Product {
     required String id,
     required String title,
     @Default('') String coverImagePath,
-    @Default('') String backCoverImagePath,
     @Default([]) List<Edition> editions,
     @Default([]) List<DojinEvent> atendedEvents,
   }) = _Product;

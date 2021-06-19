@@ -1,15 +1,20 @@
+import 'package:dojin_hub/di/component_model_provider.dart';
 import 'package:dojin_hub/ui/component/button/component_type.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommonAppBar extends ComponentType implements PreferredSizeWidget {
-  final bool showHelp;
+  final bool showLockMenu;
 
   CommonAppBar({
-    this.showHelp = false,
+    this.showLockMenu = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    var model = useProvider(commonAppBarModelProvider);
+    var modelController = useProvider(commonAppBarModelProvider.notifier);
+
     return AppBar(
       elevation: 0,
       leading: Visibility(
@@ -33,13 +38,18 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
       centerTitle: true,
       actions: <Widget>[
         Visibility(
-          visible: showHelp,
+          visible: showLockMenu,
           child: IconButton(
-            icon: Icon(
-              Icons.help,
-              color: Colors.blueGrey,
-            ),
-            onPressed: () {},
+            icon: model.isEditing
+                ? Icon(
+                    Icons.lock_open,
+                    color: Colors.red,
+                  )
+                : Icon(
+                    Icons.lock,
+                    color: Colors.black,
+                  ),
+            onPressed: () => modelController.togleEditingState(),
           ),
         ),
       ],
