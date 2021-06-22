@@ -2,6 +2,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/gestures.dart';
 
@@ -39,7 +40,9 @@ class PieChartSample3State extends State {
                 ),
                 sectionsSpace: 0,
                 centerSpaceRadius: 0,
-                sections: showingSections()),
+                sections: showingSections(
+                  
+                )),
           ),
         ),
       ),
@@ -121,7 +124,7 @@ class PieChartSample3State extends State {
   }
 }
 
-class _Badge extends StatelessWidget {
+class _Badge extends HookWidget {
   final String svgAsset;
   final double size;
   final Color borderColor;

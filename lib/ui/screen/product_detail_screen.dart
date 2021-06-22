@@ -30,24 +30,15 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,
-        color: Colors.blue,
+        color: Colors.blueGrey,
         child: Column(
           children: [
             _buildCoverImageArea(context, screenModel, screenModelController),
-            _buidDiver(),
             _buildAttendedDojinEventArea(screenModel),
             _buildGraphArea(screenModel),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buidDiver() {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      height: 1,
-      color: Colors.grey,
     );
   }
 
@@ -188,46 +179,61 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         );
 
     return Container(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-            child: Text(
-              '参加したイベント',
-              style: TextStyle(
-                fontSize: AppFontSize.title,
-                fontWeight: AppFontWeight.title,
+      child: Card(
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+              child: Text(
+                '参加したイベント',
+                style: TextStyle(
+                  fontSize: AppFontSize.title,
+                  fontWeight: AppFontWeight.title,
+                ),
               ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.all(12),
-            alignment: Alignment.topLeft,
-            child: Wrap(
-              spacing: 8,
-              children: screenModel.product.atendedEvents
-                  .map(
-                    (DojinEvent e) => chip(e.title),
-                  )
-                  .toList()
-                    ..add(
-                      Chip(
-                        label: Icon(
-                          Icons.add,
-                          size: 15,
+            Container(
+              padding: EdgeInsets.all(12),
+              alignment: Alignment.topLeft,
+              child: Wrap(
+                spacing: 8,
+                children: screenModel.product.atendedEvents
+                    .map(
+                      (DojinEvent e) => chip(e.title),
+                    )
+                    .toList()
+                      ..add(
+                        Chip(
+                          label: Icon(
+                            Icons.add,
+                            size: 15,
+                          ),
                         ),
                       ),
-                    ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildGraphArea(ProductDetailScreenModel screenModel) {
-    return PieChartSample3();
+    return Card(
+      child: PieChartSample3(),
+    );
+  }
+
+  Widget _buildGraphSwitch() {
+    //     return RawChip(
+    //   label: Text(
+    //     labelText,
+    //     maxLines: 2,
+    //     style: themeViewModel.primaryTextTheme.caption,
+    //   ),
+    // );
+    return Center();
   }
 
   double _getBookCoverImageHeight(BuildContext context) {

@@ -37,6 +37,8 @@ dependencies:
   uuid: ^3.0.4
 
   fl_chart: ^0.36.2
+  syncfusion_flutter_charts: ^19.1.69+1
+  
   flutter_svg: ^0.22.0
 
 dev_dependencies:
