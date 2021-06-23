@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CommonAppBar extends ComponentType implements PreferredSizeWidget {
-  final bool showLockMenu;
+  final Widget? title;
+  final Widget? actionButton;
 
   CommonAppBar({
-    this.showLockMenu = false,
+    this.title,
+    this.actionButton,
   });
 
   @override
@@ -27,30 +29,13 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      bottom: PreferredSize(
-        child: Container(
-          color: Colors.grey,
-          height: 1,
-        ),
-        preferredSize: Size.fromHeight(1),
-      ),
-      backgroundColor: Colors.white,
+      title: title,
+      backgroundColor: Colors.blueGrey,
       centerTitle: true,
       actions: <Widget>[
         Visibility(
-          visible: showLockMenu,
-          child: IconButton(
-            icon: model.isEditing
-                ? Icon(
-                    Icons.lock_open,
-                    color: Colors.red,
-                  )
-                : Icon(
-                    Icons.lock,
-                    color: Colors.black,
-                  ),
-            onPressed: () => modelController.togleEditingState(),
-          ),
+          visible: actionButton != null,
+          child: actionButton ?? Center(),
         ),
       ],
     );

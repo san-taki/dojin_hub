@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeScreenModelTearOff {
   const _$HomeScreenModelTearOff();
 
-  _HomeScreenModel call() {
-    return const _HomeScreenModel();
+  _HomeScreenModel call({String version = ''}) {
+    return _HomeScreenModel(
+      version: version,
+    );
   }
 }
 
@@ -25,13 +27,20 @@ class _$HomeScreenModelTearOff {
 const $HomeScreenModel = _$HomeScreenModelTearOff();
 
 /// @nodoc
-mixin _$HomeScreenModel {}
+mixin _$HomeScreenModel {
+  String get version => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeScreenModelCopyWith<HomeScreenModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $HomeScreenModelCopyWith<$Res> {
   factory $HomeScreenModelCopyWith(
           HomeScreenModel value, $Res Function(HomeScreenModel) then) =
       _$HomeScreenModelCopyWithImpl<$Res>;
+  $Res call({String version});
 }
 
 /// @nodoc
@@ -42,13 +51,28 @@ class _$HomeScreenModelCopyWithImpl<$Res>
   final HomeScreenModel _value;
   // ignore: unused_field
   final $Res Function(HomeScreenModel) _then;
+
+  @override
+  $Res call({
+    Object? version = freezed,
+  }) {
+    return _then(_value.copyWith(
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$HomeScreenModelCopyWith<$Res> {
+abstract class _$HomeScreenModelCopyWith<$Res>
+    implements $HomeScreenModelCopyWith<$Res> {
   factory _$HomeScreenModelCopyWith(
           _HomeScreenModel value, $Res Function(_HomeScreenModel) then) =
       __$HomeScreenModelCopyWithImpl<$Res>;
+  @override
+  $Res call({String version});
 }
 
 /// @nodoc
@@ -61,27 +85,59 @@ class __$HomeScreenModelCopyWithImpl<$Res>
 
   @override
   _HomeScreenModel get _value => super._value as _HomeScreenModel;
+
+  @override
+  $Res call({
+    Object? version = freezed,
+  }) {
+    return _then(_HomeScreenModel(
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_HomeScreenModel implements _HomeScreenModel {
-  const _$_HomeScreenModel();
+  const _$_HomeScreenModel({this.version = ''});
+
+  @JsonKey(defaultValue: '')
+  @override
+  final String version;
 
   @override
   String toString() {
-    return 'HomeScreenModel()';
+    return 'HomeScreenModel(version: $version)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _HomeScreenModel);
+    return identical(this, other) ||
+        (other is _HomeScreenModel &&
+            (identical(other.version, version) ||
+                const DeepCollectionEquality().equals(other.version, version)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(version);
+
+  @JsonKey(ignore: true)
+  @override
+  _$HomeScreenModelCopyWith<_HomeScreenModel> get copyWith =>
+      __$HomeScreenModelCopyWithImpl<_HomeScreenModel>(this, _$identity);
 }
 
 abstract class _HomeScreenModel implements HomeScreenModel {
-  const factory _HomeScreenModel() = _$_HomeScreenModel;
+  const factory _HomeScreenModel({String version}) = _$_HomeScreenModel;
+
+  @override
+  String get version => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$HomeScreenModelCopyWith<_HomeScreenModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
