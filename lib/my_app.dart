@@ -13,9 +13,6 @@ class MyApp extends HookWidget {
 
     return MaterialApp(
       title: 'DojinHub',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       debugShowCheckedModeBanner: false,
       initialRoute: router.RouteName.splash,
       onGenerateRoute: router.Router.onGenerateRoute,

@@ -1,3 +1,5 @@
+import 'package:dojin_hub/app/data_model/app_colors.dart';
+import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/router/router.dart';
@@ -14,6 +16,7 @@ class HomeScreen extends HookWidget implements ScreenType {
   @override
   Widget build(BuildContext context) {
     var screenModel = useProvider(homeScreenModelProvider);
+    var appColors = useProvider(appColorsProvider).state;
 
     return Scaffold(
       appBar: HomeScreenAppBar(),
@@ -23,13 +26,13 @@ class HomeScreen extends HookWidget implements ScreenType {
           Flexible(
             flex: 4,
             child: Container(
-              color: Colors.blueGrey,
+              color: appColors.primary,
             ),
           ),
           Flexible(
             flex: 6,
             child: Container(
-              color: Colors.blueGrey,
+              color: appColors.primary,
               alignment: Alignment.topRight,
               child: Container(
                 child: Column(
@@ -39,7 +42,7 @@ class HomeScreen extends HookWidget implements ScreenType {
                     _buildPosRegisterMenu(context),
                     _buildSettingsMenu(context),
                     _buildPaidButton(context),
-                    _buildVersion(screenModel),
+                    _buildVersion(screenModel, appColors),
                   ],
                 ),
               ),
@@ -134,11 +137,15 @@ class HomeScreen extends HookWidget implements ScreenType {
         ),
       );
 
-  Widget _buildVersion(HomeScreenModel screenModel) => Container(
+  Widget _buildVersion(
+    HomeScreenModel screenModel,
+    AppColors appColors,
+  ) =>
+      Container(
         child: Text(
           'version : ${screenModel.version}',
           style: TextStyle(
-            color: Colors.white,
+            color: appColors.primaryText,
           ),
         ),
       );

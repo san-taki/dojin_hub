@@ -1,5 +1,7 @@
+import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/ui/component/button/component_type.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PrimaryButton extends ComponentType {
   final String label;
@@ -20,9 +22,11 @@ class PrimaryButton extends ComponentType {
 
   @override
   Widget build(BuildContext context) {
+    var appColors = useProvider(appColorsProvider).state;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: color,
+        primary: appColors.primaryVariant,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
@@ -41,7 +45,7 @@ class PrimaryButton extends ComponentType {
           child: Text(
             label,
             style: TextStyle(
-              color: Colors.white,
+              color: appColors.primaryText,
             ),
           ),
         ),
