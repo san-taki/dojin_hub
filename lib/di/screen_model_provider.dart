@@ -12,13 +12,15 @@ import 'package:dojin_hub/ui/screen_model/splash_screen_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final splashScreenModelProvider = StateNotifierProvider.autoDispose<SplashScreenModelController, SplashScreenModel>(
+final splashScreenModelProvider = StateNotifierProvider.autoDispose<
+    SplashScreenModelController, SplashScreenModel>(
   (ref) => SplashScreenModelController(
     SplashScreenModel(),
   ),
 );
 
-final homeScreenModelProvider = StateNotifierProvider.autoDispose<HomeScreenModelController, HomeScreenModel>(
+final homeScreenModelProvider = StateNotifierProvider.autoDispose<
+    HomeScreenModelController, HomeScreenModel>(
   (ref) => HomeScreenModelController(
     HomeScreenModel(),
   ),
@@ -33,17 +35,20 @@ final productListScreenModelProvider = StateNotifierProvider.autoDispose<
   ),
 );
 
-final productDetailScreenModelProvider = StateNotifierProvider.autoDispose.family<
-    ProductDetailScreenModelController, ProductDetailScreenModel, Product>(
-  (ref, product) => ProductDetailScreenModelController(
+final productDetailScreenModelProvider = StateNotifierProvider.autoDispose<
+    ProductDetailScreenModelController, ProductDetailScreenModel>(
+  (ref) => ProductDetailScreenModelController(
     ProductDetailScreenModel(
-      product: product,
+      product: ref
+          .read(productStoreProvider)
+          .products[ref.read(productDetailScreenCurrentPositionProvider).state],
       productStoreController: ref.read(productStoreProvider.notifier),
     ),
   ),
 );
 
-final productDetailPagerScreenModelProvider = StateNotifierProvider.autoDispose<ProductDetailPagerScreenModelController, ProductDetailPagerScreenModel>(
+final productDetailPagerScreenModelProvider = StateNotifierProvider.autoDispose<
+    ProductDetailPagerScreenModelController, ProductDetailPagerScreenModel>(
   (ref) => ProductDetailPagerScreenModelController(
     ProductDetailPagerScreenModel(
       products: ref.watch(productStoreProvider).products,

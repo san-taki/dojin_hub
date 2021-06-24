@@ -4,6 +4,7 @@ import 'package:dojin_hub/ui/screen/edit_edition_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
 import 'package:dojin_hub/ui/screen/product_detail_pager_screen.dart';
+import 'package:dojin_hub/ui/screen/product_detail_screen.dart';
 import 'package:dojin_hub/ui/screen/product_list_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen/settings_screen.dart';
@@ -29,7 +30,7 @@ class Router {
       case RouteName.product_storage:
         return _generateRoute(ProductListScreen());
       case RouteName.product_detail:
-        return _generateRouteByModal(ProductDetailPagerScreen());
+        return _generateRouteByModal(ProductDetailScreen());
       case RouteName.home:
         return _generateRoute(HomeScreen());
       case RouteName.pos_register:

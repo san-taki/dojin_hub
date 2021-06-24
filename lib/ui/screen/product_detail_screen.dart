@@ -4,11 +4,12 @@ import 'package:dojin_hub/app/style_constants.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
-import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/router/router.dart';
+import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/component/pie_chart/pie_chart.dart';
+import 'package:dojin_hub/ui/screen/product_detail_screen_appBar.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -17,26 +18,31 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ProductDetailScreen extends HookWidget implements ScreenType {
-  final Product _product;
-
-  ProductDetailScreen(this._product);
+  ProductDetailScreen();
 
   @override
   Widget build(BuildContext context) {
-    var screenModel = useProvider(productDetailScreenModelProvider(_product));
+    var screenModel = useProvider(productDetailScreenModelProvider);
     var screenModelController =
-        useProvider(productDetailScreenModelProvider(_product).notifier);
+        useProvider(productDetailScreenModelProvider.notifier);
 
-    return SingleChildScrollView(
-      child: Container(
-        width: double.infinity,
-        color: Colors.blueGrey,
-        child: Column(
-          children: [
-            _buildCoverImageArea(context, screenModel, screenModelController),
-            _buildAttendedDojinEventArea(screenModel),
-            _buildGraphArea(screenModel),
-          ],
+    return Scaffold(
+      appBar: ProductDetailScreenAppBar(
+        title: screenModel.product.title,
+        isEditing: screenModel.isEditing,
+        onClickLockIcon: () => screenModelController.togleIsEditing(),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          color: Colors.blueGrey,
+          child: Column(
+            children: [
+              _buildCoverImageArea(context, screenModel, screenModelController),
+              _buildAttendedDojinEventArea(screenModel),
+              _buildGraphArea(screenModel),
+            ],
+          ),
         ),
       ),
     );

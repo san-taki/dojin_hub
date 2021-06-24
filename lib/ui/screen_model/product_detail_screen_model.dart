@@ -12,6 +12,7 @@ class ProductDetailScreenModel extends ModelType
   const factory ProductDetailScreenModel({
     required Product product,
     required ProductStoreController productStoreController,
+    @Default(false) bool isEditing,
   }) = _ProductDetailScreenModel;
 }
 
@@ -25,6 +26,12 @@ class ProductDetailScreenModelController
       product: state.product.copyWith(
         coverImagePath: path,
       ),
+    );
+  }
+
+  void togleIsEditing() {
+    state = state.copyWith(
+      isEditing: !state.isEditing,
     );
   }
 

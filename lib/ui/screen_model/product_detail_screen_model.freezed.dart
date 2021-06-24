@@ -18,10 +18,12 @@ class _$ProductDetailScreenModelTearOff {
 
   _ProductDetailScreenModel call(
       {required Product product,
-      required ProductStoreController productStoreController}) {
+      required ProductStoreController productStoreController,
+      bool isEditing = false}) {
     return _ProductDetailScreenModel(
       product: product,
       productStoreController: productStoreController,
+      isEditing: isEditing,
     );
   }
 }
@@ -34,6 +36,7 @@ mixin _$ProductDetailScreenModel {
   Product get product => throw _privateConstructorUsedError;
   ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;
+  bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductDetailScreenModelCopyWith<ProductDetailScreenModel> get copyWith =>
@@ -45,7 +48,10 @@ abstract class $ProductDetailScreenModelCopyWith<$Res> {
   factory $ProductDetailScreenModelCopyWith(ProductDetailScreenModel value,
           $Res Function(ProductDetailScreenModel) then) =
       _$ProductDetailScreenModelCopyWithImpl<$Res>;
-  $Res call({Product product, ProductStoreController productStoreController});
+  $Res call(
+      {Product product,
+      ProductStoreController productStoreController,
+      bool isEditing});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -63,6 +69,7 @@ class _$ProductDetailScreenModelCopyWithImpl<$Res>
   $Res call({
     Object? product = freezed,
     Object? productStoreController = freezed,
+    Object? isEditing = freezed,
   }) {
     return _then(_value.copyWith(
       product: product == freezed
@@ -73,6 +80,10 @@ class _$ProductDetailScreenModelCopyWithImpl<$Res>
           ? _value.productStoreController
           : productStoreController // ignore: cast_nullable_to_non_nullable
               as ProductStoreController,
+      isEditing: isEditing == freezed
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -91,7 +102,10 @@ abstract class _$ProductDetailScreenModelCopyWith<$Res>
           $Res Function(_ProductDetailScreenModel) then) =
       __$ProductDetailScreenModelCopyWithImpl<$Res>;
   @override
-  $Res call({Product product, ProductStoreController productStoreController});
+  $Res call(
+      {Product product,
+      ProductStoreController productStoreController,
+      bool isEditing});
 
   @override
   $ProductCopyWith<$Res> get product;
@@ -113,6 +127,7 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
   $Res call({
     Object? product = freezed,
     Object? productStoreController = freezed,
+    Object? isEditing = freezed,
   }) {
     return _then(_ProductDetailScreenModel(
       product: product == freezed
@@ -123,6 +138,10 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
           ? _value.productStoreController
           : productStoreController // ignore: cast_nullable_to_non_nullable
               as ProductStoreController,
+      isEditing: isEditing == freezed
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -131,16 +150,21 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
 
 class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
   const _$_ProductDetailScreenModel(
-      {required this.product, required this.productStoreController});
+      {required this.product,
+      required this.productStoreController,
+      this.isEditing = false});
 
   @override
   final Product product;
   @override
   final ProductStoreController productStoreController;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isEditing;
 
   @override
   String toString() {
-    return 'ProductDetailScreenModel(product: $product, productStoreController: $productStoreController)';
+    return 'ProductDetailScreenModel(product: $product, productStoreController: $productStoreController, isEditing: $isEditing)';
   }
 
   @override
@@ -152,14 +176,18 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
                     .equals(other.product, product)) &&
             (identical(other.productStoreController, productStoreController) ||
                 const DeepCollectionEquality().equals(
-                    other.productStoreController, productStoreController)));
+                    other.productStoreController, productStoreController)) &&
+            (identical(other.isEditing, isEditing) ||
+                const DeepCollectionEquality()
+                    .equals(other.isEditing, isEditing)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(product) ^
-      const DeepCollectionEquality().hash(productStoreController);
+      const DeepCollectionEquality().hash(productStoreController) ^
+      const DeepCollectionEquality().hash(isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -170,15 +198,17 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
 
 abstract class _ProductDetailScreenModel implements ProductDetailScreenModel {
   const factory _ProductDetailScreenModel(
-          {required Product product,
-          required ProductStoreController productStoreController}) =
-      _$_ProductDetailScreenModel;
+      {required Product product,
+      required ProductStoreController productStoreController,
+      bool isEditing}) = _$_ProductDetailScreenModel;
 
   @override
   Product get product => throw _privateConstructorUsedError;
   @override
   ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;
+  @override
+  bool get isEditing => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ProductDetailScreenModelCopyWith<_ProductDetailScreenModel> get copyWith =>
