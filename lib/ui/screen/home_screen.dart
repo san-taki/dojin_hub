@@ -1,4 +1,5 @@
 import 'package:dojin_hub/app/data_model/app_colors.dart';
+import 'package:dojin_hub/app/style_constants.dart';
 import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/log/debug_log.dart';
@@ -19,33 +20,65 @@ class HomeScreen extends HookWidget implements ScreenType {
     var appColors = useProvider(appColorsProvider).state;
 
     return Scaffold(
-      appBar: HomeScreenAppBar(),
-      body: Flex(
-        direction: Axis.vertical,
+      body: Stack(
         children: [
-          Flexible(
-            flex: 4,
-            child: Container(
-              color: appColors.primary,
-            ),
-          ),
-          Flexible(
-            flex: 6,
-            child: Container(
-              color: appColors.primary,
-              alignment: Alignment.topRight,
-              child: Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _buildBookStorageMenu(context),
-                    _buildPosRegisterMenu(context),
-                    _buildSettingsMenu(context),
-                    _buildPaidButton(context),
-                    _buildVersion(screenModel, appColors),
-                  ],
+          Flex(
+            direction: Axis.vertical,
+            children: [
+              Flexible(
+                flex: 5,
+                child: Container(
+                  color: appColors.primary,
                 ),
               ),
+              Flexible(
+                flex: 5,
+                child: Container(
+                  color: appColors.primary,
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildBookStorageMenu(context),
+                        _buildPosRegisterMenu(context),
+                        _buildSettingsMenu(context),
+                        _buildPaidButton(context),
+                        _buildVersion(screenModel, appColors),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            height: 56,
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: Stack(
+              children: [
+                Center(
+                  child: Text(
+                    'Dojinhub',
+                    style: TextStyle(
+                      color: appColors.primaryText,
+                      fontSize: AppFontSize.title,
+                      fontWeight: AppFontWeight.title,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.splitscreen,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => DebugLog.d('hogehoge'),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -20,8 +20,8 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
             title!,
             style: TextStyle(
               color: appColors.primaryText,
-              fontSize: AppFontSize.title,
-              fontWeight: AppFontWeight.title,
+              fontSize: AppFontSize.body,
+              fontWeight: AppFontWeight.body,
             ),
           )
         : null;
@@ -30,38 +30,26 @@ class CommonAppBar extends ComponentType implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     var appColors = useProvider(appColorsProvider).state;
-
-    return Container(
-      color: appColors.primary,
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Visibility(
-              visible: Navigator.of(context).canPop(),
-              child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: appColors.primaryText,
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ),
+    return AppBar(
+      centerTitle: true,
+      backgroundColor: appColors.primary,
+      leading: Visibility(
+        visible: Navigator.of(context).canPop(),
+        child: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: appColors.primaryText,
           ),
-          Align(
-            alignment: Alignment.center,
-            child: createTitle(appColors),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Visibility(
-              visible: actionButton != null,
-              child: actionButton ?? Center(),
-            ),
-          ),
-        ],
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
+      title: createTitle(appColors),
+      actions: [
+        Visibility(
+          visible: actionButton != null,
+          child: actionButton ?? Center(),
+        ),
+      ],
     );
   }
 
