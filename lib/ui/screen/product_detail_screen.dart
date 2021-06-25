@@ -68,7 +68,8 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     return SliverAppBar(
       pinned: true,
       backgroundColor: appColors.primary,
-      expandedHeight: 250,
+      shadowColor: appColors.primary,
+            expandedHeight: 250,
       centerTitle: true,
       title: Text(
         screenModel.product.title,
