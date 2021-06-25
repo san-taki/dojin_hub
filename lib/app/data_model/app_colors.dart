@@ -14,6 +14,8 @@ abstract class AppColors {
 
   Color get accentText;
 
+  Color get warning;
+
   // MaterialColor createMaterialColor(Color color) {
   //   List strengths = <double>[.05];
   //   final swatch = <int, Color>{};
@@ -53,6 +55,9 @@ class AppColorsPeach extends AppColors {
 
   @override
   Color get primaryText => Color(0xffffffff);
+
+  @override
+  Color get warning =>  Color(0xffbb2020);
 }
 
 // class AppColorsPeachDark extends AppColors {

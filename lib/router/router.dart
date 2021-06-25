@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dojin_hub/ui/screen/edit_edition_screen.dart';
 import 'package:dojin_hub/ui/screen/home_screen.dart';
 import 'package:dojin_hub/ui/screen/pos_register_screen.dart';
-import 'package:dojin_hub/ui/screen/product_detail_pager_screen.dart';
 import 'package:dojin_hub/ui/screen/product_detail_screen.dart';
 import 'package:dojin_hub/ui/screen/product_list_screen.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';

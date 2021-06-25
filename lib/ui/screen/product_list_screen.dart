@@ -28,17 +28,19 @@ class ProductListScreen extends HookWidget implements ScreenType {
       appBar: CommonAppBar(
         title: '本の管理',
       ),
-      body: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: screenModel.products.length,
-        itemBuilder: (BuildContext context, int index) =>
-            _buildProductListTile(
-          context,
-          screenModel,
-          detailScreenPosition,
-          screenModel.products[index],
-          appColors,
+      body: SingleChildScrollView(
+        child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: screenModel.products.length,
+          itemBuilder: (BuildContext context, int index) =>
+              _buildProductListTile(
+            context,
+            screenModel,
+            detailScreenPosition,
+            screenModel.products[index],
+            appColors,
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

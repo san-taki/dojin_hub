@@ -1,15 +1,14 @@
 import 'dart:io';
 
 import 'package:dojin_hub/app/style_constants.dart';
+import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/router/router.dart';
-import 'package:dojin_hub/ui/component/appbar/common_appbar.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/component/pie_chart/pie_chart.dart';
-import 'package:dojin_hub/ui/screen/product_detail_screen_appBar.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -26,24 +25,54 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     var screenModelController =
         useProvider(productDetailScreenModelProvider.notifier);
 
+    var appColors = useProvider(appColorsProvider).state;
+
     return Scaffold(
-      appBar: ProductDetailScreenAppBar(
-        title: screenModel.product.title,
-        isEditing: screenModel.isEditing,
-        onClickLockIcon: () => screenModelController.togleIsEditing(),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          color: Colors.blueGrey,
-          child: Column(
-            children: [
-              _buildCoverImageArea(context, screenModel, screenModelController),
-              _buildAttendedDojinEventArea(screenModel),
-              _buildGraphArea(screenModel),
+      // appBar: ProductDetailScreenAppBar(
+      //   title: screenModel.product.title,
+      //   isEditing: screenModel.isEditing,
+      //   onClickLockIcon: () => screenModelController.togleIsEditing(),
+      // ),
+      backgroundColor: appColors.primary,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            backgroundColor: appColors.primary,
+            expandedHeight: 250,
+            centerTitle: true,
+            title: Text(screenModel.product.title),
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.parallax,
+              background: _buildCoverImageArea(
+                context,
+                screenModel,
+                screenModelController,
+              ),
+            ),
+            actions: [
+              IconButton(
+                  icon: screenModel.isEditing
+                      ? Icon(
+                          Icons.lock_open,
+                          color: Colors.white,
+                        )
+                      : Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                        ),
+                  onPressed: () => screenModelController.togleIsEditing()),
             ],
           ),
-        ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _buildDetailArea(screenModel),
+                _buildDetailArea(screenModel),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -102,79 +131,89 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
       BuildContext context,
       ProductDetailScreenModel screenModel,
       ProductDetailScreenModelController screenModelController) {
-    final buildCoverImage = (String imagePath) => Container(
-          child: SizedBox(
-            height: _getBookCoverImageHeight(context),
-            child: InkWell(
-              onTap: () async {
-                FilePickerResult? result =
-                    await FilePicker.platform.pickFiles(allowMultiple: false);
-                if (result != null) {
-                  var path = result.files.single.path;
-                  if (path != null) {
-                    screenModelController.updateCoverImagePath(path);
+    final buildCoverImage = (String imagePath) => Padding(
+          padding:
+              EdgeInsets.only(top: 56 + MediaQuery.of(context).padding.top),
+          child: Card(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: SizedBox(
+              height: _getBookCoverImageHeight(context),
+              child: InkWell(
+                onTap: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles(allowMultiple: false);
+                  if (result != null) {
+                    var path = result.files.single.path;
+                    if (path != null) {
+                      screenModelController.updateCoverImagePath(path);
+                    } else {
+                      DebugLog.d('path is null');
+                    }
                   } else {
-                    DebugLog.d('path is null');
+                    DebugLog.d('User canceled the picker');
                   }
-                } else {
-                  DebugLog.d('User canceled the picker');
-                }
-              },
-              child: imagePath.isNotEmpty
-                  ? Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.fitHeight,
-                          alignment: FractionalOffset.center,
-                          image: Image.file(
-                            File(imagePath),
-                            fit: BoxFit.cover,
-                          ).image,
+                },
+                child: imagePath.isNotEmpty
+                    ? Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            alignment: FractionalOffset.center,
+                            image: Image.file(
+                              File(imagePath),
+                              fit: BoxFit.cover,
+                            ).image,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        color: Colors.grey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'サムネイルを追加',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                  : Container(
-                      color: Colors.grey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'サムネイルを追加',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
+              ),
             ),
           ),
         );
 
-    return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Row(
+    return buildCoverImage(screenModel.product.coverImagePath);
+  }
+
+  Widget _buildDetailArea(ProductDetailScreenModel screenModel) {
+    return Center(
+      child: Column(
         children: [
-          Expanded(child: buildCoverImage(screenModel.product.coverImagePath)),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 16,
-              ),
-              child: Text(
-                screenModel.product.title,
-                style: TextStyle(
-                  fontSize: AppFontSize.headline,
-                  fontWeight: AppFontWeight.headline,
-                ),
-              ),
-            ),
-          ),
+          _buildAttendedDojinEventArea(screenModel),
+          _buildGraphArea(screenModel),
         ],
+      ),
+    );
+  }
+
+  void hoge(ProductDetailScreenModel screenModel) {
+    Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 16,
+      ),
+      child: Text(
+        screenModel.product.title,
+        style: TextStyle(
+          fontSize: AppFontSize.headline,
+          fontWeight: AppFontWeight.headline,
+        ),
       ),
     );
   }

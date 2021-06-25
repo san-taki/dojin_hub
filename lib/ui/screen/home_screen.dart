@@ -5,7 +5,6 @@ import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/router/router.dart';
 import 'package:dojin_hub/ui/component/button/primary_button.dart';
-import 'package:dojin_hub/ui/screen/home_screen_appbar.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/home_screen_model.dart';
 import 'package:flutter/material.dart';
