@@ -39,16 +39,16 @@ abstract class AppColors {
 
 class AppColorsPeach extends AppColors {
   @override
-  Color get accent => Color(0xFF1DADE0);
+  Color get accent => Color(0xFF48469F);
 
   @override
   Color get base => Color(0xffffffff);
 
   @override
-  Color get primary => Color(0xFF9980E0);
+  Color get primary => Color(0xFFD1C2D7);
 
   @override
-  Color get primaryVariant => Color(0xFF4339A8);
+  Color get primaryVariant => Color(0xFFC786DE);
 
   @override
   Color get accentText => Color(0xff000000);

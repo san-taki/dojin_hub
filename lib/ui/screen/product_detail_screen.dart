@@ -1,13 +1,11 @@
 import 'dart:io';
 
+import 'package:dojin_hub/app/data_model/app_colors.dart';
 import 'package:dojin_hub/app/style_constants.dart';
 import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
-import 'package:dojin_hub/domain/entity/edition.dart';
 import 'package:dojin_hub/log/debug_log.dart';
-import 'package:dojin_hub/router/router.dart';
-import 'package:dojin_hub/ui/component/button/primary_button.dart';
 import 'package:dojin_hub/ui/component/pie_chart/pie_chart.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
@@ -28,48 +26,32 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     var appColors = useProvider(appColorsProvider).state;
 
     return Scaffold(
-      // appBar: ProductDetailScreenAppBar(
-      //   title: screenModel.product.title,
-      //   isEditing: screenModel.isEditing,
-      //   onClickLockIcon: () => screenModelController.togleIsEditing(),
-      // ),
       backgroundColor: appColors.primary,
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            backgroundColor: appColors.primary,
-            expandedHeight: 250,
-            centerTitle: true,
-            title: Text(screenModel.product.title),
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.parallax,
-              background: _buildCoverImageArea(
-                context,
-                screenModel,
-                screenModelController,
-              ),
-            ),
-            actions: [
-              IconButton(
-                  icon: screenModel.isEditing
-                      ? Icon(
-                          Icons.lock_open,
-                          color: Colors.white,
-                        )
-                      : Icon(
-                          Icons.lock,
-                          color: Colors.white,
-                        ),
-                  onPressed: () => screenModelController.togleIsEditing()),
-            ],
+          _buildSliverAppBar(
+            context,
+            screenModel,
+            screenModelController,
+            appColors,
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                _buildDetailArea(screenModel),
-                _buildDetailArea(screenModel),
-              ],
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  _buildEditionsArea(
+                    screenModel,
+                    appColors,
+                  ),
+                  _buildSaleStateWindow(),
+                  _buildOutSourcingStateWindow(),
+                  _buildStockStateWindow(),
+                ],
+              ),
             ),
           ),
         ],
@@ -77,112 +59,171 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     );
   }
 
-  List<Widget> _buildEditionsArea(
+  SliverAppBar _buildSliverAppBar(
     BuildContext context,
-    List<Edition> editions,
+    ProductDetailScreenModel screenModel,
+    ProductDetailScreenModelController screenModelController,
+    AppColors appColors,
   ) {
-    final buildListTile = (BuildContext context, Edition edition) {
-      return Container(
-        height: 200,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                edition.numberString,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+    return SliverAppBar(
+      pinned: true,
+      backgroundColor: appColors.primary,
+      expandedHeight: 250,
+      centerTitle: true,
+      title: Text(
+        screenModel.product.title,
+        style: TextStyle(
+          color: appColors.accentText,
+        ),
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        collapseMode: CollapseMode.parallax,
+        background: _buildCoverImageArea(
+          context,
+          screenModel,
+          screenModelController,
+          appColors,
+        ),
+      ),
+      leading: Visibility(
+        visible: Navigator.of(context).canPop(),
+        child: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: appColors.accentText,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+      actions: [
+        IconButton(
+            icon: Icon(
+              screenModel.isEditing ? Icons.lock_open : Icons.lock,
+              color: appColors.accentText,
+            ),
+            onPressed: () => screenModelController.togleIsEditing()),
+      ],
+    );
+  }
+
+  Widget _buildEditionsArea(
+    ProductDetailScreenModel screenModel,
+    AppColors appColors,
+  ) {
+    return Container(
+      color: appColors.primary,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
+            alignment: Alignment.topLeft,
+            child: Text(
+              '版',
+              style: TextStyle(
+                fontSize: AppFontSize.body,
+                fontWeight: AppFontWeight.body,
+                color: appColors.primaryText,
               ),
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Text(
-                'hoge',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            )
-          ],
-        ),
-      );
-    };
-
-    return editions.isEmpty
-        ? [
-            PrimaryButton(
-                label: 'edit Edition',
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RouteName.edit_edition);
-                }),
-          ]
-        : [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: editions.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  buildListTile(context, editions[index]),
-            )
-          ];
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 4,
+            ),
+            alignment: Alignment.topLeft,
+            child: Wrap(
+              children: List<Widget>.generate(
+                screenModel.product.editions.length,
+                (int index) {
+                  var e = screenModel.product.editions[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: ChoiceChip(
+                      backgroundColor: appColors.primaryText,
+                      selectedColor: appColors.primaryVariant,
+                      selectedShadowColor: appColors.primaryVariant,
+                      label: Text(
+                        e.numberString,
+                        style: TextStyle(
+                          color: appColors.primaryText,
+                        ),
+                      ),
+                      selected: true,
+                      onSelected: (bool selected) {},
+                    ),
+                  );
+                },
+              ).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildCoverImageArea(
-      BuildContext context,
-      ProductDetailScreenModel screenModel,
-      ProductDetailScreenModelController screenModelController) {
-    final buildCoverImage = (String imagePath) => Padding(
+    BuildContext context,
+    ProductDetailScreenModel screenModel,
+    ProductDetailScreenModelController screenModelController,
+    AppColors appColors,
+  ) {
+    final buildCoverImage = (String imagePath) => Container(
+          color: appColors.base,
           padding:
               EdgeInsets.only(top: 56 + MediaQuery.of(context).padding.top),
-          child: Card(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: SizedBox(
-              height: _getBookCoverImageHeight(context),
-              child: InkWell(
-                onTap: () async {
-                  FilePickerResult? result =
-                      await FilePicker.platform.pickFiles(allowMultiple: false);
-                  if (result != null) {
-                    var path = result.files.single.path;
-                    if (path != null) {
-                      screenModelController.updateCoverImagePath(path);
-                    } else {
-                      DebugLog.d('path is null');
-                    }
+          child: SizedBox(
+            height: MediaQuery.of(context).size.width / 2 * 1.4,
+            width: MediaQuery.of(context).size.width / 2,
+            child: InkWell(
+              onTap: () async {
+                FilePickerResult? result =
+                    await FilePicker.platform.pickFiles(allowMultiple: false);
+                if (result != null) {
+                  var path = result.files.single.path;
+                  if (path != null) {
+                    screenModelController.updateCoverImagePath(path);
                   } else {
-                    DebugLog.d('User canceled the picker');
+                    DebugLog.d('path is null');
                   }
-                },
-                child: imagePath.isNotEmpty
-                    ? Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fitHeight,
-                            alignment: FractionalOffset.center,
-                            image: Image.file(
-                              File(imagePath),
-                              fit: BoxFit.cover,
-                            ).image,
-                          ),
-                        ),
-                      )
-                    : Container(
-                        color: Colors.grey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'サムネイルを追加',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
+                } else {
+                  DebugLog.d('User canceled the picker');
+                }
+              },
+              child: imagePath.isNotEmpty
+                  ? Container(
+                      margin: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.scaleDown,
+                          alignment: FractionalOffset.center,
+                          image: Image.file(
+                            File(imagePath),
+                            fit: BoxFit.cover,
+                          ).image,
                         ),
                       ),
-              ),
+                    )
+                  : Container(
+                      color: appColors.accent,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'サムネイルを追加',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
             ),
           ),
         );
@@ -190,31 +231,21 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     return buildCoverImage(screenModel.product.coverImagePath);
   }
 
-  Widget _buildDetailArea(ProductDetailScreenModel screenModel) {
-    return Center(
-      child: Column(
-        children: [
-          _buildAttendedDojinEventArea(screenModel),
-          _buildGraphArea(screenModel),
-        ],
-      ),
+  Widget _buildSaleStateWindow() {
+    return Card(
+      child: PieChartSample3(),
     );
   }
 
-  void hoge(ProductDetailScreenModel screenModel) {
-    Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 16,
-      ),
-      child: Text(
-        screenModel.product.title,
-        style: TextStyle(
-          fontSize: AppFontSize.headline,
-          fontWeight: AppFontWeight.headline,
-        ),
-      ),
+  Widget _buildOutSourcingStateWindow() {
+    return Card(
+      child: PieChartSample3(),
+    );
+  }
+
+  Widget _buildStockStateWindow() {
+    return Card(
+      child: PieChartSample3(),
     );
   }
 
@@ -262,27 +293,5 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         ),
       ),
     );
-  }
-
-  Widget _buildGraphArea(ProductDetailScreenModel screenModel) {
-    return Card(
-      child: PieChartSample3(),
-    );
-  }
-
-  Widget _buildGraphSwitch() {
-    //     return RawChip(
-    //   label: Text(
-    //     labelText,
-    //     maxLines: 2,
-    //     style: themeViewModel.primaryTextTheme.caption,
-    //   ),
-    // );
-    return Center();
-  }
-
-  double _getBookCoverImageHeight(BuildContext context) {
-    // 本のA版B版ともおよそ1.4のアス比
-    return (MediaQuery.of(context).size.width / 2) * 1.4;
   }
 }
