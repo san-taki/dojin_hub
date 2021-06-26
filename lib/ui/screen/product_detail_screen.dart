@@ -89,7 +89,11 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                       );
                     case 1:
                       return _buildHistoryPage(
-                          context, appColors, scrollController);
+                        context,
+                        screenModel,
+                        appColors,
+                        scrollController,
+                      );
                     default:
                       throw AssertionError();
                   }
@@ -109,6 +113,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     ScrollController scrollController,
   ) {
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       controller: scrollController,
       child: Container(
         margin: EdgeInsets.only(
@@ -117,7 +122,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         padding: EdgeInsets.only(
           left: 10,
           right: 10,
-          top: 15,
+          top: 10,
         ),
         decoration: BoxDecoration(
           color: appColors.primary,
@@ -147,13 +152,19 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
 
   Widget _buildHistoryPage(
     BuildContext context,
+    ProductDetailScreenModel screenModel,
     AppColors appColors,
     ScrollController scrollController,
   ) {
     return SingleChildScrollView(
       controller: scrollController,
-      physics: NeverScrollableScrollPhysics(),
+      physics: BouncingScrollPhysics(),
       child: Container(
+        padding: EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 15,
+        ),
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         decoration: BoxDecoration(
           color: appColors.primary,
@@ -162,13 +173,45 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: ListView.builder(
-          shrinkWrap: true,
-          controller: scrollController,
-          itemCount: 25,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(title: Text('Item $index'));
-          },
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Column(
+            children: [
+              Container(
+                height: 40,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 5,
+                  ),
+                  alignment: Alignment.centerRight,
+                  child: Chip(
+                    label: Text(
+                      'フィルター',
+                      style: TextStyle(
+                        color: appColors.primaryText,
+                      ),
+                    ),
+                    backgroundColor: appColors.primaryVariant,
+                  ),
+                ),
+              ),
+              _buildInfoWindow(
+                context,
+                appColors,
+                'ヒストリー',
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: scrollController,
+                  itemCount: 25,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(title: Text('Item $index'));
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -403,7 +446,6 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ),
         ),
         Container(
-          height: 200,
           decoration: BoxDecoration(
             color: appColors.base,
             border: Border.all(

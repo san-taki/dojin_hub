@@ -29,9 +29,10 @@ class ProductListScreen extends HookWidget implements ScreenType {
         title: '本の管理',
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: screenModel.products.length,
           itemBuilder: (BuildContext context, int index) =>
               _buildProductListTile(
