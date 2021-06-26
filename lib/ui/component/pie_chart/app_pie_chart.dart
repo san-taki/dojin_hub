@@ -13,7 +13,7 @@ class AppPieChart extends HookWidget {
   Widget build(BuildContext context) {
     var componentModel = useProvider(pieChartModelProvider);
     var componentModelController = useProvider(pieChartModelProvider.notifier);
-
+    
     return AspectRatio(
       aspectRatio: 1.3,
       child: Card(

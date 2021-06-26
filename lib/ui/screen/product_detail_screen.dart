@@ -5,10 +5,13 @@ import 'package:dojin_hub/app/style_constants.dart';
 import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
+import 'package:dojin_hub/domain/entity/edition.dart';
+import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/ui/component/pie_chart/app_pie_chart.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
+import 'package:dojin_hub/util/text_util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -134,8 +137,10 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            _buildScrollHandle(context, appColors),
             _buildEditionsArea(screenModel, appColors),
-            _buildBookInfoWindow(context, appColors),
+            _buildBookInfoWindow(
+                context, appColors, screenModel.product.editions[0]),
             Padding(padding: const EdgeInsets.all(8)),
             _buildSaleStateWindow(context, appColors),
             Padding(padding: const EdgeInsets.all(8)),
@@ -146,6 +151,20 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
             _buildAdArea(context),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildScrollHandle(
+    BuildContext context,
+    AppColors appColors,
+  ) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 5,
+      height: 5,
+      decoration: BoxDecoration(
+        color: appColors.base,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
@@ -177,6 +196,10 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           padding: const EdgeInsets.only(bottom: 20),
           child: Column(
             children: [
+              _buildScrollHandle(
+                context,
+                appColors,
+              ),
               Container(
                 height: 40,
                 child: Container(
@@ -185,13 +208,17 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                     vertical: 5,
                   ),
                   alignment: Alignment.centerRight,
-                  child: Chip(
+                  child: ActionChip(
+                    shadowColor: appColors.primary,
                     label: Text(
                       'フィルター',
                       style: TextStyle(
                         color: appColors.primaryText,
                       ),
                     ),
+                    onPressed: () {
+                      DebugLog.d('フィルター');
+                    },
                     backgroundColor: appColors.primaryVariant,
                   ),
                 ),
@@ -239,35 +266,36 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                 var e = screenModel.product.editions[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: ChoiceChip(
-                    backgroundColor: appColors.primaryText,
-                    selectedColor: appColors.primaryVariant,
-                    selectedShadowColor: appColors.primaryVariant,
+                  child: ActionChip(
+                    shadowColor: appColors.primary,
+                    backgroundColor: appColors.primaryVariant,
                     label: Text(
                       e.numberString,
                       style: TextStyle(
                         color: appColors.primaryText,
                       ),
                     ),
-                    selected: true,
-                    onSelected: (bool selected) {},
+                    onPressed: () {},
                   ),
                 );
               },
             ).toList()
               ..add(
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: ClipOval(
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      color: appColors.primaryVariant,
-                      child: Icon(
-                        Icons.add,
-                        size: AppFontSize.body,
-                        color: appColors.primaryText,
+                Container(
+                  height: 35,
+                  width: 35,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: ActionChip(
+                      shadowColor: appColors.primary,
+                      backgroundColor: appColors.primaryVariant,
+                      label: Text(
+                        '+',
+                        style: TextStyle(
+                          color: appColors.primaryText,
+                        ),
                       ),
+                      onPressed: () {},
                     ),
                   ),
                 ),
@@ -362,13 +390,57 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   Widget _buildBookInfoWindow(
     BuildContext context,
     AppColors appColors,
+    Edition edition,
   ) {
+    final child = (String label, String description) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: appColors.accent,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: appColors.primaryText,
+                    fontSize: AppFontSize.caption,
+                    fontWeight: AppFontWeight.caption,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 4,
+              ),
+              child: Text(description),
+            ),
+          ],
+        );
+
     return _buildInfoWindow(
       context,
       appColors,
       '作品情報',
-      Center(
-        child: Text('hoge'),
+      Container(
+        padding: EdgeInsets.all(8),
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            child('印刷所', edition.printShop?.name ?? '-'),
+            child('ページ数', '${edition.page ?? '-'}'),
+            child('印刷日', '${edition.publicationDate ?? '-'}'),
+            child('印刷費', '${TextUtil.toPriceLabel(edition.printingCosts)}円'),
+          ],
+        ),
       ),
     );
   }

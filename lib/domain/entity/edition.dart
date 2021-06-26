@@ -18,6 +18,7 @@ class Edition with _$Edition {
   }) = _Edition;
 
   String get numberString => number == 1 ? '初版' : '第$number版';
+
   // FIXME
   bool get soldOut => false;
 }
