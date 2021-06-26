@@ -29,32 +29,81 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
 
     return Scaffold(
       backgroundColor: appColors.base,
-      body: DraggableScrollableSheet(
-        initialChildSize: 0.6,
-        minChildSize: 0.6,
-        builder:
-            (BuildContext context, ScrollController scrollController) {
-          return PageView.builder(
-            itemCount: 2,
-            controller: pageController,
-            itemBuilder: (BuildContext context, int index) {
-              switch (index) {
-                case 0:
-                  return _buildDetailPage(
-                      screenModel, appColors, scrollController);
-                case 1:
-                  return _buildHistoryPage(appColors, scrollController);
-                default:
-                  throw AssertionError();
-              }
+      body: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            height: 56,
+            child: Stack(
+              children: [
+                Visibility(
+                  visible: Navigator.of(context).canPop(),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: appColors.accentText,
+                      ),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(screenModel.product.title),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: Icon(
+                      screenModel.isEditing ? Icons.lock_open : Icons.lock,
+                      color: appColors.accentText,
+                    ),
+                    onPressed: () => screenModelController.togleIsEditing(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          _buildCoverImageArea(
+            context,
+            screenModel,
+            screenModelController,
+            appColors,
+          ),
+          DraggableScrollableSheet(
+            initialChildSize: 0.6,
+            minChildSize: 0.6,
+            builder: (BuildContext context, ScrollController scrollController) {
+              return PageView.builder(
+                itemCount: 2,
+                controller: pageController,
+                itemBuilder: (BuildContext context, int index) {
+                  switch (index) {
+                    case 0:
+                      return _buildDetailPage(
+                        context,
+                        screenModel,
+                        appColors,
+                        scrollController,
+                      );
+                    case 1:
+                      return _buildHistoryPage(
+                          context, appColors, scrollController);
+                    default:
+                      throw AssertionError();
+                  }
+                },
+              );
             },
-          );
-        },
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildDetailPage(
+    BuildContext context,
     ProductDetailScreenModel screenModel,
     AppColors appColors,
     ScrollController scrollController,
@@ -62,6 +111,14 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
     return SingleChildScrollView(
       controller: scrollController,
       child: Container(
+        margin: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top,
+        ),
+        padding: EdgeInsets.only(
+          left: 10,
+          right: 10,
+          top: 15,
+        ),
         decoration: BoxDecoration(
           color: appColors.primary,
           borderRadius: BorderRadius.only(
@@ -73,9 +130,15 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           mainAxisSize: MainAxisSize.min,
           children: [
             _buildEditionsArea(screenModel, appColors),
-            _buildSaleStateWindow(),
-            _buildOutSourcingStateWindow(),
-            _buildStockStateWindow(),
+            _buildBookInfoWindow(context, appColors),
+            Padding(padding: const EdgeInsets.all(8)),
+            _buildSaleStateWindow(context, appColors),
+            Padding(padding: const EdgeInsets.all(8)),
+            _buildOutSourcingStateWindow(context, appColors),
+            Padding(padding: const EdgeInsets.all(8)),
+            _buildStockStateWindow(context, appColors),
+            Padding(padding: const EdgeInsets.all(20)),
+            _buildAdArea(context),
           ],
         ),
       ),
@@ -83,12 +146,15 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   }
 
   Widget _buildHistoryPage(
+    BuildContext context,
     AppColors appColors,
     ScrollController scrollController,
   ) {
     return SingleChildScrollView(
       controller: scrollController,
+      physics: NeverScrollableScrollPhysics(),
       child: Container(
+        margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         decoration: BoxDecoration(
           color: appColors.primary,
           borderRadius: BorderRadius.only(
@@ -96,59 +162,17 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ),
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Center(
-          child: Text('history'),
+        child: ListView.builder(
+          shrinkWrap: true,
+          controller: scrollController,
+          itemCount: 25,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(title: Text('Item $index'));
+          },
         ),
       ),
     );
   }
-
-  // SliverAppBar _buildSliverAppBar(
-  //   BuildContext context,
-  //   ProductDetailScreenModel screenModel,
-  //   ProductDetailScreenModelController screenModelController,
-  //   AppColors appColors,
-  // ) {
-  //   return SliverAppBar(
-  //     backgroundColor: appColors.primary,
-  //     shadowColor: appColors.primary,
-  //     expandedHeight: 250,
-  //     centerTitle: true,
-  //     title: Text(
-  //       screenModel.product.title,
-  //       style: TextStyle(
-  //         color: appColors.primaryText,
-  //       ),
-  //     ),
-  //     flexibleSpace: FlexibleSpaceBar(
-  //       collapseMode: CollapseMode.parallax,
-  //       background: _buildCoverImageArea(
-  //         context,
-  //         screenModel,
-  //         screenModelController,
-  //         appColors,
-  //       ),
-  //     ),
-  //     leading: Visibility(
-  //       visible: Navigator.of(context).canPop(),
-  //       child: IconButton(
-  //         icon: Icon(
-  //           Icons.arrow_back,
-  //           color: appColors.primaryText,
-  //         ),
-  //         onPressed: () => Navigator.of(context).pop(),
-  //       ),
-  //     ),
-  //     actions: [
-  //       IconButton(
-  //           icon: Icon(
-  //             screenModel.isEditing ? Icons.lock_open : Icons.lock,
-  //             color: appColors.primaryText,
-  //           ),
-  //           onPressed: () => screenModelController.togleIsEditing()),
-  //     ],
-  //   );
-  // }
 
   Widget _buildEditionsArea(
     ProductDetailScreenModel screenModel,
@@ -156,56 +180,57 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   ) {
     return Container(
       color: appColors.primary,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 4,
-              horizontal: 8,
-            ),
-            alignment: Alignment.topLeft,
-            child: Text(
-              '版',
-              style: TextStyle(
-                fontSize: AppFontSize.body,
-                fontWeight: AppFontWeight.body,
-                color: appColors.primaryText,
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 4,
-            ),
-            alignment: Alignment.topLeft,
-            child: Wrap(
-              children: List<Widget>.generate(
-                screenModel.product.editions.length,
-                (int index) {
-                  var e = screenModel.product.editions[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: ChoiceChip(
-                      backgroundColor: appColors.primaryText,
-                      selectedColor: appColors.primaryVariant,
-                      selectedShadowColor: appColors.primaryVariant,
-                      label: Text(
-                        e.numberString,
-                        style: TextStyle(
-                          color: appColors.primaryText,
-                        ),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 4,
+        ),
+        alignment: Alignment.topLeft,
+        child: Container(
+          alignment: Alignment.centerRight,
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: List<Widget>.generate(
+              screenModel.product.editions.length,
+              (int index) {
+                var e = screenModel.product.editions[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: ChoiceChip(
+                    backgroundColor: appColors.primaryText,
+                    selectedColor: appColors.primaryVariant,
+                    selectedShadowColor: appColors.primaryVariant,
+                    label: Text(
+                      e.numberString,
+                      style: TextStyle(
+                        color: appColors.primaryText,
                       ),
-                      selected: true,
-                      onSelected: (bool selected) {},
                     ),
-                  );
-                },
-              ).toList(),
-            ),
+                    selected: true,
+                    onSelected: (bool selected) {},
+                  ),
+                );
+              },
+            ).toList()
+              ..add(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: ClipOval(
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      color: appColors.primaryVariant,
+                      child: Icon(
+                        Icons.add,
+                        size: AppFontSize.body,
+                        color: appColors.primaryText,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -276,33 +301,131 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ),
         );
 
-    return Row(
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.4,
+      child: Row(
+        children: [
+          Expanded(
+            child: buildCoverImage(screenModel.product.coverImagePath),
+          ),
+          Expanded(
+            child: buildCoverImage(screenModel.product.coverImagePath),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBookInfoWindow(
+    BuildContext context,
+    AppColors appColors,
+  ) {
+    return _buildInfoWindow(
+      context,
+      appColors,
+      '作品情報',
+      Center(
+        child: Text('hoge'),
+      ),
+    );
+  }
+
+  Widget _buildSaleStateWindow(
+    BuildContext context,
+    AppColors appColors,
+  ) {
+    return _buildInfoWindow(
+      context,
+      appColors,
+      '販売状況',
+      Center(
+        child: PieChartSample3(),
+      ),
+    );
+  }
+
+  Widget _buildOutSourcingStateWindow(
+    BuildContext context,
+    AppColors appColors,
+  ) {
+    return _buildInfoWindow(
+      context,
+      appColors,
+      '委託状況',
+      Center(
+        child: PieChartSample3(),
+      ),
+    );
+  }
+
+  Widget _buildStockStateWindow(
+    BuildContext context,
+    AppColors appColors,
+  ) {
+    return _buildInfoWindow(
+      context,
+      appColors,
+      '在庫状況',
+      Center(
+        child: PieChartSample3(),
+      ),
+    );
+  }
+
+  Widget _buildInfoWindow(
+    BuildContext context,
+    AppColors appColors,
+    String label,
+    Widget child,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: buildCoverImage(screenModel.product.coverImagePath),
+        Container(
+          decoration: BoxDecoration(
+            color: appColors.primaryVariant,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              topLeft: Radius.circular(10),
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 5,
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: AppFontSize.body,
+              fontWeight: AppFontWeight.body,
+              color: appColors.primaryText,
+            ),
+          ),
         ),
-        Expanded(
-          child: buildCoverImage(screenModel.product.coverImagePath),
+        Container(
+          height: 200,
+          decoration: BoxDecoration(
+            color: appColors.base,
+            border: Border.all(
+              color: appColors.primaryVariant,
+            ),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(10),
+              bottomRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+            ),
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: child,
         ),
       ],
     );
   }
 
-  Widget _buildSaleStateWindow() {
-    return Card(
-      child: PieChartSample3(),
-    );
-  }
-
-  Widget _buildOutSourcingStateWindow() {
-    return Card(
-      child: PieChartSample3(),
-    );
-  }
-
-  Widget _buildStockStateWindow() {
-    return Card(
-      child: PieChartSample3(),
+  Widget _buildAdArea(BuildContext context) {
+    return Container(
+      height: 56,
+      color: Colors.blueAccent,
     );
   }
 
