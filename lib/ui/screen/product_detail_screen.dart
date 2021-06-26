@@ -6,7 +6,7 @@ import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/log/debug_log.dart';
-import 'package:dojin_hub/ui/component/pie_chart/pie_chart.dart';
+import 'package:dojin_hub/ui/component/pie_chart/app_pie_chart.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
 import 'package:dojin_hub/ui/screen_model/product_detail_screen_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -382,7 +382,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
       appColors,
       '販売状況',
       Center(
-        child: PieChartSample3(),
+        child: AppPieChart(),
       ),
     );
   }
@@ -396,7 +396,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
       appColors,
       '委託状況',
       Center(
-        child: PieChartSample3(),
+        child: AppPieChart(),
       ),
     );
   }
@@ -410,7 +410,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
       appColors,
       '在庫状況',
       Center(
-        child: PieChartSample3(),
+        child: AppPieChart(),
       ),
     );
   }

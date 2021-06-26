@@ -1,21 +1,19 @@
-
+import 'package:dojin_hub/di/component_model_provider.dart';
+import 'package:dojin_hub/ui/component_model/app_pie_chart_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/gestures.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PieChartSample3 extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => PieChartSample3State();
-}
-
-class PieChartSample3State extends State {
-  int touchedIndex = 0;
-
+class AppPieChart extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    var componentModel = useProvider(pieChartModelProvider);
+    var componentModelController = useProvider(pieChartModelProvider.notifier);
+
     return AspectRatio(
       aspectRatio: 1.3,
       child: Card(
@@ -25,33 +23,31 @@ class PieChartSample3State extends State {
           child: PieChart(
             PieChartData(
                 pieTouchData: PieTouchData(touchCallback: (pieTouchResponse) {
-                  setState(() {
-                    final desiredTouch = pieTouchResponse.touchInput is! PointerExitEvent &&
-                        pieTouchResponse.touchInput is! PointerUpEvent;
-                    if (desiredTouch && pieTouchResponse.touchedSection != null) {
-                      touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                    } else {
-                      touchedIndex = -1;
-                    }
-                  });
+                  final desiredTouch =
+                      pieTouchResponse.touchInput is! PointerExitEvent &&
+                          pieTouchResponse.touchInput is! PointerUpEvent;
+                  if (desiredTouch && pieTouchResponse.touchedSection != null) {
+                    componentModelController.updateIndex(
+                        pieTouchResponse.touchedSection!.touchedSectionIndex);
+                  } else {
+                    componentModelController.updateIndex(-1);
+                  }
                 }),
                 borderData: FlBorderData(
                   show: false,
                 ),
                 sectionsSpace: 0,
                 centerSpaceRadius: 0,
-                sections: showingSections(
-                  
-                )),
+                sections: showingSections(componentModel)),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(AppPieChartModel model) {
     return List.generate(4, (i) {
-      final isTouched = i == touchedIndex;
+      final isTouched = i == model.touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 110.0 : 100.0;
       final widgetSize = isTouched ? 55.0 : 40.0;
@@ -64,7 +60,9 @@ class PieChartSample3State extends State {
             title: '40%',
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
             badgeWidget: _Badge(
               'assets/ophthalmology-svgrepo-com.svg',
               size: widgetSize,
@@ -79,7 +77,9 @@ class PieChartSample3State extends State {
             title: '30%',
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
             badgeWidget: _Badge(
               'assets/librarian-svgrepo-com.svg',
               size: widgetSize,
@@ -94,7 +94,9 @@ class PieChartSample3State extends State {
             title: '16%',
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
             badgeWidget: _Badge(
               'assets/fitness-svgrepo-com.svg',
               size: widgetSize,
@@ -109,7 +111,9 @@ class PieChartSample3State extends State {
             title: '15%',
             radius: radius,
             titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
             badgeWidget: _Badge(
               'assets/worker-svgrepo-com.svg',
               size: widgetSize,
