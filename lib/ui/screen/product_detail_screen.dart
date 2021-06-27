@@ -142,7 +142,9 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
             _buildEditionsArea(screenModel, appColors),
             _buildBookInfoWindow(
                 context, appColors, screenModel.product.editions[0]),
-            Padding(padding: const EdgeInsets.all(8)),
+            Padding(padding: const EdgeInsets.all(4)),
+            _buildTotalCountArea(context, appColors, screenModel),
+            Padding(padding: const EdgeInsets.all(4)),
             _buildSaleStateWindow(context, appColors, screenModelController),
             Padding(padding: const EdgeInsets.all(8)),
             _buildOutSourcingStateWindow(
@@ -168,6 +170,61 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
         color: appColors.base,
         borderRadius: BorderRadius.circular(10),
       ),
+    );
+  }
+
+  Widget _buildTotalCountArea(
+    BuildContext context,
+    AppColors appColors,
+    ProductDetailScreenModel screenModel,
+  ) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 4,
+            ),
+            child: Text(
+              '頒布数 / 発行部数',
+              style: TextStyle(
+                fontSize: AppFontSize.caption,
+                fontWeight: AppFontWeight.caption,
+                color: appColors.primaryText,
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            decoration: BoxDecoration(
+              color: appColors.base,
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
+              ),
+              border: Border.all(
+                color: appColors.primaryVariant,
+                width: 1,
+              ),
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 4,
+            ),
+            child: Text(
+              '${screenModel.product.stockCount} / ${screenModel.product.totalPublicationCount}',
+              style: TextStyle(
+                color: appColors.primaryVariant,
+                fontSize: AppFontSize.title,
+                fontWeight: AppFontWeight.title,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
