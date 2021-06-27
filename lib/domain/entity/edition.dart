@@ -14,11 +14,32 @@ class Edition with _$Edition {
     PrintShop? printShop,
     int? printingCosts,
     DateTime? publicationDate,
-    List<Book>? books,
+    HomeStock? homeStock,
+    OutSourcerStock? outSourcerStock,
+    ExtraStock? extraStock,
+    SoldByOutsourcer? soldByOutsourcer,
+    SoldAtDojinEvent? soldAtDojinEvent,
+    FreeDistribution? freeDistribution,
   }) = _Edition;
 
   String get numberString => number == 1 ? '初版' : '第$number版';
 
   // FIXME
-  bool get soldOut => false;
+  bool get soldOut {
+    return _count(homeStock?.count) == 0 &&
+        _count(outSourcerStock?.count) == 0 &&
+        _count(extraStock?.count) == 0;
+  }
+
+  int get publicationCount =>
+      _count(homeStock?.count) +
+      _count(outSourcerStock?.count) +
+      _count(extraStock?.count) +
+      _count(soldByOutsourcer?.count) +
+      _count(soldAtDojinEvent?.count) +
+      _count(freeDistribution?.count);
+
+  int _count(int? count) {
+    return count ?? 0;
+  }
 }

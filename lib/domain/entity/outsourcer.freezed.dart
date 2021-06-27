@@ -16,14 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$OutsourcerTearOff {
   const _$OutsourcerTearOff();
 
-  _Outsourcer call(
-      {required String shopId,
-      required String name,
-      required List<Product> product}) {
+  _Outsourcer call({required String shopId, required String name}) {
     return _Outsourcer(
       shopId: shopId,
       name: name,
-      product: product,
     );
   }
 }
@@ -35,7 +31,6 @@ const $Outsourcer = _$OutsourcerTearOff();
 mixin _$Outsourcer {
   String get shopId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<Product> get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OutsourcerCopyWith<Outsourcer> get copyWith =>
@@ -47,7 +42,7 @@ abstract class $OutsourcerCopyWith<$Res> {
   factory $OutsourcerCopyWith(
           Outsourcer value, $Res Function(Outsourcer) then) =
       _$OutsourcerCopyWithImpl<$Res>;
-  $Res call({String shopId, String name, List<Product> product});
+  $Res call({String shopId, String name});
 }
 
 /// @nodoc
@@ -62,7 +57,6 @@ class _$OutsourcerCopyWithImpl<$Res> implements $OutsourcerCopyWith<$Res> {
   $Res call({
     Object? shopId = freezed,
     Object? name = freezed,
-    Object? product = freezed,
   }) {
     return _then(_value.copyWith(
       shopId: shopId == freezed
@@ -73,10 +67,6 @@ class _$OutsourcerCopyWithImpl<$Res> implements $OutsourcerCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
     ));
   }
 }
@@ -87,7 +77,7 @@ abstract class _$OutsourcerCopyWith<$Res> implements $OutsourcerCopyWith<$Res> {
           _Outsourcer value, $Res Function(_Outsourcer) then) =
       __$OutsourcerCopyWithImpl<$Res>;
   @override
-  $Res call({String shopId, String name, List<Product> product});
+  $Res call({String shopId, String name});
 }
 
 /// @nodoc
@@ -104,7 +94,6 @@ class __$OutsourcerCopyWithImpl<$Res> extends _$OutsourcerCopyWithImpl<$Res>
   $Res call({
     Object? shopId = freezed,
     Object? name = freezed,
-    Object? product = freezed,
   }) {
     return _then(_Outsourcer(
       shopId: shopId == freezed
@@ -115,10 +104,6 @@ class __$OutsourcerCopyWithImpl<$Res> extends _$OutsourcerCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
     ));
   }
 }
@@ -126,19 +111,16 @@ class __$OutsourcerCopyWithImpl<$Res> extends _$OutsourcerCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Outsourcer implements _Outsourcer {
-  const _$_Outsourcer(
-      {required this.shopId, required this.name, required this.product});
+  const _$_Outsourcer({required this.shopId, required this.name});
 
   @override
   final String shopId;
   @override
   final String name;
-  @override
-  final List<Product> product;
 
   @override
   String toString() {
-    return 'Outsourcer(shopId: $shopId, name: $name, product: $product)';
+    return 'Outsourcer(shopId: $shopId, name: $name)';
   }
 
   @override
@@ -148,17 +130,14 @@ class _$_Outsourcer implements _Outsourcer {
             (identical(other.shopId, shopId) ||
                 const DeepCollectionEquality().equals(other.shopId, shopId)) &&
             (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.product, product) ||
-                const DeepCollectionEquality().equals(other.product, product)));
+                const DeepCollectionEquality().equals(other.name, name)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(shopId) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(product);
+      const DeepCollectionEquality().hash(name);
 
   @JsonKey(ignore: true)
   @override
@@ -167,17 +146,13 @@ class _$_Outsourcer implements _Outsourcer {
 }
 
 abstract class _Outsourcer implements Outsourcer {
-  const factory _Outsourcer(
-      {required String shopId,
-      required String name,
-      required List<Product> product}) = _$_Outsourcer;
+  const factory _Outsourcer({required String shopId, required String name}) =
+      _$_Outsourcer;
 
   @override
   String get shopId => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
-  @override
-  List<Product> get product => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OutsourcerCopyWith<_Outsourcer> get copyWith =>

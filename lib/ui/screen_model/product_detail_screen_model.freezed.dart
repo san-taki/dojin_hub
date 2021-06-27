@@ -18,10 +18,12 @@ class _$ProductDetailScreenModelTearOff {
 
   _ProductDetailScreenModel call(
       {required Product product,
+      int selectEditionIndex = 0,
       required ProductStoreController productStoreController,
       bool isEditing = false}) {
     return _ProductDetailScreenModel(
       product: product,
+      selectEditionIndex: selectEditionIndex,
       productStoreController: productStoreController,
       isEditing: isEditing,
     );
@@ -34,6 +36,7 @@ const $ProductDetailScreenModel = _$ProductDetailScreenModelTearOff();
 /// @nodoc
 mixin _$ProductDetailScreenModel {
   Product get product => throw _privateConstructorUsedError;
+  int get selectEditionIndex => throw _privateConstructorUsedError;
   ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
@@ -50,6 +53,7 @@ abstract class $ProductDetailScreenModelCopyWith<$Res> {
       _$ProductDetailScreenModelCopyWithImpl<$Res>;
   $Res call(
       {Product product,
+      int selectEditionIndex,
       ProductStoreController productStoreController,
       bool isEditing});
 
@@ -68,6 +72,7 @@ class _$ProductDetailScreenModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = freezed,
+    Object? selectEditionIndex = freezed,
     Object? productStoreController = freezed,
     Object? isEditing = freezed,
   }) {
@@ -76,6 +81,10 @@ class _$ProductDetailScreenModelCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product,
+      selectEditionIndex: selectEditionIndex == freezed
+          ? _value.selectEditionIndex
+          : selectEditionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       productStoreController: productStoreController == freezed
           ? _value.productStoreController
           : productStoreController // ignore: cast_nullable_to_non_nullable
@@ -104,6 +113,7 @@ abstract class _$ProductDetailScreenModelCopyWith<$Res>
   @override
   $Res call(
       {Product product,
+      int selectEditionIndex,
       ProductStoreController productStoreController,
       bool isEditing});
 
@@ -126,6 +136,7 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = freezed,
+    Object? selectEditionIndex = freezed,
     Object? productStoreController = freezed,
     Object? isEditing = freezed,
   }) {
@@ -134,6 +145,10 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as Product,
+      selectEditionIndex: selectEditionIndex == freezed
+          ? _value.selectEditionIndex
+          : selectEditionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       productStoreController: productStoreController == freezed
           ? _value.productStoreController
           : productStoreController // ignore: cast_nullable_to_non_nullable
@@ -151,11 +166,15 @@ class __$ProductDetailScreenModelCopyWithImpl<$Res>
 class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
   const _$_ProductDetailScreenModel(
       {required this.product,
+      this.selectEditionIndex = 0,
       required this.productStoreController,
       this.isEditing = false});
 
   @override
   final Product product;
+  @JsonKey(defaultValue: 0)
+  @override
+  final int selectEditionIndex;
   @override
   final ProductStoreController productStoreController;
   @JsonKey(defaultValue: false)
@@ -164,7 +183,7 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
 
   @override
   String toString() {
-    return 'ProductDetailScreenModel(product: $product, productStoreController: $productStoreController, isEditing: $isEditing)';
+    return 'ProductDetailScreenModel(product: $product, selectEditionIndex: $selectEditionIndex, productStoreController: $productStoreController, isEditing: $isEditing)';
   }
 
   @override
@@ -174,6 +193,9 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
             (identical(other.product, product) ||
                 const DeepCollectionEquality()
                     .equals(other.product, product)) &&
+            (identical(other.selectEditionIndex, selectEditionIndex) ||
+                const DeepCollectionEquality()
+                    .equals(other.selectEditionIndex, selectEditionIndex)) &&
             (identical(other.productStoreController, productStoreController) ||
                 const DeepCollectionEquality().equals(
                     other.productStoreController, productStoreController)) &&
@@ -186,6 +208,7 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(product) ^
+      const DeepCollectionEquality().hash(selectEditionIndex) ^
       const DeepCollectionEquality().hash(productStoreController) ^
       const DeepCollectionEquality().hash(isEditing);
 
@@ -199,11 +222,14 @@ class _$_ProductDetailScreenModel implements _ProductDetailScreenModel {
 abstract class _ProductDetailScreenModel implements ProductDetailScreenModel {
   const factory _ProductDetailScreenModel(
       {required Product product,
+      int selectEditionIndex,
       required ProductStoreController productStoreController,
       bool isEditing}) = _$_ProductDetailScreenModel;
 
   @override
   Product get product => throw _privateConstructorUsedError;
+  @override
+  int get selectEditionIndex => throw _privateConstructorUsedError;
   @override
   ProductStoreController get productStoreController =>
       throw _privateConstructorUsedError;

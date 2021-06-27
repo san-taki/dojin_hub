@@ -22,14 +22,24 @@ class _$EditionTearOff {
       PrintShop? printShop,
       int? printingCosts,
       DateTime? publicationDate,
-      List<Book>? books}) {
+      HomeStock? homeStock,
+      OutSourcerStock? outSourcerStock,
+      ExtraStock? extraStock,
+      SoldByOutsourcer? soldByOutsourcer,
+      SoldAtDojinEvent? soldAtDojinEvent,
+      FreeDistribution? freeDistribution}) {
     return _Edition(
       number: number,
       page: page,
       printShop: printShop,
       printingCosts: printingCosts,
       publicationDate: publicationDate,
-      books: books,
+      homeStock: homeStock,
+      outSourcerStock: outSourcerStock,
+      extraStock: extraStock,
+      soldByOutsourcer: soldByOutsourcer,
+      soldAtDojinEvent: soldAtDojinEvent,
+      freeDistribution: freeDistribution,
     );
   }
 }
@@ -44,7 +54,12 @@ mixin _$Edition {
   PrintShop? get printShop => throw _privateConstructorUsedError;
   int? get printingCosts => throw _privateConstructorUsedError;
   DateTime? get publicationDate => throw _privateConstructorUsedError;
-  List<Book>? get books => throw _privateConstructorUsedError;
+  HomeStock? get homeStock => throw _privateConstructorUsedError;
+  OutSourcerStock? get outSourcerStock => throw _privateConstructorUsedError;
+  ExtraStock? get extraStock => throw _privateConstructorUsedError;
+  SoldByOutsourcer? get soldByOutsourcer => throw _privateConstructorUsedError;
+  SoldAtDojinEvent? get soldAtDojinEvent => throw _privateConstructorUsedError;
+  FreeDistribution? get freeDistribution => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditionCopyWith<Edition> get copyWith => throw _privateConstructorUsedError;
@@ -60,9 +75,20 @@ abstract class $EditionCopyWith<$Res> {
       PrintShop? printShop,
       int? printingCosts,
       DateTime? publicationDate,
-      List<Book>? books});
+      HomeStock? homeStock,
+      OutSourcerStock? outSourcerStock,
+      ExtraStock? extraStock,
+      SoldByOutsourcer? soldByOutsourcer,
+      SoldAtDojinEvent? soldAtDojinEvent,
+      FreeDistribution? freeDistribution});
 
   $PrintShopCopyWith<$Res>? get printShop;
+  $HomeStockCopyWith<$Res>? get homeStock;
+  $OutSourcerStockCopyWith<$Res>? get outSourcerStock;
+  $ExtraStockCopyWith<$Res>? get extraStock;
+  $SoldByOutsourcerCopyWith<$Res>? get soldByOutsourcer;
+  $SoldAtDojinEventCopyWith<$Res>? get soldAtDojinEvent;
+  $FreeDistributionCopyWith<$Res>? get freeDistribution;
 }
 
 /// @nodoc
@@ -80,7 +106,12 @@ class _$EditionCopyWithImpl<$Res> implements $EditionCopyWith<$Res> {
     Object? printShop = freezed,
     Object? printingCosts = freezed,
     Object? publicationDate = freezed,
-    Object? books = freezed,
+    Object? homeStock = freezed,
+    Object? outSourcerStock = freezed,
+    Object? extraStock = freezed,
+    Object? soldByOutsourcer = freezed,
+    Object? soldAtDojinEvent = freezed,
+    Object? freeDistribution = freezed,
   }) {
     return _then(_value.copyWith(
       number: number == freezed
@@ -103,10 +134,30 @@ class _$EditionCopyWithImpl<$Res> implements $EditionCopyWith<$Res> {
           ? _value.publicationDate
           : publicationDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>?,
+      homeStock: homeStock == freezed
+          ? _value.homeStock
+          : homeStock // ignore: cast_nullable_to_non_nullable
+              as HomeStock?,
+      outSourcerStock: outSourcerStock == freezed
+          ? _value.outSourcerStock
+          : outSourcerStock // ignore: cast_nullable_to_non_nullable
+              as OutSourcerStock?,
+      extraStock: extraStock == freezed
+          ? _value.extraStock
+          : extraStock // ignore: cast_nullable_to_non_nullable
+              as ExtraStock?,
+      soldByOutsourcer: soldByOutsourcer == freezed
+          ? _value.soldByOutsourcer
+          : soldByOutsourcer // ignore: cast_nullable_to_non_nullable
+              as SoldByOutsourcer?,
+      soldAtDojinEvent: soldAtDojinEvent == freezed
+          ? _value.soldAtDojinEvent
+          : soldAtDojinEvent // ignore: cast_nullable_to_non_nullable
+              as SoldAtDojinEvent?,
+      freeDistribution: freeDistribution == freezed
+          ? _value.freeDistribution
+          : freeDistribution // ignore: cast_nullable_to_non_nullable
+              as FreeDistribution?,
     ));
   }
 
@@ -118,6 +169,72 @@ class _$EditionCopyWithImpl<$Res> implements $EditionCopyWith<$Res> {
 
     return $PrintShopCopyWith<$Res>(_value.printShop!, (value) {
       return _then(_value.copyWith(printShop: value));
+    });
+  }
+
+  @override
+  $HomeStockCopyWith<$Res>? get homeStock {
+    if (_value.homeStock == null) {
+      return null;
+    }
+
+    return $HomeStockCopyWith<$Res>(_value.homeStock!, (value) {
+      return _then(_value.copyWith(homeStock: value));
+    });
+  }
+
+  @override
+  $OutSourcerStockCopyWith<$Res>? get outSourcerStock {
+    if (_value.outSourcerStock == null) {
+      return null;
+    }
+
+    return $OutSourcerStockCopyWith<$Res>(_value.outSourcerStock!, (value) {
+      return _then(_value.copyWith(outSourcerStock: value));
+    });
+  }
+
+  @override
+  $ExtraStockCopyWith<$Res>? get extraStock {
+    if (_value.extraStock == null) {
+      return null;
+    }
+
+    return $ExtraStockCopyWith<$Res>(_value.extraStock!, (value) {
+      return _then(_value.copyWith(extraStock: value));
+    });
+  }
+
+  @override
+  $SoldByOutsourcerCopyWith<$Res>? get soldByOutsourcer {
+    if (_value.soldByOutsourcer == null) {
+      return null;
+    }
+
+    return $SoldByOutsourcerCopyWith<$Res>(_value.soldByOutsourcer!, (value) {
+      return _then(_value.copyWith(soldByOutsourcer: value));
+    });
+  }
+
+  @override
+  $SoldAtDojinEventCopyWith<$Res>? get soldAtDojinEvent {
+    if (_value.soldAtDojinEvent == null) {
+      return null;
+    }
+
+    return $SoldAtDojinEventCopyWith<$Res>(_value.soldAtDojinEvent!, (value) {
+      return _then(_value.copyWith(soldAtDojinEvent: value));
+    });
+  }
+
+  @override
+  $FreeDistributionCopyWith<$Res>? get freeDistribution {
+    if (_value.freeDistribution == null) {
+      return null;
+    }
+
+    return $FreeDistributionCopyWith<$Res>(_value.freeDistribution!, (value) {
+      return _then(_value.copyWith(freeDistribution: value));
     });
   }
 }
@@ -133,10 +250,27 @@ abstract class _$EditionCopyWith<$Res> implements $EditionCopyWith<$Res> {
       PrintShop? printShop,
       int? printingCosts,
       DateTime? publicationDate,
-      List<Book>? books});
+      HomeStock? homeStock,
+      OutSourcerStock? outSourcerStock,
+      ExtraStock? extraStock,
+      SoldByOutsourcer? soldByOutsourcer,
+      SoldAtDojinEvent? soldAtDojinEvent,
+      FreeDistribution? freeDistribution});
 
   @override
   $PrintShopCopyWith<$Res>? get printShop;
+  @override
+  $HomeStockCopyWith<$Res>? get homeStock;
+  @override
+  $OutSourcerStockCopyWith<$Res>? get outSourcerStock;
+  @override
+  $ExtraStockCopyWith<$Res>? get extraStock;
+  @override
+  $SoldByOutsourcerCopyWith<$Res>? get soldByOutsourcer;
+  @override
+  $SoldAtDojinEventCopyWith<$Res>? get soldAtDojinEvent;
+  @override
+  $FreeDistributionCopyWith<$Res>? get freeDistribution;
 }
 
 /// @nodoc
@@ -155,7 +289,12 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
     Object? printShop = freezed,
     Object? printingCosts = freezed,
     Object? publicationDate = freezed,
-    Object? books = freezed,
+    Object? homeStock = freezed,
+    Object? outSourcerStock = freezed,
+    Object? extraStock = freezed,
+    Object? soldByOutsourcer = freezed,
+    Object? soldAtDojinEvent = freezed,
+    Object? freeDistribution = freezed,
   }) {
     return _then(_Edition(
       number: number == freezed
@@ -178,10 +317,30 @@ class __$EditionCopyWithImpl<$Res> extends _$EditionCopyWithImpl<$Res>
           ? _value.publicationDate
           : publicationDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      books: books == freezed
-          ? _value.books
-          : books // ignore: cast_nullable_to_non_nullable
-              as List<Book>?,
+      homeStock: homeStock == freezed
+          ? _value.homeStock
+          : homeStock // ignore: cast_nullable_to_non_nullable
+              as HomeStock?,
+      outSourcerStock: outSourcerStock == freezed
+          ? _value.outSourcerStock
+          : outSourcerStock // ignore: cast_nullable_to_non_nullable
+              as OutSourcerStock?,
+      extraStock: extraStock == freezed
+          ? _value.extraStock
+          : extraStock // ignore: cast_nullable_to_non_nullable
+              as ExtraStock?,
+      soldByOutsourcer: soldByOutsourcer == freezed
+          ? _value.soldByOutsourcer
+          : soldByOutsourcer // ignore: cast_nullable_to_non_nullable
+              as SoldByOutsourcer?,
+      soldAtDojinEvent: soldAtDojinEvent == freezed
+          ? _value.soldAtDojinEvent
+          : soldAtDojinEvent // ignore: cast_nullable_to_non_nullable
+              as SoldAtDojinEvent?,
+      freeDistribution: freeDistribution == freezed
+          ? _value.freeDistribution
+          : freeDistribution // ignore: cast_nullable_to_non_nullable
+              as FreeDistribution?,
     ));
   }
 }
@@ -195,7 +354,12 @@ class _$_Edition extends _Edition {
       this.printShop,
       this.printingCosts,
       this.publicationDate,
-      this.books})
+      this.homeStock,
+      this.outSourcerStock,
+      this.extraStock,
+      this.soldByOutsourcer,
+      this.soldAtDojinEvent,
+      this.freeDistribution})
       : super._();
 
   @override
@@ -209,11 +373,21 @@ class _$_Edition extends _Edition {
   @override
   final DateTime? publicationDate;
   @override
-  final List<Book>? books;
+  final HomeStock? homeStock;
+  @override
+  final OutSourcerStock? outSourcerStock;
+  @override
+  final ExtraStock? extraStock;
+  @override
+  final SoldByOutsourcer? soldByOutsourcer;
+  @override
+  final SoldAtDojinEvent? soldAtDojinEvent;
+  @override
+  final FreeDistribution? freeDistribution;
 
   @override
   String toString() {
-    return 'Edition(number: $number, page: $page, printShop: $printShop, printingCosts: $printingCosts, publicationDate: $publicationDate, books: $books)';
+    return 'Edition(number: $number, page: $page, printShop: $printShop, printingCosts: $printingCosts, publicationDate: $publicationDate, homeStock: $homeStock, outSourcerStock: $outSourcerStock, extraStock: $extraStock, soldByOutsourcer: $soldByOutsourcer, soldAtDojinEvent: $soldAtDojinEvent, freeDistribution: $freeDistribution)';
   }
 
   @override
@@ -233,8 +407,24 @@ class _$_Edition extends _Edition {
             (identical(other.publicationDate, publicationDate) ||
                 const DeepCollectionEquality()
                     .equals(other.publicationDate, publicationDate)) &&
-            (identical(other.books, books) ||
-                const DeepCollectionEquality().equals(other.books, books)));
+            (identical(other.homeStock, homeStock) ||
+                const DeepCollectionEquality()
+                    .equals(other.homeStock, homeStock)) &&
+            (identical(other.outSourcerStock, outSourcerStock) ||
+                const DeepCollectionEquality()
+                    .equals(other.outSourcerStock, outSourcerStock)) &&
+            (identical(other.extraStock, extraStock) ||
+                const DeepCollectionEquality()
+                    .equals(other.extraStock, extraStock)) &&
+            (identical(other.soldByOutsourcer, soldByOutsourcer) ||
+                const DeepCollectionEquality()
+                    .equals(other.soldByOutsourcer, soldByOutsourcer)) &&
+            (identical(other.soldAtDojinEvent, soldAtDojinEvent) ||
+                const DeepCollectionEquality()
+                    .equals(other.soldAtDojinEvent, soldAtDojinEvent)) &&
+            (identical(other.freeDistribution, freeDistribution) ||
+                const DeepCollectionEquality()
+                    .equals(other.freeDistribution, freeDistribution)));
   }
 
   @override
@@ -245,7 +435,12 @@ class _$_Edition extends _Edition {
       const DeepCollectionEquality().hash(printShop) ^
       const DeepCollectionEquality().hash(printingCosts) ^
       const DeepCollectionEquality().hash(publicationDate) ^
-      const DeepCollectionEquality().hash(books);
+      const DeepCollectionEquality().hash(homeStock) ^
+      const DeepCollectionEquality().hash(outSourcerStock) ^
+      const DeepCollectionEquality().hash(extraStock) ^
+      const DeepCollectionEquality().hash(soldByOutsourcer) ^
+      const DeepCollectionEquality().hash(soldAtDojinEvent) ^
+      const DeepCollectionEquality().hash(freeDistribution);
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +455,12 @@ abstract class _Edition extends Edition {
       PrintShop? printShop,
       int? printingCosts,
       DateTime? publicationDate,
-      List<Book>? books}) = _$_Edition;
+      HomeStock? homeStock,
+      OutSourcerStock? outSourcerStock,
+      ExtraStock? extraStock,
+      SoldByOutsourcer? soldByOutsourcer,
+      SoldAtDojinEvent? soldAtDojinEvent,
+      FreeDistribution? freeDistribution}) = _$_Edition;
   const _Edition._() : super._();
 
   @override
@@ -274,7 +474,17 @@ abstract class _Edition extends Edition {
   @override
   DateTime? get publicationDate => throw _privateConstructorUsedError;
   @override
-  List<Book>? get books => throw _privateConstructorUsedError;
+  HomeStock? get homeStock => throw _privateConstructorUsedError;
+  @override
+  OutSourcerStock? get outSourcerStock => throw _privateConstructorUsedError;
+  @override
+  ExtraStock? get extraStock => throw _privateConstructorUsedError;
+  @override
+  SoldByOutsourcer? get soldByOutsourcer => throw _privateConstructorUsedError;
+  @override
+  SoldAtDojinEvent? get soldAtDojinEvent => throw _privateConstructorUsedError;
+  @override
+  FreeDistribution? get freeDistribution => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$EditionCopyWith<_Edition> get copyWith =>

@@ -38,7 +38,7 @@ class CreateProductScreenModel extends ChangeNotifier {
         atendedEvents: [
           DojinEvent(title: 'コミティア100'),
           DojinEvent(title: 'C99'),
-        ]
+        ],
       ),
     );
   }

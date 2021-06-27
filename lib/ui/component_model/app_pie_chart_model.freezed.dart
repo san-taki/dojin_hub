@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppPieChartModelTearOff {
   const _$AppPieChartModelTearOff();
 
-  _AppPieChartModel call({int touchedIndex = 0, required Product product}) {
+  _AppPieChartModel call({required List<PieChartItem> items}) {
     return _AppPieChartModel(
-      touchedIndex: touchedIndex,
-      product: product,
+      items: items,
     );
   }
 }
@@ -29,8 +28,7 @@ const $AppPieChartModel = _$AppPieChartModelTearOff();
 
 /// @nodoc
 mixin _$AppPieChartModel {
-  int get touchedIndex => throw _privateConstructorUsedError;
-  Product get product => throw _privateConstructorUsedError;
+  List<PieChartItem> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppPieChartModelCopyWith<AppPieChartModel> get copyWith =>
@@ -42,9 +40,7 @@ abstract class $AppPieChartModelCopyWith<$Res> {
   factory $AppPieChartModelCopyWith(
           AppPieChartModel value, $Res Function(AppPieChartModel) then) =
       _$AppPieChartModelCopyWithImpl<$Res>;
-  $Res call({int touchedIndex, Product product});
-
-  $ProductCopyWith<$Res> get product;
+  $Res call({List<PieChartItem> items});
 }
 
 /// @nodoc
@@ -58,26 +54,14 @@ class _$AppPieChartModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? touchedIndex = freezed,
-    Object? product = freezed,
+    Object? items = freezed,
   }) {
     return _then(_value.copyWith(
-      touchedIndex: touchedIndex == freezed
-          ? _value.touchedIndex
-          : touchedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<PieChartItem>,
     ));
-  }
-
-  @override
-  $ProductCopyWith<$Res> get product {
-    return $ProductCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value));
-    });
   }
 }
 
@@ -88,10 +72,7 @@ abstract class _$AppPieChartModelCopyWith<$Res>
           _AppPieChartModel value, $Res Function(_AppPieChartModel) then) =
       __$AppPieChartModelCopyWithImpl<$Res>;
   @override
-  $Res call({int touchedIndex, Product product});
-
-  @override
-  $ProductCopyWith<$Res> get product;
+  $Res call({List<PieChartItem> items});
 }
 
 /// @nodoc
@@ -107,18 +88,13 @@ class __$AppPieChartModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? touchedIndex = freezed,
-    Object? product = freezed,
+    Object? items = freezed,
   }) {
     return _then(_AppPieChartModel(
-      touchedIndex: touchedIndex == freezed
-          ? _value.touchedIndex
-          : touchedIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      product: product == freezed
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
+      items: items == freezed
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<PieChartItem>,
     ));
   }
 }
@@ -126,35 +102,27 @@ class __$AppPieChartModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppPieChartModel implements _AppPieChartModel {
-  const _$_AppPieChartModel({this.touchedIndex = 0, required this.product});
+  const _$_AppPieChartModel({required this.items});
 
-  @JsonKey(defaultValue: 0)
   @override
-  final int touchedIndex;
-  @override
-  final Product product;
+  final List<PieChartItem> items;
 
   @override
   String toString() {
-    return 'AppPieChartModel(touchedIndex: $touchedIndex, product: $product)';
+    return 'AppPieChartModel(items: $items)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AppPieChartModel &&
-            (identical(other.touchedIndex, touchedIndex) ||
-                const DeepCollectionEquality()
-                    .equals(other.touchedIndex, touchedIndex)) &&
-            (identical(other.product, product) ||
-                const DeepCollectionEquality().equals(other.product, product)));
+            (identical(other.items, items) ||
+                const DeepCollectionEquality().equals(other.items, items)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(touchedIndex) ^
-      const DeepCollectionEquality().hash(product);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(items);
 
   @JsonKey(ignore: true)
   @override
@@ -163,13 +131,11 @@ class _$_AppPieChartModel implements _AppPieChartModel {
 }
 
 abstract class _AppPieChartModel implements AppPieChartModel {
-  const factory _AppPieChartModel(
-      {int touchedIndex, required Product product}) = _$_AppPieChartModel;
+  const factory _AppPieChartModel({required List<PieChartItem> items}) =
+      _$_AppPieChartModel;
 
   @override
-  int get touchedIndex => throw _privateConstructorUsedError;
-  @override
-  Product get product => throw _privateConstructorUsedError;
+  List<PieChartItem> get items => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AppPieChartModelCopyWith<_AppPieChartModel> get copyWith =>

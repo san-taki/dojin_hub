@@ -6,7 +6,6 @@ import 'package:dojin_hub/di/app_provider.dart';
 import 'package:dojin_hub/di/screen_model_provider.dart';
 import 'package:dojin_hub/domain/entity/dojin_event.dart';
 import 'package:dojin_hub/domain/entity/edition.dart';
-import 'package:dojin_hub/domain/entity/product.dart';
 import 'package:dojin_hub/log/debug_log.dart';
 import 'package:dojin_hub/ui/component/pie_chart/app_pie_chart.dart';
 import 'package:dojin_hub/ui/screen/screen_type.dart';
@@ -87,6 +86,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
                       return _buildDetailPage(
                         context,
                         screenModel,
+                        screenModelController,
                         appColors,
                         scrollController,
                       );
@@ -112,6 +112,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   Widget _buildDetailPage(
     BuildContext context,
     ProductDetailScreenModel screenModel,
+    ProductDetailScreenModelController screenModelController,
     AppColors appColors,
     ScrollController scrollController,
   ) {
@@ -142,11 +143,12 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
             _buildBookInfoWindow(
                 context, appColors, screenModel.product.editions[0]),
             Padding(padding: const EdgeInsets.all(8)),
-            _buildSaleStateWindow(context, appColors),
+            _buildSaleStateWindow(context, appColors, screenModelController),
             Padding(padding: const EdgeInsets.all(8)),
-            _buildOutSourcingStateWindow(context, appColors),
+            _buildOutSourcingStateWindow(
+                context, appColors, screenModelController),
             Padding(padding: const EdgeInsets.all(8)),
-            _buildStockStateWindow(context, appColors),
+            _buildStockStateWindow(context, appColors, screenModelController),
             Padding(padding: const EdgeInsets.all(20)),
             _buildAdArea(context),
           ],
@@ -448,13 +450,14 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   Widget _buildSaleStateWindow(
     BuildContext context,
     AppColors appColors,
+    ProductDetailScreenModelController modelController,
   ) {
     return _buildInfoWindow(
       context,
       appColors,
       '販売状況',
       Center(
-        child: AppPieChart(),
+        child: AppPieChart(modelController.getPieChartSaleItems()),
       ),
     );
   }
@@ -462,13 +465,14 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   Widget _buildOutSourcingStateWindow(
     BuildContext context,
     AppColors appColors,
+    ProductDetailScreenModelController modelController,
   ) {
     return _buildInfoWindow(
       context,
       appColors,
       '委託状況',
       Center(
-        child: AppPieChart(),
+        child: AppPieChart(modelController.getPieChartSaleItems()),
       ),
     );
   }
@@ -476,13 +480,14 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
   Widget _buildStockStateWindow(
     BuildContext context,
     AppColors appColors,
+    ProductDetailScreenModelController modelController,
   ) {
     return _buildInfoWindow(
       context,
       appColors,
       '在庫状況',
       Center(
-        child: AppPieChart(),
+        child: AppPieChart(modelController.getPieChartSaleItems()),
       ),
     );
   }

@@ -31,6 +31,6 @@ class OutsourcingPrice implements Price {
     required this.value,
     required this.wholesaleRatio,
   }) {
-    assert(wholesaleRatio < 1 || wholesaleRatio > 99);
+    assert(wholesaleRatio > 1 && wholesaleRatio < 100);
   }
 }

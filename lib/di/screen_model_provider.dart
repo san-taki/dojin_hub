@@ -40,6 +40,7 @@ final productDetailScreenModelProvider = StateNotifierProvider.autoDispose<
           .read(productStoreProvider)
           .products[ref.read(productDetailScreenCurrentPositionProvider).state],
       productStoreController: ref.read(productStoreProvider.notifier),
+      selectEditionIndex: 0,
     ),
   ),
 );
