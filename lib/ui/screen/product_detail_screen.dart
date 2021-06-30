@@ -484,6 +484,10 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
           ],
         );
 
+    final printingCostLabel = (int? cost) => cost == null ? '-' :
+      '${TextUtil.toPriceLabel(cost)}円';
+
+
     return _buildInfoWindow(
       context,
       appColors,
@@ -497,7 +501,7 @@ class ProductDetailScreen extends HookWidget implements ScreenType {
             child('印刷所', edition.printShop?.name ?? '-'),
             child('ページ数', '${edition.page ?? '-'}'),
             child('印刷日', '${edition.publicationDate ?? '-'}'),
-            child('印刷費', '${TextUtil.toPriceLabel(edition.printingCosts)}円'),
+            child('印刷費', printingCostLabel(edition.publicationCount)),
           ],
         ),
       ),
